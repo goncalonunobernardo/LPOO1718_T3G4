@@ -53,7 +53,7 @@ public class Map {
 	}
 
 	Boolean check_win (int x, int y) {
-		if ( x == win_door_hpos + 1 && (y == 5 || y == 6)) {
+		if ( x == win_door_hpos + 1 && (y == 5 || y == 6) && matrix[y][win_door_hpos] == 'S') {
 			return true;
 		}
 		return false;
