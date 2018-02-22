@@ -18,6 +18,7 @@ public class Map {
 	private int hero_vpos = 1;
 	private int guard_hpos = 8;
 	private int guard_vpos = 1;
+	private int win_door_hpos = 0;
 	
 	void print () {
 		for (int i = 0; i < 10; i++) {
@@ -50,10 +51,14 @@ public class Map {
 		
 		return false;
 	}
-	
+
 	Boolean check_win (int x, int y) {
-		return (x == 1 && (y == 5 || y == 6) && matrix[y][x] == 'S');
+		if ( x == win_door_hpos + 1 && (y == 5 || y == 6)) {
+			return true;
+		}
+		return false;
 	}
+
 	
 	Boolean change_hero (char key) {
 		
