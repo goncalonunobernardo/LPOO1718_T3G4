@@ -10,8 +10,8 @@ public class Guard extends Person {
 	
 	/**
 	 * @brief Class constructor
-	 * @param x_pos Initial x coordinate of the guard
-	 * @param y_pos Initial y coordinate of the guard
+	 * @param x_pos Initial x coordinate of the guard on the map
+	 * @param y_pos Initial y coordinate of the guard on the map
 	 * @param symbol The initial symbol that represents the guard on the map
 	 */
 	Guard (int x_pos, int y_pos, char symbol) {
