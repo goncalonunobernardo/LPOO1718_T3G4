@@ -1,3 +1,5 @@
+package dkeep.logic;
+
 /**
  * 
  * @class Map

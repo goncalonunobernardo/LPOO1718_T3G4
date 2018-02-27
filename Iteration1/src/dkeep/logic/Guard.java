@@ -1,3 +1,4 @@
+package dkeep.logic;
 /**
  * @class Hero 
  * @extends Person
