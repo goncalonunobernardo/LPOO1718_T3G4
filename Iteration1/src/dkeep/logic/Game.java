@@ -1,6 +1,4 @@
 package dkeep.logic;
-import java.util.Scanner;
-
 
 public class Game {
     private Hero hero;			/** @brief Hero of the game */
@@ -11,61 +9,83 @@ public class Game {
     private Map map;
 
     public Game () {
-        this.win = false;
-        this.lose = false;
-        this.map = new Map(1);
+    		this.win = false;
+    		this.lose = false;
+    		this.map = new Map(1);
 
-        if(map.get_level() == 1) {
-        this.hero = new Hero (1, 1, 'H');
-        this.guard = new Guard (8, 1, 'G');
-        } else
-            if(map.get_level() == 2) {
-                this.hero = new Hero (1, 8, 'H');
-                this.ogre = new Ogre (4, 1, 'O');
-                this.club = new Club (5, 1, '*');
-            }
+    		if (map.get_level() == 1) {
+    			this.hero = new Hero (1, 1, 'H');
+    			this.guard = new Drunken (8, 1, 'G', "assssaaaaaasdddddddwwwww", 10);
+    		} else
+    			if (map.get_level() == 2) {
+    				this.hero = new Hero (1, 8, 'H');
+    				this.ogre = new Ogre (4, 1, 'O');
+    				this.club = new Club (5, 1, '*');
+    			}
     }
 
     public boolean level_setup() {
-        if (hero.check_win(get_map())) {
-            if (this.map.get_level() == 1) {
-                System.out.println("LEVEL 2");
-                this.map.set_level(2);}
-                else {
-                    System.out.println("You win!!");
-                }
-                return true;
-        }
-            else {
-                System.out.println("You lose!!");
-                return false;
-            }
-        }
+	    	if (check_win()) {
+	    		if (this.map.get_level() == 1) {
+	    			System.out.println("LEVEL 2");
+	    			this.set_level(2);
+	    			return true;
+	    		}
+	    		else {
+	    			System.out.println("You win!!");
+	    			return false;
+	    		}
+	    	}
+	    	else {
+	    		System.out.println("You lose!!");
+	    		return false;
+	    	}
+    }
+    
+    public void set_level(int level) {
+    		this.map.set_level(level);
+    		
+    		if (map.get_level() == 1) {
+    			this.hero.set_pos(1, 1);
+    			this.hero.set_symbol('H');
+    			this.guard.set_pos(8, 1);
+    			this.guard.set_symbol('G');
+    			this.ogre = null;
+    			this.club = null;
+    		} else
+    			if (map.get_level() == 2) {
+        			this.hero.set_pos(1, 8);
+        			this.hero.set_symbol('H');
+        			this.guard = null;
+    				this.ogre = new Ogre (4, 1, 'O');
+    				this.club = new Club (5, 1, '*');
+    			}
+    }
 
 
     /**
-     * @return The guard of this map
+     * @return The guard of this game
      */
     public Guard get_guard () {
         return guard;
     }
 
     /**
-     * @return The hero of this map
+     * @return The hero of this game
      */
     public Hero get_hero() {
         return hero;
     }
 
     /**
-     * @return The ogre of this map
+     * @return The ogre of this game
      */
     public Ogre get_ogre() {
         return this.ogre;
     }
 
     /**
-     * @return The club of this map
+     * @return The club of this game
      */
     public Club get_club() {
         return this.club;
@@ -78,22 +98,21 @@ public class Game {
     /**
      * @return The value of the attribute lose
      */
+    public boolean check_win() {
+        return this.win;
+    }
+    
     public boolean check_lose() {
-        return this.lose;
+    		return this.lose;
     }
-
-    /**
-     * @brief Sets the attribute win to true
-     */
-    public void set_win() {
-        this.win = true;
-    }
-
-    /**
-     * @brief Sets the attribute lose to true
-     */
-    public void set_lose() {
-        this.lose = true;
+    
+    public void set_win (boolean win) {
+    		if (win) {
+    			this.win = true;
+    		}
+    		else {
+    			this.lose = true;
+    		}
     }
 
 
@@ -104,19 +123,23 @@ public class Game {
      */
     public boolean move (char key) {
 
-        if (get_guard() != null) {
-            // the key won't be used so it doesn't matter
-            move_person (get_guard(), ' ');
-        }
-        else {
-            // the key won't be used so it doesn't matter
-            move_person (get_ogre(), ' ');
-            get_club().set_pos(get_ogre().get_x_pos(), get_ogre().get_y_pos());
-            move_person (get_club(), ' ');
-        }
-
-       return move_person (get_hero(), key);
-        //|| check_lose();
+    		move_person (get_hero(), key);
+    	
+	    	if (get_guard() != null) {
+	    		// the key won't be used so it doesn't matter
+	    		move_person (get_guard(), ' ');
+	    		this.lose = get_guard().check_near(get_hero());
+	    	}
+	    	else {
+	    		// the key won't be used so it doesn't matter
+	    		move_person (get_ogre(), ' ');
+	    		move_person (get_club(), ' ');
+	    		this.lose = get_ogre().check_near(get_hero()) || get_club().check_near(get_hero());
+	    	}
+	
+	    	this.win = get_hero().check_win();
+	
+	    	return check_win() || check_lose();
     }
 
     /**
@@ -130,9 +153,9 @@ public class Game {
 
         if (person.move_person(key, map)) {
             //to make sure the character
-            if (map.get_letter(old_x, old_y) == person.get_symbol()) {
+//            if (map.get_letter(old_x, old_y) == person.get_symbol()) {
                 map.set_letter(old_x, old_y, ' ');
-            }
+//            }
             map.set_letter(person.get_x_pos(), person.get_y_pos(), person.get_symbol());
 
         }
@@ -140,34 +163,4 @@ public class Game {
             person.set_pos(old_x, old_y);
         }
     }
-
-    /**
-     * @brief Checks if the player has lost, meaning if the hero is on one of the adjacent squares (except diagonals) to the enemy (guard, ogre or club)
-     * @param enemy Character that makes the player lose - club, ogre or guard depending on the level
-     * @param map The map of the game
-     * @return true, if the player is near the enemy; false, otherwise
-     */
-    /*
-    public boolean check_near () {
-
-        if (this.enemy != null) {
-            int enemy_x = enemy.get_x_pos();
-            int enemy_y = enemy.get_y_pos();
-
-            //mesma coluna do guarda e nas 3 posicoes "perto"
-            if (this.get_y_pos() == enemy_y && ((enemy_x - 1) <= this.get_x_pos() && this.get_x_pos() <= (enemy_x + 1))) {
-                return true;
-            }
-            //mesma linha do guarda e nas 3 posicoes "perto"
-            else if (this.get_x_pos() == enemy_x && ((enemy_y - 1) <= this.get_y_pos() && this.get_y_pos() <= (enemy_y + 1))) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-    */
-
-
-
 }

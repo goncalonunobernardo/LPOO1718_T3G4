@@ -6,8 +6,8 @@ package dkeep.logic;
  */
 public class Guard extends Person {
 
-	private String movement;					/**@brief The route of the guard on the map*/
-	private int count_string;				/**@brief To know in which key of the movement the guard currently is*/
+	protected String movement;					/**@brief The route of the guard on the map*/
+	protected int count_string;				/**@brief To know in which key of the movement the guard currently is*/
 
 	/**
 	 * @brief Class constructor
@@ -15,11 +15,12 @@ public class Guard extends Person {
 	 * @param y_pos Initial y coordinate of the guard on the map
 	 * @param symbol The initial symbol that represents the guard on the map
 	 */
-	Guard (int x_pos, int y_pos, char symbol) {
+	Guard (int x_pos, int y_pos, char symbol, String movement) {
 		super (x_pos, y_pos, symbol);
-		this.movement = "assssaaaaaasdddddddwwwww";
+		this.movement = movement;
 	}
 
+	
 	@Override
 	public boolean move_person (char key, Map map) {
 

@@ -84,5 +84,30 @@ public class Person {
 		return (map.get_letter(this.x_pos, this.y_pos) != 'X') && (map.get_letter(this.x_pos, this.y_pos) != 'I');
 		
 	}
+	
+	/**
+     * @brief Checks if the player has lost, meaning if the hero is on one of the adjacent squares (except diagonals) to the person (guard, ogre or club)
+     * @param person Character that makes the player lose - club, ogre or guard depending on the level
+     * @param map The map of the game
+     * @return true, if the player is near the person; false, otherwise
+     */
+    
+    public boolean check_near (Person person) {
 
+        if (person != null) {
+            int person_x = person.get_x_pos();
+            int person_y = person.get_y_pos();
+
+            //mesma coluna, mesma posição ou nas 2 posições adjacentes
+            if (this.get_y_pos() == person_y && ((person_x - 1) <= this.get_x_pos() && this.get_x_pos() <= (person_x + 1))) {
+                return true;
+            }
+            //mesma linha, mesma posição ou nas 2 posições adjacentes
+            else if (this.get_x_pos() == person_x && ((person_y - 1) <= this.get_y_pos() && this.get_y_pos() <= (person_y + 1))) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }    
 }

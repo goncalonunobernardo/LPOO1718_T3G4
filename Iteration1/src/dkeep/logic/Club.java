@@ -4,6 +4,7 @@ import java.util.Random;
 public class Club extends Person {
 	Random r;					/** @brief To allow for the movement of the club to be random*/
 	
+	
 	/**
 	 * @brief Class constructor
 	 * @param x_pos Initial x coordinate of the club on the map
