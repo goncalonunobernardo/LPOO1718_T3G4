@@ -36,11 +36,14 @@ public class Drunken extends Guard {
 		if (stop_plays == 0) {
 			this.asleep = false;
 			this.set_symbol('G');
+			
 			//randomly saves the number of plays he will be asleep the next time he stops
+			// + 1 -> so it won't be 0
 			this.stop_plays = r.nextInt(this.bound) + 1;
 			
 			// randomly picks to switch or not direction
 			if (r.nextBoolean()) {
+				// exchanges the movement with the reversed one
 				String aux = this.reverse_mov;
 				this.reverse_mov = this.movement;
 				this.movement = aux;
@@ -59,6 +62,7 @@ public class Drunken extends Guard {
 			this.asleep = true;
 			this.set_symbol('g');
 			//randomly saves the number of plays he will walk the next time he's awake
+			// + 1 -> so it won't be 0
 			this.walk_plays = r.nextInt(this.bound) + 1;
 		}
 		

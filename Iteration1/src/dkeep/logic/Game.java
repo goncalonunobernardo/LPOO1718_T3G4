@@ -15,7 +15,7 @@ public class Game {
 
     		if (map.get_level() == 1) {
     			this.hero = new Hero (1, 1, 'H');
-    			this.guard = new Drunken (8, 1, 'G', "assssaaaaaasdddddddwwwww", 10);
+    			this.guard = new Suspicious (8, 1, 'G', "assssaaaaaasdddddddwwwww", 10);
     		} else
     			if (map.get_level() == 2) {
     				this.hero = new Hero (1, 8, 'H');
