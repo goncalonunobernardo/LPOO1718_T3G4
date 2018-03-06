@@ -14,15 +14,51 @@ public class Game {
     		this.lose = false;
     		this.map = new Map(2);
     		this.enemies = new Vector <Person> ();
-
-    		if (map.get_level() == 1) {
-    			this.hero = new Hero (1, 1, 'H');
-    			this.enemies.add(new Guard (8, 1, 'G', "assssaaaaaasdddddddwwwww"));
     		
-    		} else if (map.get_level() == 2) {
-    				this.hero = new Hero (1, 8, 'A');
-    				enemies.add(new Ogre (4, 1, 'O', 5, 1, '*'));
+    		char [][] matrix = map.get_matrix();
+    		
+    		for (int i = 0; i < matrix.length; i++) {
+    			for (int j = 0; j < matrix[i].length; j++) {
+    				if (matrix[i][j] == 'H') {
+    					this.hero = new Hero (j, i, 'H');
+    				}
+    				else if (matrix[i][j] == 'A') {
+    					this.hero = new Hero (j, i, 'A');
+    				}
+    				else if (matrix[i][j] == 'G') {
+    					this.enemies.add(new Guard (j, i, 'G', "assssaaaaaasdddddddwwwww"));
+    				}
+    				else if (matrix[i][j] == 'O') {
+    					enemies.add(new Ogre (j, i, 'O', j+1, i, '*'));
+    				}
     			}
+    		}
+    }
+    
+    public Game (Map map) {
+		this.win = false;
+		this.lose = false;
+		this.map = map;
+		this.enemies = new Vector <Person> ();
+		
+		char [][] matrix = map.get_matrix();
+
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = 0; j < matrix[i].length; j++) {
+				if (matrix[i][j] == 'H') {
+					this.hero = new Hero (j, i, 'H');
+				}
+				else if (matrix[i][j] == 'A') {
+					this.hero = new Hero (j, i, 'A');
+				}
+				else if (matrix[i][j] == 'G') {
+					this.enemies.add(new Guard (j, i, 'G', "assssaaaaaasdddddddwwwww"));
+				}
+				else if (matrix[i][j] == 'O') {
+					enemies.add(new Ogre (j, i, 'O', j+1, i, '*'));
+				}
+			}
+		}
     }
 
     public boolean level_setup() {
@@ -82,18 +118,22 @@ public class Game {
     }
     
     public boolean check_lose() {
+    		for (Iterator <Person> it = enemies.iterator(); it.hasNext(); ) {
+    			this.lose |= it.next().check_near(get_hero());
+    		}
     		return this.lose;
     }
     
-    public void set_win (boolean win) {
-    		if (win) {
-    			this.win = true;
-    		}
-    		else {
-    			this.lose = true;
-    		}
+    public boolean check_game_over() {
+    		return (this.lose || this.win);
     }
 
+    public void set_win(boolean win) {
+    		if (win) 
+    			this.win = true;
+    		else
+    			this.lose  = true;
+    }
 
     /**
      * @brief Moves the hero, the guard or the ogre and the club of the game, by calling move_person and checks if the game is over
@@ -101,25 +141,33 @@ public class Game {
      * @return true, if the game ended; false, otherwise
      */
     public boolean move (char key) {
-    		reset_persons();
     	
-    		get_hero().move_person(key, get_map());
-    		draw_person (get_hero());
-	    	
-    		for (Iterator <Person> it = enemies.iterator(); it.hasNext(); ) {
-    			Person current = it.next();
-    			current.move_person(' ', get_map());
-    			current.draw_person(map);
-    			this.lose |= current.check_near(get_hero());
-    		}
+    		move_hero(key);
+    		
+    		move_enemies();
 	
 	    	this.win = get_hero().check_win();
 	
 	    	return check_win() || check_lose();
     }
-
-    public void reset_persons () {
+    
+    public void move_hero(char key) {
     		get_hero().reset_person(map);
+    		get_hero().move_person(key, map);
+    		get_hero().draw_person(map);
+    }
+    
+    public void move_enemies () {
+    		reset_enemies();
+    		
+    		for (Iterator <Person> it = enemies.iterator(); it.hasNext(); ) {
+    			Person current = it.next();
+    			current.move_person(' ', get_map());
+    			current.draw_person(map);
+    		}
+    }
+      
+    public void reset_enemies () {
     		
     		for (Iterator <Person> it = enemies.iterator(); it.hasNext(); ) {
     			it.next().reset_person(map);

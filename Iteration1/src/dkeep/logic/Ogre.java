@@ -46,9 +46,12 @@ public class Ogre extends Person {
 		if (super.check_near(person) && (person.get_symbol() == 'A' || person.get_symbol() == 'K')) {
 			this.set_symbol('8');
 			this.stunned = 2;
+			return club.check_near(person);
+		}
+		else {
+			return super.check_near(person) || club.check_near(person);
 		}
 		
-		return club.check_near(person);
 	}
 	
 	@Override

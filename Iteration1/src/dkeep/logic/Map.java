@@ -54,6 +54,10 @@ public class Map {
 		}
 		}
 	}
+	
+	public Map (char map[] []) {
+		this.matrix = map;
+	}
 
 	/**
 	 * @param x x coordinate of the letter to be returned
@@ -62,6 +66,10 @@ public class Map {
 	 */
 	public char get_letter (int x, int y) {
 		return matrix[y][x];
+	}
+
+	public char[][] get_matrix() {
+		return this.matrix;
 	}
 
 	/**
@@ -78,8 +86,8 @@ public class Map {
 	 * @brief Prints the matrix on the console
 	 */
 	public void print () {
-		for (int i = 0; i < 10; i++) {
-			for (int j = 0; j < 10; j++) {
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = 0; j < matrix[i].length; j++) {
 				System.out.print(matrix[i][j] + " ");
 			}
 			System.out.print("\n");
