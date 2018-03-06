@@ -89,7 +89,7 @@ public class Person {
      * @return true, if the player is near the person; false, otherwise
      */
     
-    public boolean check_near (Person person) {
+    public boolean check_near (Hero person) {
 
         if (person != null) {
             int person_x = person.get_x_pos();
@@ -111,5 +111,9 @@ public class Person {
     
     public void reset_person (Map map) {
     		map.set_letter(this.x_pos, this.y_pos, ' ');
+    }
+    
+    public void draw_person (Map map) {
+    		map.set_letter(this.x_pos, this.y_pos, this.symbol);
     }
 }

@@ -76,7 +76,7 @@ public class Drunken extends Guard {
 	}
 	
 	@Override
-	public boolean check_near (Person person) {
+	public boolean check_near (Hero person) {
 		if (this.asleep) 
 			return false;
 		else

@@ -31,6 +31,7 @@ public class Hero extends Person {
 		
 		if (current == 'k') {
 			map.open_doors();
+			this.set_symbol('K');
 		}
 		else if (current == 'S') {
 			this.win = true;
@@ -43,7 +44,4 @@ public class Hero extends Person {
 	public boolean check_win () {
 		return this.win;
 	}
-	
-	
-
 }

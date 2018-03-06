@@ -20,8 +20,8 @@ public class Game {
     			this.enemies.add(new Guard (8, 1, 'G', "assssaaaaaasdddddddwwwww"));
     		
     		} else if (map.get_level() == 2) {
-    				this.hero = new Hero (1, 8, 'H');
-    				enemies.add(new Ogre (4, 1, 'O'));
+    				this.hero = new Hero (1, 8, 'A');
+    				enemies.add(new Ogre (4, 1, 'O', 5, 1, '*'));
     			}
     }
 
@@ -57,8 +57,10 @@ public class Game {
         			this.hero.set_pos(1, 8);
         			this.hero.set_symbol('H');
         			this.enemies.clear();
-        			this.enemies.add(new Ogre (4, 1, 'O'));
+        			this.enemies.add(new Ogre (4, 1, 'O', 5, 1, '*'));
     			}
+    		this.win = false;
+    		this.lose = false;
     }
 
     /**
@@ -107,7 +109,7 @@ public class Game {
     		for (Iterator <Person> it = enemies.iterator(); it.hasNext(); ) {
     			Person current = it.next();
     			current.move_person(' ', get_map());
-    			draw_person (current);
+    			current.draw_person(map);
     			this.lose |= current.check_near(get_hero());
     		}
 	

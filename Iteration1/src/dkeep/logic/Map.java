@@ -52,7 +52,6 @@ public class Map {
 			};
             break;
 		}
-
 		}
 	}
 
