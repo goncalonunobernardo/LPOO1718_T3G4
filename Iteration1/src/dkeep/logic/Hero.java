@@ -20,27 +20,24 @@ public class Hero extends Person {
 	}
 
 	@Override
-	public boolean move_person (char key, Map map) {
+	public void move_person (char key, Map map) {
 		
-		if (super.move_person(key, map)) {
-			
-			if (map.get_letter(get_x_pos(), get_y_pos()) == 'k') {
-				map.open_doors();
-			}
-			
-			this.win = check_win(map);
-
-			return true;
+		int old_x = this.get_x_pos();
+		int old_y = this.get_y_pos();
+		
+		super.move_person(key, map);
+		
+		char current = map.get_letter(get_x_pos(), get_y_pos());
+		
+		if (current == 'k') {
+			map.open_doors();
 		}
-		return false;
-	}
-
-	/**
-	 * @brief Checks if the player has won, meaning if the hero has reached the exit doors
-	 * @return true, if the player won; false, otherwise
-	 */
-	private boolean check_win (Map map) {
-		return (map.get_letter(get_x_pos(), get_y_pos()) == 'S');
+		else if (current == 'S') {
+			this.win = true;
+		}
+		else if (current != ' ') {
+			this.set_pos(old_x, old_y);
+		}
 	}
 	
 	public boolean check_win () {

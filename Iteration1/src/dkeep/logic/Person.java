@@ -59,7 +59,7 @@ public class Person {
 	 * @param map Map where the character is stored
 	 * @return true, if the new position is valid (not a wall or a close door); false, otherwise
 	 */
-	public boolean move_person(char key, Map map) {
+	public void move_person(char key, Map map) {
 		
 		switch (key) {
 
@@ -79,10 +79,7 @@ public class Person {
 			this.y_pos += 1;
 			break;
 
-		}
-		
-		return (map.get_letter(this.x_pos, this.y_pos) != 'X') && (map.get_letter(this.x_pos, this.y_pos) != 'I');
-		
+		}		
 	}
 	
 	/**
@@ -109,5 +106,10 @@ public class Person {
             return false;
         }
         return false;
-    }    
+    }
+    
+    
+    public void reset_person (Map map) {
+    		map.set_letter(this.x_pos, this.y_pos, ' ');
+    }
 }

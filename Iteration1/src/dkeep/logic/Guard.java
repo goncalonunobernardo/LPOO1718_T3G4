@@ -22,20 +22,18 @@ public class Guard extends Person {
 
 	
 	@Override
-	public boolean move_person (char key, Map map) {
-
-		if (super.move_person(movement.charAt(count_string), map)) {
-			if (map.get_letter(get_x_pos(), get_y_pos()) == 'S')
-				return false;
-
-			if (count_string == this.movement.length() - 1)
-				count_string = 0;
-			else count_string++;
-
-			return true;
-		}
+	public void move_person (char key, Map map) {
+		int old_x = this.get_x_pos();
+		int old_y = this.get_y_pos();
 		
-		return false;
+		super.move_person(movement.charAt(count_string), map);
+		
+		if (map.get_letter(get_x_pos(), get_y_pos()) != ' ') {
+			this.set_pos(old_x, old_y);
+		}
 
+		if (count_string == this.movement.length() - 1)
+			count_string = 0;
+		else count_string++;
 	}
 }

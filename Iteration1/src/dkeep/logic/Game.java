@@ -1,26 +1,27 @@
 package dkeep.logic;
 
+import java.util.Iterator;
+import java.util.Vector;
+
 public class Game {
     private Hero hero;			/** @brief Hero of the game */
-    private Guard guard;			/** @brief Guard of the game */
-    private Ogre ogre;
-    private Club club;
+    private Vector <Person> enemies;
     private boolean win, lose;	/** @brief Boolean variables to know if the game ended or not*/
     private Map map;
 
     public Game () {
     		this.win = false;
     		this.lose = false;
-    		this.map = new Map(1);
+    		this.map = new Map(2);
+    		this.enemies = new Vector <Person> ();
 
     		if (map.get_level() == 1) {
     			this.hero = new Hero (1, 1, 'H');
-    			this.guard = new Suspicious (8, 1, 'G', "assssaaaaaasdddddddwwwww", 10);
-    		} else
-    			if (map.get_level() == 2) {
+    			this.enemies.add(new Guard (8, 1, 'G', "assssaaaaaasdddddddwwwww"));
+    		
+    		} else if (map.get_level() == 2) {
     				this.hero = new Hero (1, 8, 'H');
-    				this.ogre = new Ogre (4, 1, 'O');
-    				this.club = new Club (5, 1, '*');
+    				enemies.add(new Ogre (4, 1, 'O'));
     			}
     }
 
@@ -48,26 +49,16 @@ public class Game {
     		if (map.get_level() == 1) {
     			this.hero.set_pos(1, 1);
     			this.hero.set_symbol('H');
-    			this.guard.set_pos(8, 1);
-    			this.guard.set_symbol('G');
-    			this.ogre = null;
-    			this.club = null;
+    			this.enemies.clear();
+    			this.enemies.add(new Guard (8, 1, 'G', "assssaaaaaasdddddddwwwww"));
+    			
     		} else
     			if (map.get_level() == 2) {
         			this.hero.set_pos(1, 8);
         			this.hero.set_symbol('H');
-        			this.guard = null;
-    				this.ogre = new Ogre (4, 1, 'O');
-    				this.club = new Club (5, 1, '*');
+        			this.enemies.clear();
+        			this.enemies.add(new Ogre (4, 1, 'O'));
     			}
-    }
-
-
-    /**
-     * @return The guard of this game
-     */
-    public Guard get_guard () {
-        return guard;
     }
 
     /**
@@ -75,20 +66,6 @@ public class Game {
      */
     public Hero get_hero() {
         return hero;
-    }
-
-    /**
-     * @return The ogre of this game
-     */
-    public Ogre get_ogre() {
-        return this.ogre;
-    }
-
-    /**
-     * @return The club of this game
-     */
-    public Club get_club() {
-        return this.club;
     }
 
     public Map get_map() {
@@ -122,45 +99,32 @@ public class Game {
      * @return true, if the game ended; false, otherwise
      */
     public boolean move (char key) {
-
-    		move_person (get_hero(), key);
+    		reset_persons();
     	
-	    	if (get_guard() != null) {
-	    		// the key won't be used so it doesn't matter
-	    		move_person (get_guard(), ' ');
-	    		this.lose = get_guard().check_near(get_hero());
-	    	}
-	    	else {
-	    		// the key won't be used so it doesn't matter
-	    		move_person (get_ogre(), ' ');
-	    		move_person (get_club(), ' ');
-	    		this.lose = get_ogre().check_near(get_hero()) || get_club().check_near(get_hero());
-	    	}
+    		get_hero().move_person(key, get_map());
+    		draw_person (get_hero());
+	    	
+    		for (Iterator <Person> it = enemies.iterator(); it.hasNext(); ) {
+    			Person current = it.next();
+    			current.move_person(' ', get_map());
+    			draw_person (current);
+    			this.lose |= current.check_near(get_hero());
+    		}
 	
 	    	this.win = get_hero().check_win();
 	
 	    	return check_win() || check_lose();
     }
 
-    /**
-     * @brief Moves an entity according to a key
-     * @param person The entity to be moved
-     * @param key a, 1 to left; d, 1 to the right; w, 1 upwards; s, 1 downwards
-     */
-    public void move_person (Person person, char key) {
-        int old_x = person.get_x_pos();
-        int old_y = person.get_y_pos();
-
-        if (person.move_person(key, map)) {
-            //to make sure the character
-//            if (map.get_letter(old_x, old_y) == person.get_symbol()) {
-                map.set_letter(old_x, old_y, ' ');
-//            }
-            map.set_letter(person.get_x_pos(), person.get_y_pos(), person.get_symbol());
-
-        }
-        else {
-            person.set_pos(old_x, old_y);
-        }
+    public void reset_persons () {
+    		get_hero().reset_person(map);
+    		
+    		for (Iterator <Person> it = enemies.iterator(); it.hasNext(); ) {
+    			it.next().reset_person(map);
+    		}    		
+    }
+    
+    public void draw_person (Person person_drawing) {
+    		map.set_letter(person_drawing.get_x_pos(), person_drawing.get_y_pos(), person_drawing.get_symbol());
     }
 }

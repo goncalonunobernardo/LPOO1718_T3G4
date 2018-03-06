@@ -29,7 +29,7 @@ public class Suspicious extends Guard {
 	
 	
 	@Override
-	public boolean move_person (char key, Map map) {
+	public void move_person (char key, Map map) {
 		
 		if (this.plays_to_reverse == 0) {
 			//randomly saves the number of plays until the next change of direction
@@ -53,6 +53,6 @@ public class Suspicious extends Guard {
 			this.plays_to_reverse--;
 		}
 		
-		return super.move_person(movement.charAt(count_string), map);
+		super.move_person(movement.charAt(count_string), map);
 	}
 }

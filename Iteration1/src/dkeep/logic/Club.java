@@ -17,20 +17,19 @@ public class Club extends Person {
 	}
 	
 	@Override 
-	public boolean move_person (char key, Map map) {
+	public void move_person (char key, Map map) {
 		String movements = "asdw";
 		int initial_x = get_x_pos();
 		int initial_y = get_y_pos();
-
-		while ((!super.move_person(movements.charAt(r.nextInt(4)), map)) || map.get_letter(get_x_pos(), get_y_pos()) == 'S'){
+		
+		while (map.get_letter(get_x_pos(), get_y_pos()) != ' ') {
 			this.set_pos(initial_x, initial_y);
+			super.move_person(movements.charAt(r.nextInt(4)), map);
 		}
 		
 		if (map.get_letter(get_x_pos(), get_y_pos()) == 'k') {
 			this.set_symbol('$');
 		}
-
-		return true;
 	}
 
 }

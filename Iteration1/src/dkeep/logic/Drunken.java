@@ -31,7 +31,7 @@ public class Drunken extends Guard {
 	}
 	
 	@Override
-	public boolean move_person (char key, Map map) {
+	public void move_person (char key, Map map) {
 		
 		if (stop_plays == 0) {
 			this.asleep = false;
@@ -68,13 +68,11 @@ public class Drunken extends Guard {
 		
 		if (this.asleep) {
 			stop_plays--;
-			return true;
 		}
 		else {
 			walk_plays--;
+			super.move_person(movement.charAt(count_string), map);
 		}
-		
-		return super.move_person(movement.charAt(count_string), map);
 	}
 	
 	@Override
