@@ -64,8 +64,8 @@ public class Map {
 	 * @param y y coordinate of the letter to be returned
 	 * @return The letter on the given positions of the matrix
 	 */
-	public char get_letter (int x, int y) {
-		return matrix[y][x];
+	public char get_letter (Coordinates coord) {
+		return matrix[coord.get_y()][coord.get_x()];
 	}
 
 	public char[][] get_matrix() {
@@ -77,9 +77,9 @@ public class Map {
 	 * @param y y coordinate of the letter that will be changed
 	 * @param new_letter The char to replace the letter
 	 */
-	public void set_letter (int x, int y, char new_letter) {
+	public void set_letter (Coordinates coord, char new_letter) {
 		
-		matrix[y][x] = new_letter;
+		matrix[coord.get_y()][coord.get_x()] = new_letter;
 	}
 	
 	/**
@@ -99,8 +99,8 @@ public class Map {
 	 */
 	public void open_doors () {
 		for (int i = 0; i < matrix[0].length; i++) {
-			if (get_letter (0, i) == 'I')
-				set_letter (0, i, 'S');
+			if (get_letter (new Coordinates (0, i)) == 'I')
+				set_letter (new Coordinates (0, i), 'S');
 		}
 	}
 

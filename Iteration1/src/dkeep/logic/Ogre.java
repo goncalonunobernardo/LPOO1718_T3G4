@@ -21,21 +21,21 @@ public class Ogre extends Person {
 	@Override
 	public void move_person (char key, Map map) {
 		String movements = "asdw";
-		int old_x = this.get_x_pos();
-		int old_y = this.get_y_pos();
+		
+		Coordinates initial_coord = new Coordinates (this.get_coordinates());
 		
 		if (stunned == 0) {
 			this.set_symbol('O');
 			super.move_person(movements.charAt(r.nextInt(4)), map);
 
-			if (map.get_letter(get_x_pos(), get_y_pos()) != ' ') {
-				this.set_pos(old_x, old_y);
+			if (map.get_letter(this.get_coordinates()) != ' ') {
+				this.set_pos(initial_coord);
 			}
 		}
 		else
 			stunned--;
 			
-		club.set_pos(get_x_pos(), get_y_pos());
+		club.set_pos(this.get_coordinates());
 		club.move_person(movements.charAt(r.nextInt(4)), map);
 			
 	}

@@ -22,12 +22,11 @@ public class Hero extends Person {
 	@Override
 	public void move_person (char key, Map map) {
 		
-		int old_x = this.get_x_pos();
-		int old_y = this.get_y_pos();
+		Coordinates initial_coord = new Coordinates (this.get_coordinates());
 		
 		super.move_person(key, map);
 		
-		char current = map.get_letter(get_x_pos(), get_y_pos());
+		char current = map.get_letter(this.get_coordinates());
 		
 		if (current == 'k') {
 			map.open_doors();
@@ -37,7 +36,7 @@ public class Hero extends Person {
 			this.win = true;
 		}
 		else if (current != ' ') {
-			this.set_pos(old_x, old_y);
+			this.set_pos(initial_coord);
 		}
 	}
 	

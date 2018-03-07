@@ -6,7 +6,7 @@ package dkeep.logic;
  */
 public class Person {
 	
-	private int x_pos, y_pos;			/** @brief Position of the character on the map. It varies from 0 to 9*/
+	private Coordinates coord;
 	private char symbol;					/** @brief Symbol of the character on the map.*/
 	
 	/**
@@ -16,23 +16,17 @@ public class Person {
 	 * @param symbol The symbol of the character on the map
 	 */
 	Person (int x_pos, int y_pos, char symbol) {
-		this.x_pos = x_pos;
-		this.y_pos = y_pos;
+		this.coord = new Coordinates (x_pos, y_pos);
 		this.symbol = symbol;
 	}
 	
-	/**
-	 * @return The x coordinate of the character on the map. It varies from 0 to 9
-	 */
-	public int get_x_pos () {
-		return x_pos;
+	Person (Coordinates coord, char symbol) {
+		this.coord = coord;
+		this.symbol = symbol;
 	}
 	
-	/**
-	 * @return The y coordinate of the character on the map. It varies from 0 to 9
-	 */
-	public int get_y_pos () {
-		return y_pos;
+	public Coordinates get_coordinates() {
+		return this.coord;
 	}
 	
 	public char get_symbol() {
@@ -48,9 +42,8 @@ public class Person {
 	 * @param x The new x coordinate of the character on the map. It varies from 0 to 9
 	 * @param y The new y coordinate of the character on the map. It varies from 0 to 9
 	 */
-	public void set_pos (int x, int y) {
-		this.x_pos = x;
-		this.y_pos = y;
+	public void set_pos (Coordinates new_coord) {
+		this.coord = new_coord;
 	}
 	
 	/**
@@ -64,19 +57,19 @@ public class Person {
 		switch (key) {
 
 		case 'w':
-			this.y_pos -= 1;
+			this.coord.dec_y();
 			break;
 			
 		case 'd':
-			this.x_pos += 1;
+			this.coord.inc_x();
 			break;
 
 		case 'a':
-			this.x_pos -= 1;
+			this.coord.dec_x();
 			break;
 
 		case 's':
-			this.y_pos += 1;
+			this.coord.inc_y();
 			break;
 
 		}		
@@ -92,28 +85,17 @@ public class Person {
     public boolean check_near (Hero person) {
 
         if (person != null) {
-            int person_x = person.get_x_pos();
-            int person_y = person.get_y_pos();
-
-            //mesma coluna, mesma posição ou nas 2 posições adjacentes
-            if (this.get_y_pos() == person_y && ((person_x - 1) <= this.get_x_pos() && this.get_x_pos() <= (person_x + 1))) {
-                return true;
-            }
-            //mesma linha, mesma posição ou nas 2 posições adjacentes
-            else if (this.get_x_pos() == person_x && ((person_y - 1) <= this.get_y_pos() && this.get_y_pos() <= (person_y + 1))) {
-                return true;
-            }
-            return false;
+        		return this.coord.adjacent_cells(person.get_coordinates());
         }
         return false;
     }
     
     
     public void reset_person (Map map) {
-    		map.set_letter(this.x_pos, this.y_pos, ' ');
+    		map.set_letter(this.coord, ' ');
     }
     
     public void draw_person (Map map) {
-    		map.set_letter(this.x_pos, this.y_pos, this.symbol);
+    		map.set_letter(this.coord, this.symbol);
     }
 }
