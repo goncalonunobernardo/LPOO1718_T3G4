@@ -114,7 +114,7 @@ public class Game {
      * @return The value of the attribute lose
      */
     public boolean check_win() {
-        return this.win;
+    	return this.win;
     }
     
     public boolean check_lose() {
