@@ -93,8 +93,8 @@ public class TestDungeonGameLogic {
 
 		game.move_hero('a');
 		assertTrue(!game.check_lose());
-		//assertTrue(game.check_win());
-		//assertTrue(game.check_game_over());
+		assertTrue(game.check_win());
+		assertTrue(game.check_game_over());
 	}
 	
 

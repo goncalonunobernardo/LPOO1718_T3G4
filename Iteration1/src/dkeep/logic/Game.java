@@ -9,31 +9,31 @@ public class Game {
 	private boolean win, lose;	/** @brief Boolean variables to know if the game ended or not*/
 	private Map map;
 
-	public Game () {
-		this.win = false;
-		this.lose = false;
-		this.map = new Map(2);
-		this.enemies = new Vector <Person> ();
-
-		char [][] matrix = map.get_matrix();
-
-		for (int i = 0; i < matrix.length; i++) {
-			for (int j = 0; j < matrix[i].length; j++) {
-				if (matrix[i][j] == 'H') {
-					this.hero = new Hero (j, i, 'H');
-				}
-				else if (matrix[i][j] == 'A') {
-					this.hero = new Hero (j, i, 'A');
-				}
-				else if (matrix[i][j] == 'G') {
-					this.enemies.add(new Guard (j, i, 'G', "assssaaaaaasdddddddwwwww"));
-				}
-				else if (matrix[i][j] == 'O') {
-					enemies.add(new Ogre (j, i, 'O', j+1, i, '*'));
-				}
-			}
-		}
-	}
+//	public Game () {
+//		this.win = false;
+//		this.lose = false;
+//		this.map = new Map(2);
+//		this.enemies = new Vector <Person> ();
+//
+//		char [][] matrix = map.get_matrix();
+//
+//		for (int i = 0; i < matrix.length; i++) {
+//			for (int j = 0; j < matrix[i].length; j++) {
+//				if (matrix[i][j] == 'H') {
+//					this.hero = new Hero (j, i, 'H');
+//				}
+//				else if (matrix[i][j] == 'A') {
+//					this.hero = new Hero (j, i, 'A');
+//				}
+//				else if (matrix[i][j] == 'G') {
+//					this.enemies.add(new Guard (j, i, 'G', "assssaaaaaasdddddddwwwww"));
+//				}
+//				else if (matrix[i][j] == 'O') {
+//					enemies.add(new Ogre (j, i, 'O', j+1, i, '*'));
+//				}
+//			}
+//		}
+//	}
 
 	public Game (Map map) {
 		this.win = false;
@@ -55,33 +55,33 @@ public class Game {
 					this.enemies.add(new Guard (j, i, 'G', "assssaaaaaasdddddddwwwww"));
 				}
 				else if (matrix[i][j] == 'O') {
-					enemies.add(new Ogre (j, i, 'O', j+1, i, '*'));
+					enemies.add(new Ogre (j, i, 'O', j, i, '*'));
 				}
 			}
 		}
 	}
 
-	public boolean level_setup() {
-		if (check_win()) {
-			if (this.map.get_level() == 1) {
-				System.out.println("LEVEL 2");
-				this.set_level(2);
-				return true;
-			}
-			else {
-				System.out.println("You win!!");
-				return false;
-			}
-		}
-		else {
-			System.out.println("You lose!!");
-			return false;
-		}
-	}
+//	public boolean level_setup() {
+//		if (check_win()) {
+//			if (this.map.get_level() == 1) {
+//				System.out.println("LEVEL 2");
+//				this.set_level(2);
+//				return true;
+//			}
+//			else {
+//				System.out.println("You win!!");
+//				return false;
+//			}
+//		}
+//		else {
+//			System.out.println("You lose!!");
+//			return false;
+//		}
+//	}
 
-	public void set_level(int level) {
-		this.map.set_level(level);
-
+//	public void set_level(int level) {
+//		this.map.set_level(level);
+//
 //		if (map.get_level() == 1) {
 //			this.hero.set_pos(1, 1);
 //			this.hero.set_symbol('H');
@@ -95,9 +95,9 @@ public class Game {
 //				this.enemies.clear();
 //				this.enemies.add(new Ogre (4, 1, 'O', 5, 1, '*'));
 //			}
-		this.win = false;
-		this.lose = false;
-	}
+//		this.win = false;
+//		this.lose = false;
+//	}
 
 	/**
 	 * @return The hero of this game
@@ -127,13 +127,6 @@ public class Game {
 
 	public boolean check_game_over() {
 		return (check_lose() || check_win());
-	}
-
-	public void set_win(boolean win) {
-		if (win) 
-			this.win = true;
-		else
-			this.lose  = true;
 	}
 
 	/**
