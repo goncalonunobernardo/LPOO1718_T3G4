@@ -26,9 +26,18 @@ public class Ogre extends Person {
 		
 		if (stunned == 0) {
 			this.set_symbol('O');
+			
 			super.move_person(movements.charAt(r.nextInt(4)), map);
 
-			if (map.get_letter(this.get_coordinates()) != ' ') {
+			if (map.get_letter(this.get_coordinates()) == 'k') {
+				this.set_symbol('$');
+			}
+			else if (this.get_symbol() == '$') {
+				this.set_symbol('O');
+				map.set_letter(initial_coord, 'k');
+			}
+			
+			else if (map.get_letter(this.get_coordinates()) != ' ') {
 				this.set_pos(initial_coord);
 			}
 		}

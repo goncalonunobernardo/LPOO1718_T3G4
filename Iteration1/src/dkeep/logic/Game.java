@@ -1,6 +1,7 @@
 package dkeep.logic;
 
 import java.util.Iterator;
+import java.util.Random;
 import java.util.Vector;
 
 public class Game {
@@ -45,6 +46,8 @@ public class Game {
 
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[i].length; j++) {
+				
+				// searches for the position of the default symbols of the characters on the given map
 				if (matrix[i][j] == 'H') {
 					this.hero = new Hero (j, i, 'H');
 				}
@@ -52,7 +55,22 @@ public class Game {
 					this.hero = new Hero (j, i, 'A');
 				}
 				else if (matrix[i][j] == 'G') {
-					this.enemies.add(new Guard (j, i, 'G', "assssaaaaaasdddddddwwwww"));
+					
+					Random r = new Random();
+					
+					switch (r.nextInt(3)) {
+					
+					case 0: this.enemies.add(new Guard (j, i, 'G', "assssaaaaaasdddddddwwwww"));
+							break;
+							
+					case 1: this.enemies.add(new Suspicious (j, i, 'G', "assssaaaaaasdddddddwwwww", 10));
+							break;
+							
+					case 2: this.enemies.add(new Drunken (j, i, 'G', "assssaaaaaasdddddddwwwww", 10));
+							break;
+						
+					}
+					
 				}
 				else if (matrix[i][j] == 'O') {
 					enemies.add(new Ogre (j, i, 'O', j, i, '*'));
@@ -108,6 +126,10 @@ public class Game {
 
 	public Map get_map() {
 		return this.map;
+	}
+	
+	public Vector<Person> get_enemies () {
+		return this.enemies;
 	}
 
 	/**

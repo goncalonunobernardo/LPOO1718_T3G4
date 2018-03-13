@@ -19,16 +19,25 @@ public class Club extends Person {
 	@Override 
 	public void move_person (char key, Map map) {
 		String movements = "asdw";
-		Coordinates initial_coord = new Coordinates(this.get_coordinates());
+		Coordinates initial_coord = new Coordinates (this.get_coordinates());
 		
-		while (map.get_letter(initial_coord) != ' ' || (initial_coord.equals(get_coordinates()))) {
+		this.get_coordinates().set_pos(0, 0);
+		
+		while (map.get_letter(get_coordinates()) != ' ' || (initial_coord.equals(get_coordinates()))) {
 			this.set_pos(initial_coord);
 			super.move_person(movements.charAt(r.nextInt(4)), map);
+			
+			if (map.get_letter(initial_coord) == 'k') {
+				this.set_symbol('$');
+				break;
+			}
 		}
 		
-		if (map.get_letter(initial_coord) == 'k') {
-			this.set_symbol('$');
+		if (this.get_symbol() == '$') {
+			map.set_letter(initial_coord, 'k');
 		}
+		
+		
 	}
 
 }

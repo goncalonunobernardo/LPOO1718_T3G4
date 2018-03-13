@@ -21,8 +21,21 @@ public class DungeonKeep {
 	
 	private static char[][] map_2 = new char [][] {
 		{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
-		{'I', ' ', ' ', ' ', 'O', '*', ' ', ' ', 'k', 'X'},
+		{'I', ' ', ' ', ' ', 'O', ' ', ' ', ' ', 'k', 'X'},
 		{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
+		{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
+		{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
+		{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
+		{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
+		{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
+		{'X', 'H', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
+		{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'}
+	};
+	
+	private static char[][] map_3 = new char [][] {
+		{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
+		{'I', ' ', ' ', 'k', 'O', 'k', ' ', ' ', 'k', 'X'},
+		{'X', ' ', ' ', ' ', 'k', ' ', ' ', ' ', ' ', 'X'},
 		{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
 		{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
 		{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
@@ -50,7 +63,7 @@ public class DungeonKeep {
 	public static void main(String[] args) {
 		Scanner input = new Scanner (System.in);
 		
-		if (play (input, new Map (map_1))) {
+		if (play (input, new Map (map_3))) {
 			System.out.println("LEVEL 2");
 			
 			if (play (input, new Map (map_2))) 
