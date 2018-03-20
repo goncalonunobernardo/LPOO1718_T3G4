@@ -84,19 +84,19 @@ public class Person {
      */
     
     public boolean check_near (Hero person) {
+    	
+    		Coordinates this_coord = this.get_coordinates();
+    		Coordinates person_coord = person.get_coordinates();
 
-        if (person != null) {
-        		return this.coord.adjacent_cells(person.get_coordinates());
-        }
+    		if (person != null) {
+    			if (this_coord.same_column (person_coord) && ((person_coord.get_x() - 1) <= this_coord.get_x() && this_coord.get_x() <= (person_coord.get_x() + 1))) {
+    				return true;
+    			}
+    			else if (this_coord.same_line (person_coord) && ((person_coord.get_y() - 1) <= this_coord.get_y() && this_coord.get_y() <= (person_coord.get_y() + 1))) {
+    				return true;
+    			}
+    		}
+
         return false;
-    }
-    
-    
-    public void reset_person (Map map) {
-    		map.set_letter(this.coord, ' ');
-    }
-    
-    public void draw_person (Map map) {
-    		map.set_letter(this.coord, this.symbol);
     }
 }

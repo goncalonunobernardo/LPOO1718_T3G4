@@ -13,6 +13,12 @@ public class Ogre extends Person {
 		this.stunned = 0;
 	}
 	
+	Ogre (Coordinates coord, Coordinates club_coord, char symbol, char club_symbol) {
+		super (coord, symbol);
+		this.club = new Club (coord, club_symbol);
+	}
+
+	
 	public Club  getClub() {
 		return club;
 	}
@@ -27,26 +33,26 @@ public class Ogre extends Person {
 		if (stunned == 0) {
 			this.set_symbol('O');
 			
-			super.move_person(movements.charAt(r.nextInt(4)), map);
-
-			if (map.get_letter(this.get_coordinates()) == 'k') {
-				this.set_symbol('$');
-			}
-			else if (this.get_symbol() == '$') {
-				this.set_symbol('O');
-				map.set_letter(initial_coord, 'k');
-			}
-			
-			else if (map.get_letter(this.get_coordinates()) != ' ') {
+			while (map.get_letter(get_coordinates()) != ' ' || (initial_coord.equals(get_coordinates()))) {
 				this.set_pos(initial_coord);
+				super.move_person(movements.charAt(r.nextInt(4)), map);
+				
+				if (map.get_letter(this.get_coordinates()) == 'k') {
+					this.set_symbol('$');
+					break;
+				}
+				else if (this.get_symbol() == '$') {
+					this.set_symbol('O');
+					map.set_letter(initial_coord, 'k');
+					break;
+				}
 			}
 		}
 		else
 			stunned--;
 			
 		club.set_pos(this.get_coordinates());
-		club.move_person(movements.charAt(r.nextInt(4)), map);
-			
+		club.move_person(' ', map);
 	}
 	
 	@Override
@@ -61,17 +67,5 @@ public class Ogre extends Person {
 			return super.check_near(person) || club.check_near(person);
 		}
 		
-	}
-	
-	@Override
-	public void reset_person (Map map) {
-		club.reset_person(map);
-		super.reset_person(map);
-	}
-	
-	@Override
-	public void draw_person (Map map) {
-		club.draw_person(map);
-		super.draw_person(map);
 	}
 }

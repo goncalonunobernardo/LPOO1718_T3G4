@@ -8,53 +8,11 @@ package dkeep.logic;
  */
 public class Map {
     private char matrix[][];		/** @brief Where the letters of each position of the map are stored*/
-//    private int level;
-	/**
+
+    /**
 	 * @brief Depending on the level, the constructor gives different values to the matrix, hero and guard
 	 * @param level 1 to play with the guard, 2 to play with the ogre
 	 */
-
-//	Map (int level) {
-//		
-//		this.level = level;
-//		
-//	    switch (level) {
-//
-//		case 1: {
-//			this.matrix = new char [][] {
-//				{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
-//				{'X', 'H', ' ', ' ', 'I', ' ', 'X', ' ', 'G', 'X'},
-//				{'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X'},
-//				{'X', ' ', 'I', ' ', 'I', ' ', 'X', ' ', ' ', 'X'},
-//				{'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X'},
-//				{'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-//				{'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-//				{'X', 'X', 'X', ' ', 'X', 'X', 'X', 'X', ' ', 'X'},
-//				{'X', ' ', 'I', ' ', 'I', ' ', 'X', 'k', ' ', 'X'},
-//				{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'}
-//			};
-//			break;
-//		}
-//
-//
-//		case 2: {
-//			this.matrix = new char [][] {
-//				{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
-//				{'I', ' ', ' ', ' ', 'O', ' ', ' ', ' ', 'k', 'X'},
-//				{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-//				{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-//				{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-//				{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-//				{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-//				{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-//				{'X', 'H', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-//				{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'}
-//			};
-//            break;
-//		}
-//		}
-//	}
-	
 	public Map (char map[] []) {
 		this.matrix = map;
 	}
@@ -107,56 +65,22 @@ public class Map {
 				set_letter (new Coordinates (0, i), 'S');
 		}
 	}
-
-    /**
-     * @return The level of this map
-     */
-//    public int get_level () {
-//        return this.level;
-//    }
-//    public void set_level (int level) {
-//
-//        this.level = level;
-//        
-//	    switch (level) {
-//
-//		case 1: {
-//			this.matrix = new char [][] {
-//				{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
-//				{'X', 'H', ' ', ' ', 'I', ' ', 'X', ' ', 'G', 'X'},
-//				{'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X'},
-//				{'X', ' ', 'I', ' ', 'I', ' ', 'X', ' ', ' ', 'X'},
-//				{'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X'},
-//				{'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-//				{'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-//				{'X', 'X', 'X', ' ', 'X', 'X', 'X', 'X', ' ', 'X'},
-//				{'X', ' ', 'I', ' ', 'I', ' ', 'X', 'k', ' ', 'X'},
-//				{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'}
-//			};
-//			break;
-//		}
-//
-//
-//		case 2: {
-//			this.matrix = new char [][] {
-//				{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
-//				{'I', ' ', ' ', ' ', 'O', '*', ' ', ' ', 'k', 'X'},
-//				{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-//				{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-//				{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-//				{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-//				{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-//				{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-//				{'X', 'H', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-//				{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'}
-//			};
-//            break;
-//		}
-//
-//		}
-//    }
-
-
-
-
+	
+	public void reset_person (Person reset) {
+		this.set_letter(reset.get_coordinates(), ' ');
+	}
+	
+	public void draw_person (Person draw) {
+		this.set_letter(draw.get_coordinates(), draw.get_symbol());
+	}
+	
+	public Coordinates search_char (char symbol) {
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = 0; j < matrix[i].length; j++) {
+				if (matrix[j][i] == symbol)
+					return new Coordinates (i, j);
+			}
+		}
+		return null;
+	}
 }

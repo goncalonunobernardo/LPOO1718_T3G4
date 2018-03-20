@@ -4,7 +4,6 @@ import java.util.Random;
 public class Club extends Person {
 	Random r;					/** @brief To allow for the movement of the club to be random*/
 	
-	
 	/**
 	 * @brief Class constructor
 	 * @param x_pos Initial x coordinate of the club on the map
@@ -16,6 +15,11 @@ public class Club extends Person {
 		this.r = new Random ();
 	}
 	
+	public Club(Coordinates coord, char club_symbol) {
+		super (coord, club_symbol);
+		this.r = new Random();
+	}
+
 	@Override 
 	public void move_person (char key, Map map) {
 		String movements = "asdw";

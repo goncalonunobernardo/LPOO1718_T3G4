@@ -18,6 +18,11 @@ public class Hero extends Person {
 		super (x_pos, y_pos, symbol);
 		this.win = false;
 	}
+	
+	Hero (Coordinates coord, char symbol) {
+		super (coord, symbol);
+		this.win = false;
+	}
 
 	@Override
 	public void move_person (char key, Map map) {

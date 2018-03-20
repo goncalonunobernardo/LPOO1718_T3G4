@@ -16,23 +16,31 @@ public class Guard extends Person {
 	 * @param symbol The initial symbol that represents the guard on the map
 	 */
 	Guard (int x_pos, int y_pos, char symbol, String movement) {
-		super (x_pos, y_pos, symbol);
-		this.movement = movement;
+		this (new Coordinates (x_pos, y_pos), symbol, movement);
 	}
+	
+	Guard (Coordinates coord, char symbol, String movement) {
+		super (coord, symbol);
+		this.movement = movement;
+		this.count_string = 0;
+	}
+
 
 	
 	@Override
 	public void move_person (char key, Map map) {
 		Coordinates initial_coord = new Coordinates (this.get_coordinates());
 		
-		super.move_person(movement.charAt(count_string), map);
-		
-		if (map.get_letter(this.get_coordinates()) != ' ') {
-			this.set_pos(initial_coord);
-		}
+		if (this.movement != "") {
+			super.move_person(movement.charAt(count_string), map);
 
-		if (count_string == this.movement.length() - 1)
-			count_string = 0;
-		else count_string++;
+			if (map.get_letter(this.get_coordinates()) != ' ') {
+				this.set_pos(initial_coord);
+			}
+
+			if (count_string == this.movement.length() - 1)
+				count_string = 0;
+			else count_string++;
+		}
 	}
 }
