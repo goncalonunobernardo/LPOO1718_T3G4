@@ -73,14 +73,16 @@ public class Dungeon implements GameLogic {
 	 * @param key Key that expresses the hero movement: a, 1 to left; d, 1 to the right; w, 1 upwards; s, 1 downwards
 	 * @return true, if the game ended; false, otherwise
 	 */
-	public GameState  move (char key) {
+	public void move (char key) {
 
 		move_hero(key);
 		
 
 		move_guard();
 		
-		
+	}
+	
+	public GameState get_status () {
 		if (guard.check_near(get_hero())) 
 			return GameState.LOST;
 		

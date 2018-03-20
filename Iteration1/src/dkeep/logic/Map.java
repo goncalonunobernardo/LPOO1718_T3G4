@@ -23,11 +23,14 @@ public class Map {
 	 * @return The letter on the given positions of the matrix
 	 */
 	public char get_letter (Coordinates coord) {
-		if (coord.get_y() > this.get_matrix().length || coord.get_y() < 0 || coord.get_x() < 0 || coord.get_x() > this.get_matrix()[coord.get_y()].length) {
+
+		try {
+			return matrix[coord.get_y()][coord.get_x()];
+		}
+		catch (IndexOutOfBoundsException a) {
 			return 'X';
 		}
 		
-		return matrix[coord.get_y()][coord.get_x()];
 	}
 
 	public char[][] get_matrix() {

@@ -15,7 +15,8 @@ public class Ogre extends Person {
 	
 	Ogre (Coordinates coord, Coordinates club_coord, char symbol, char club_symbol) {
 		super (coord, symbol);
-		this.club = new Club (coord, club_symbol);
+		r = new Random();
+		this.club = new Club (club_coord, club_symbol);
 	}
 
 	

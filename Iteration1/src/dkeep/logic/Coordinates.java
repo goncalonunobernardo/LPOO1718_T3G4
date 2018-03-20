@@ -35,6 +35,11 @@ public class Coordinates {
 		this.y = y;
 	}
 	
+	public void set_pos (Coordinates new_coord) {
+		this.x = new_coord.get_x();
+		this.y = new_coord.get_y();
+	}
+	
 	public void dec_y () {
 		this.y--;
 	}

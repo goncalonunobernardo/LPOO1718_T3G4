@@ -43,8 +43,7 @@ public class Person {
 	 * @param y The new y coordinate of the character on the map. It varies from 0 to 9
 	 */
 	public void set_pos (Coordinates new_coord) {
-		this.coord.set_x(new_coord.get_x());;
-		this.coord.set_y(new_coord.get_y());
+		this.coord.set_pos(new_coord);
 	}
 	
 	/**

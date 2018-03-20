@@ -17,10 +17,11 @@ public class Game {
 	}
 	
 	public boolean check_game_over() {
-		return !status.equals(GameState.PLAYING);
+		return !this.get_game_status().equals(GameState.PLAYING);
 	}
 	
 	public GameState get_game_status () {
+		status = currentLevel.get_status();
 		return status;
 	}
 	
@@ -34,7 +35,7 @@ public class Game {
 	
 	public void play (char key) {
 		
-		status = currentLevel.move(key);
+		currentLevel.move(key);
 	}
 	
 	public void updateLevel () {

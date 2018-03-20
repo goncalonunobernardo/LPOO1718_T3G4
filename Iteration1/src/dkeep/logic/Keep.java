@@ -12,7 +12,8 @@ public class Keep implements GameLogic {
 	
 	public Keep (char[][] matrix) {
 		this.map = new Map (matrix);
-		this.hero = new Hero (map.search_char('H'), 'H');
+		this.hero = new Hero (map.search_char('A'), 'A');
+		
 		this.ogres = new Vector<Ogre> ();
 		ogres.add(new Ogre (map.search_char('O'), map.search_char('*'), 'O', '*'));
 	}
@@ -28,7 +29,7 @@ public class Keep implements GameLogic {
 			{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
 			{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
 			{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-			{'X', 'H', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
+			{'X', 'A', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
 			{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'}
 		};
 		
@@ -65,12 +66,15 @@ public class Keep implements GameLogic {
 	}
 	
 	@Override
-	public GameState move (char key) {
-		boolean lost = false;
+	public void move (char key) {
 		
 		move_hero(key);
 
 		move_ogres();
+	}
+	
+	public GameState get_status () {
+		boolean lost = false;
 		
 		for (Iterator <Ogre> it = ogres.iterator(); it.hasNext(); ) {
 			lost |= it.next().check_near(get_hero());

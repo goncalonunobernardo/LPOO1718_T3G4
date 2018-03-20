@@ -6,7 +6,9 @@ public interface GameLogic {
 
 	public Map get_map();
 
-	public GameState move (char key);
+	public void move (char key);
+	
+	public GameState get_status ();
 	
 	public GameLogic updateLevel();
 	
