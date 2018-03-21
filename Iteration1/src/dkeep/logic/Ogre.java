@@ -6,14 +6,7 @@ public class Ogre extends Person {
 	private Club club;
 	private int stunned;
 	
-	Ogre (int x_pos, int y_pos, char symbol, int club_x, int club_y, char club_symbol) {
-		super (x_pos, y_pos, symbol);
-		r = new Random ();
-		club = new Club (club_x, club_y, club_symbol);
-		this.stunned = 0;
-	}
-	
-	Ogre (Coordinates coord, Coordinates club_coord, char symbol, char club_symbol) {
+	public Ogre (Coordinates coord, Coordinates club_coord, char symbol, char club_symbol) {
 		super (coord, symbol);
 		r = new Random();
 		this.club = new Club (club_coord, club_symbol);
@@ -32,12 +25,14 @@ public class Ogre extends Person {
 		Coordinates initial_coord = new Coordinates (this.get_coordinates());
 		
 		if (stunned == 0) {
-			this.set_symbol('O');
+			
+			if (this.get_symbol() == '8')
+				this.set_symbol('O');
 			
 			while (map.get_letter(get_coordinates()) != ' ' || (initial_coord.equals(get_coordinates()))) {
 				this.set_pos(initial_coord);
 				super.move_person(movements.charAt(r.nextInt(4)), map);
-				
+			
 				if (map.get_letter(this.get_coordinates()) == 'k') {
 					this.set_symbol('$');
 					break;

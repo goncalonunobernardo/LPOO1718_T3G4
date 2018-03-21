@@ -33,7 +33,10 @@ public class Dungeon implements GameLogic {
 		
 		this.map = new Map (map_1);
 		
-		this.hero = new Hero (1, 1, 'H');
+		Coordinates hero_coord = map.search_char('H');
+		Coordinates guard_coord = map.search_char ('G');
+		
+		this.hero = new Hero (hero_coord, 'H');
 		
 		this.nextLevel = new Keep();
 		
@@ -41,13 +44,13 @@ public class Dungeon implements GameLogic {
 		
 		switch (r.nextInt(3)) {
 		
-		case 0: this.guard = new Guard (8, 1, 'G', "assssaaaaaasdddddddwwwww");
+		case 0: this.guard = new Guard (guard_coord, 'G', "assssaaaaaasdddddddwwwww");
 				break;
 				
-		case 1: this.guard = new Suspicious (8, 1, 'G', "assssaaaaaasdddddddwwwww", 10);
+		case 1: this.guard = new Suspicious (guard_coord, 'G', "assssaaaaaasdddddddwwwww", 10);
 				break;
 				
-		case 2: this.guard = new Drunken (8, 1, 'G', "assssaaaaaasdddddddwwwww", 10);
+		case 2: this.guard = new Drunken (guard_coord, 'G', "assssaaaaaasdddddddwwwww", 10);
 				break;
 			
 		}

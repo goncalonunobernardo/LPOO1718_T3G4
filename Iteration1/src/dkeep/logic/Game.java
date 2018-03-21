@@ -40,6 +40,10 @@ public class Game {
 	
 	public void updateLevel () {
 		
+		if (status != GameState.PLAYING) {
+			this.print_map();
+		}
+		
 		if (status == GameState.LOST)
 			System.out.println("You lose!");
 

@@ -35,16 +35,20 @@ public class Keep implements GameLogic {
 		
 		this.map = new Map (map_2);
 		
-		this.hero = new Hero (1, 8, 'H');
+		Coordinates hero_coord = map.search_char('A');
+		Coordinates ogre_coord = map.search_char ('O');
+		Coordinates club_coord = map.search_char('*');
+		
+		this.hero = new Hero (hero_coord, 'A');
 		
 		this.ogres = new Vector<Ogre> ();
-				
+			
 		Random r = new Random ();
 		
 		int bound = r.nextInt(3) + 1;
 		
 		for (int i = 0; i < bound; i++) {
-			ogres.add(new Ogre (4, 1, 'O', 5, 1, '*'));
+			ogres.add(new Ogre (ogre_coord,club_coord, 'O', '*'));
 		}
 		
 	}

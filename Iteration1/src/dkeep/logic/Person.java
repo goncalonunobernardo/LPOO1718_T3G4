@@ -15,12 +15,8 @@ public class Person {
 	 * @param y_pos The y coordinate of the character on the map. It varies from 0 to 9
 	 * @param symbol The symbol of the character on the map
 	 */
-	Person (int x_pos, int y_pos, char symbol) {
-		this.coord = new Coordinates (x_pos, y_pos);
-		this.symbol = symbol;
-	}
 	
-	Person (Coordinates coord, char symbol) {
+	public Person (Coordinates coord, char symbol) {
 		this.coord = coord;
 		this.symbol = symbol;
 	}
@@ -57,19 +53,19 @@ public class Person {
 		switch (key) {
 
 		case 'w':
-			this.coord.dec_y();
+			this.coord.add_y(-1);
 			break;
 			
 		case 'd':
-			this.coord.inc_x();
+			this.coord.add_x(1);
 			break;
 
 		case 'a':
-			this.coord.dec_x();
+			this.coord.add_x(-1);
 			break;
 
 		case 's':
-			this.coord.inc_y();
+			this.coord.add_y(1);
 			break;
 
 		}		

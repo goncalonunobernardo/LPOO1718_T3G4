@@ -1,14 +1,22 @@
 package dkeep.test;
 
 import static org.junit.Assert.*;
+
+
 import org.junit.Test;
 
+
 import dkeep.logic.Coordinates;
+import dkeep.logic.Drunken;
 import dkeep.logic.Dungeon;
 import dkeep.logic.Game;
 import dkeep.logic.GameState;
+import dkeep.logic.Guard;
 import dkeep.logic.Keep;
+import dkeep.logic.Map;
+import dkeep.logic.Ogre;
 import dkeep.logic.Person;
+import dkeep.logic.Suspicious;
 
 public class TestDungeonGameLogic {
 	
@@ -29,8 +37,64 @@ public class TestDungeonGameLogic {
 							{ 'X', ' ', ' ', 'O', '*', 'X' },
 							{ 'I', ' ', ' ', ' ', ' ', 'X' }, 
 							{ 'I', 'k', ' ', ' ', ' ', 'X' },
-							{ 'X', 'X', 'X', 'X', ' ', 'X' }};
+							{ 'X', 'X', 'X', 'X', 'X', 'X' }};
+	
+	char[][] map_test4 = {	{'X', 'X', 'X', 'X', 'X'},
+							{'X', ' ', ' ', 'G', 'X'},
+							{'I', ' ', ' ', ' ', 'X'},
+							{'I', ' ', ' ', ' ', 'X'},
+							{'X', 'X', 'X', 'X', 'X'}};
+	
+	char [][] map_test5 = {	{ 'X', 'X', 'X', 'X', 'X', 'X' },
+							{ 'X', ' ', ' ', ' ', ' ', 'X'},
+							{ 'X', ' ', ' ', 'O', '*', 'X' },
+							{ 'I', ' ', ' ', 'k', ' ', 'X' }, 
+							{ 'I', ' ', ' ', ' ', ' ', 'X' },
+							{ 'X', 'X', 'X', 'X', 'X', 'X' }};
 
+	@Test
+	public void testMap () {
+		Map map = new Map (map_test1);
+		
+		Coordinates guard_coord = map.search_char('G');
+		Coordinates hero_coord = map.search_char('H');
+		
+		assertEquals (guard_coord, new Coordinates (3, 1));
+		assertEquals (hero_coord, new Coordinates (1, 1));
+		assertEquals (map.search_char('A'), null);
+		
+		Person guard = new Person (guard_coord, 'G');
+		Person hero = new Person (hero_coord, 'H');
+		
+		map.reset_person(guard);
+		assertEquals (map.get_letter(guard.get_coordinates()), ' ');
+		
+		map.reset_person(hero);
+		assertEquals (map.get_letter(hero.get_coordinates()), ' ');
+		
+		map.draw_person(guard);
+		assertEquals (map.get_letter(guard.get_coordinates()), guard.get_symbol());
+		
+		hero_coord.add_y(1);
+		map.draw_person(hero);
+		assertEquals (map.get_letter(hero.get_coordinates()), 'H');
+		
+		
+	}
+	
+	@Test
+	public void testDefaultGame () {
+		Game game = new Game (); 
+		
+		assertEquals (game.get_game_status(), GameState.PLAYING);
+		assertEquals (game.get_hero().get_coordinates(), new Coordinates (1, 1));
+		
+		game.updateLevel();
+		
+		assertEquals (game.get_game_status(), GameState.PLAYING);
+
+	}
+	
 	@Test
 	public void testHeroMoveIntoToFreeCell() {
 		Game game = new Game(new Dungeon (map_test1));
@@ -42,7 +106,7 @@ public class TestDungeonGameLogic {
 	}
 
 	@Test
-	public void testHeroAgaisntWall() {
+	public void testHeroAgainstWall() {
 		Game game = new Game( new Dungeon (map_test1));
 		
 		assertEquals(game.get_map().get_letter(new Coordinates (1, 1)), game.get_hero().get_symbol());
@@ -98,6 +162,81 @@ public class TestDungeonGameLogic {
 		assertEquals (GameState.WON, game.get_game_status());
 		assertTrue(game.check_game_over());
 	}
+	
+	@Test
+	public void testGuard () {
+		Map map = new Map (map_test4);
+		Coordinates guard_coord = map.search_char('G');
+		Guard guard = new Guard (guard_coord, 'G', "aasddw");
+		
+		map.reset_person(guard);
+		assertEquals (guard_coord, new Coordinates (3, 1));
+		guard.move_person(' ', map);
+		assertEquals (guard_coord, new Coordinates (2, 1));
+		guard.move_person(' ', map);
+		assertEquals (guard_coord, new Coordinates (1, 1));
+		guard.move_person(' ', map);
+		assertEquals (guard_coord, new Coordinates (1, 2));
+		guard.move_person(' ', map);
+		assertEquals (guard_coord, new Coordinates (2, 2));
+		guard.move_person(' ', map);
+		assertEquals (guard_coord, new Coordinates (3, 2));
+		guard.move_person(' ', map);
+		assertEquals (guard_coord, new Coordinates (3, 1));
+	}
+	
+	@Test (timeout = 1000)
+	public void testDrunkenGuard () {
+		boolean asleep = false;
+		
+		Map map = new Map (map_test4);
+		
+		Coordinates guard_coord = map.search_char('G');
+		Coordinates aux = new Coordinates (guard_coord);
+		
+		Drunken guard = new Drunken (guard_coord, 'G', "dd", 1);
+		
+		while (!asleep) {
+			
+			aux.set_pos(guard.get_coordinates());
+			
+			while (guard.get_symbol() == 'G') {
+				aux.set_pos(guard.get_coordinates());
+				guard.move_person(' ', map);
+			}
+			
+			while (guard.get_symbol() == 'g') {
+				assertEquals (aux, guard.get_coordinates());
+				asleep = true;
+				guard.move_person(' ', map);
+			}
+		}
+	}
+	
+	@Test (timeout = 1000)
+	public void testSuspiciousGuard () {
+		boolean change_direction = false;
+		
+		Map map = new Map (map_test4);
+		
+		Coordinates guard_coord = map.search_char('G');
+		Coordinates aux = new Coordinates (guard_coord);
+		
+		Suspicious guard = new Suspicious (guard_coord, 'G', "dd", 2);
+		
+		while (!change_direction) {
+			
+			aux.set_pos(guard.get_coordinates());
+			aux.add_x(-1);
+			guard.move_person(' ', map);
+			
+			if (guard.get_coordinates().equals(aux)) {
+				change_direction = true;
+			}
+		}
+	}
+	
+	
 	
 
 	@Test
@@ -156,11 +295,25 @@ public class TestDungeonGameLogic {
 		Game game = new Game ( level);
 		
 		assertFalse ("Test game not over", game.check_game_over());
-		game.play('s');
-		game.play('s');
-		game.play('a');
+		level.move_hero('s');
+		level.move_hero('s');
+		level.move_hero('a');
 		assertTrue ("Test game over", game.check_game_over());
 		assertEquals (GameState.WON, game.get_game_status());
+	}
+	
+	@Test
+	public void testStunnedOgre () {
+		Keep level = new Keep (map_test2);
+		Game game = new Game ( level);
+		
+		Person ogre = level.get_ogres().elementAt(0);
+		
+		assertFalse ("Test game not over", game.check_game_over());
+		level.move_hero('s');
+		level.move_hero('d');
+		assertFalse("Test game not over", game.check_game_over());
+		assertEquals ("Stunned Ogre", '8', ogre.get_symbol());
 	}
 	
 	@Test (timeout = 1000)
@@ -191,6 +344,73 @@ public class TestDungeonGameLogic {
 				move_down = true;
 			
 			else if (ogre.get_coordinates().equals(new Coordinates (initial.get_x(), initial.get_y() - 1)))
+				move_up = true;
+			
+			else
+				fail ("Behaviour not expected");
+			
+		}
+	}
+	
+	@Test (timeout = 1000)
+	public void testOgreAboveKey () {
+		boolean ogAboveKey = false;
+		Map map = new Map (map_test5);
+		
+		Coordinates ogre_coord = map.search_char('O');
+		Coordinates club_coord = map.search_char('*');
+		Coordinates key_coord = map.search_char('k');
+		
+		Ogre ogre = new Ogre (ogre_coord, club_coord, 'O', '*');
+		
+
+		Coordinates initial_ogre = new Coordinates (ogre_coord);
+		
+		while (!ogAboveKey) {
+			ogre.set_pos(initial_ogre);
+			ogre.move_person(' ', map);
+			
+			if (key_coord.equals(ogre.get_coordinates())) {
+				assertEquals(ogre.get_symbol(), '$');
+				ogAboveKey = true;
+				ogre.move_person(' ', map);
+				assertEquals (ogre.get_symbol(), 'O');
+			}
+		}
+		
+		assertEquals(map.get_letter(key_coord), 'k');
+		
+	}
+	
+	
+	@Test (timeout = 1000)
+	public void testClubRandomBehaviour() {
+		Keep level = new Keep (map_test3);
+		Game game = new Game (level);
+		
+
+		Coordinates ogre_coord =  level.get_ogres().elementAt(0).get_coordinates();
+		Coordinates club_coord = level.get_ogres().elementAt(0).getClub().get_coordinates();
+		
+		boolean move_down = false, move_up = false, move_right = false, move_left = false;
+		
+
+		assertFalse ("Test game not over", game.check_game_over());
+		
+		while (!move_down || !move_up || !move_right || !move_left) {
+			
+			game.play('a');
+			
+			if (club_coord.equals(new Coordinates (ogre_coord.get_x() - 1, ogre_coord.get_y())))
+				move_right = true;
+			
+			else if (club_coord.equals(new Coordinates (ogre_coord.get_x() + 1, ogre_coord.get_y())))
+				move_left = true;
+			
+			else if (club_coord.equals(new Coordinates (ogre_coord.get_x(), ogre_coord.get_y() + 1)))
+				move_down = true;
+			
+			else if (club_coord.equals(new Coordinates (ogre_coord.get_x(), ogre_coord.get_y() - 1)))
 				move_up = true;
 			
 			else

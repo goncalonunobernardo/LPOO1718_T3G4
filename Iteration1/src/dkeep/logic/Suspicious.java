@@ -7,8 +7,8 @@ public class Suspicious extends Guard {
 	private String reverse_mov;
 	private int plays_to_reverse, bound;
 	
-	Suspicious (int x_pos, int y_pos, char symbol, String movement, int bound) {
-		super (x_pos, y_pos, symbol, movement);
+	public Suspicious (Coordinates coord, char symbol, String movement, int bound) {
+		super (coord, symbol, movement);
 		this.r = new Random ();
 		this.reverse_mov = "";
 		this.plays_to_reverse = r.nextInt(bound);
@@ -46,8 +46,8 @@ public class Suspicious extends Guard {
 			count_string = movement.length() - count_string;
 
 			//if the count_string was at 0, it moves to the last movement of the reversed movement
-			if (count_string == 24)
-				count_string = 23;
+			if (count_string >= movement.length())
+				count_string = movement.length() - 1;
 		}
 		else {
 			this.plays_to_reverse--;

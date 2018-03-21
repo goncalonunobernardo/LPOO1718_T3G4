@@ -18,17 +18,10 @@ public class Coordinates {
 		return x;
 	}
 
-	public void set_x(int x) {
-		this.x = x;
-	}
-
 	public int get_y() {
 		return y;
 	}
 
-	public void set_y(int y) {
-		this.y = y;
-	}
 	
 	public void set_pos (int x, int y) {
 		this.x = x;
@@ -40,20 +33,12 @@ public class Coordinates {
 		this.y = new_coord.get_y();
 	}
 	
-	public void dec_y () {
-		this.y--;
+	public void add_y (int adding) {
+		this.y += adding;
 	}
 	
-	public void dec_x () {
-		this.x--;
-	}
-	
-	public void inc_y () {
-		this.y++;
-	}
-	
-	public void inc_x () {
-		this.x++;
+	public void add_x (int adding) {
+		this.x += adding;
 	}
 	
 	public boolean same_column (Coordinates coord) {
@@ -62,18 +47,6 @@ public class Coordinates {
 	
 	public boolean same_line (Coordinates coord) {
 		return coord.get_x() == this.x;
-	}
-	
-	public boolean adjacent_cells (Coordinates coord) {
-		//mesma coluna, mesma posição ou nas 2 posições adjacentes
-        if (same_column (coord) && ((coord.get_x() - 1) <= this.get_x() && this.get_x() <= (coord.get_x() + 1))) {
-            return true;
-        }
-        //mesma linha, mesma posição ou nas 2 posições adjacentes
-        else if (same_line (coord) && ((coord.get_y() - 1) <= this.get_y() && this.get_y() <= (coord.get_y() + 1))) {
-            return true;
-        }
-        return false;
 	}
 
 	@Override
