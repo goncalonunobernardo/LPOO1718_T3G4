@@ -23,4 +23,16 @@ hs_err_pid*
 
 Iteration1/src/\.idea/workspace\.xml
 
+<<<<<<< Updated upstream
 \.idea/
+=======
+Iteration1/\.classpath
+
+LPOO1718/\.project
+
+Iteration1/\.project
+
+LPOO1718/\.classpath
+
+LPOO1718/\.settings/org\.eclipse\.jdt\.core\.prefs
+>>>>>>> Stashed changes
