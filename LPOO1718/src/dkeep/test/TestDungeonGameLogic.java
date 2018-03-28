@@ -125,11 +125,12 @@ public class TestDungeonGameLogic {
 	
 	@Test
 	public void testHeroClosedDoor() {
-		Game game = new Game(new GameLogic [] {new Dungeon (map_test1)});
+		Dungeon level = new Dungeon (map_test1);
+		Game game = new Game(new GameLogic [] {level});
 		Coordinates hero_coord = new Coordinates (0, 3);
 
-		game.play('s');
-		game.play('a');
+		level.move_hero('s');
+		level.move_hero('a');
 		assertFalse(game.get_map().get_letter(hero_coord) == game.get_hero().get_symbol());
 		assertEquals(game.get_map().get_letter(hero_coord), 'I');
 		assertFalse (GameState.LOST == game.get_game_status());
