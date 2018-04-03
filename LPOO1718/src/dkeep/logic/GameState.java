@@ -2,5 +2,5 @@ package dkeep.logic;
 
 public enum GameState {
 
-	WON, LOST, PLAYING
+	WON, WON_LEVEL, LOST, PLAYING
 }

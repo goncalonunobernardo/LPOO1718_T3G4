@@ -21,7 +21,6 @@ public class Game {
 	}
 	
 	public GameState get_game_status () {
-		status = levels[current_level].get_status();
 		return status;
 	}
 	
@@ -34,31 +33,31 @@ public class Game {
 	}
 	
 	public void play (char key) {
+
+		status = levels[current_level].get_status();
 		
 		if (status == GameState.PLAYING) {
 			levels[current_level].move(key);
+		}
+		else {
+			updateLevel();
 		}
 	}
 	
 	public void updateLevel () {
 		
-		if (status != GameState.PLAYING) {
-			System.out.print (this.get_map());
-		}
-		
-		if (status == GameState.LOST)
-			System.out.println("You lose!");
-
-		else if (status == GameState.WON) {
+		if (status == GameState.WON_LEVEL) {
 			
 			current_level++;
 			
-			if (current_level < levels.length) {
-				System.out.println ("Next level!");
+			if (current_level < levels.length) 
 				status = GameState.PLAYING;
-			}
 			else
-				System.out.println ("You win!");
+				status = GameState.WON;
 		}
+	}
+
+	public int get_current_level() {
+		return current_level + 1;
 	}
 }
