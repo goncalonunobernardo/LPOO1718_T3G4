@@ -9,7 +9,7 @@ public class Hero extends Person {
 	private boolean win;
 	
 	Hero (Coordinates coord, char symbol) {
-		super (coord, symbol);
+		super (coord, symbol, "hero_down");
 		this.win = false;
 	}
 
@@ -21,6 +21,8 @@ public class Hero extends Person {
 		super.move_person(key, map);
 		
 		char current = map.get_letter(this.get_coordinates());
+		
+		System.out.println(current);
 		
 		if (current == 'k') {
 			map.open_doors();

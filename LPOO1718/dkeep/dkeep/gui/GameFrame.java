@@ -16,6 +16,8 @@ public class GameFrame extends JFrame {
 	private JTextArea textArea;
 	private ExitButton btnExitGame;
 	private JLabel gameLabel;
+	
+	private GraphicsPanel images;
 
 	/**
 	 * Launch the application.
@@ -49,20 +51,20 @@ public class GameFrame extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 
-		this.textArea = new JTextArea();
-		textArea.setFont(new Font("Courier New", Font.PLAIN, 13));
-		textArea.setEditable(false);
-		textArea.setBounds(23, 140, 508, 368);
-		textArea.setFocusable(true);
-		getContentPane().add(textArea);
-		textArea.addKeyListener(new TextAreaList (gui));
-		
+//		this.textArea = new JTextArea();
+//		textArea.setFont(new Font("Courier New", Font.PLAIN, 13));
+//		textArea.setEditable(false);
+//		textArea.setBounds(23, 140, 508, 368);
+//		textArea.setFocusable(true);
+//		//getContentPane().add(textArea);
+//		textArea.addKeyListener(new TextAreaList (gui));
+//		
 		this.gameLabel = new JLabel("You can play now");
 		gameLabel.setBounds(23, 530, 508, 16);
 		getContentPane().add(gameLabel);
 		
-		this.newGamePanel = new NewGamePanel (gui);
-		newGamePanel.setBounds(23, 43, 754, 147);
+		this.newGamePanel = new NewGamePanel (gui, gameLabel);
+		newGamePanel.setBounds(23, 43, 754, 85);
 		getContentPane().add(newGamePanel);
 		
 		this.moveBtns = new MoveButtons(gui);
@@ -73,6 +75,12 @@ public class GameFrame extends JFrame {
 		this.btnExitGame = new ExitButton();
 		btnExitGame.setBounds(614, 460, 97, 39);
 		getContentPane().add(btnExitGame);
+		
+		this.images = new GraphicsPanel();
+		images.setBounds(23, 140, 508, 368);
+		images.requestFocusInWindow();
+		getContentPane().add(images);
+		images.repaint();
 	}
 	
 	public void set_label (String label) {
@@ -83,10 +91,15 @@ public class GameFrame extends JFrame {
 		textArea.setText(map);
 	}
 
-	public void start_game(String map) {
+	public void start_game(char[][] map) {
 		moveBtns.enable_buttons(true);
-		textArea.requestFocusInWindow();
-		set_text (map);
+		images.set_map(map);
+		images.repaint();
+	}
+	
+	public void update_map (char[][] map) {
+		images.set_map(map);
+		images.repaint();
 	}
 
 	public void enable_buttons(boolean enable_value) {

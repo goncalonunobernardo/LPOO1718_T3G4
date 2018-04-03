@@ -44,20 +44,22 @@ public class Game {
 
 		update_game_status();
 		
+		if (status == GameState.WON) {
+			updateLevel();
+		}
 	}
 	
 	public void updateLevel () {
 		
-		if (status == GameState.WON) {
-			
 			current_level++;
 			
 			if (current_level < levels.length) 
 				status = GameState.PLAYING;
-			else
+			else {
+				current_level--;
 				status = GameState.WON;
+			}
 		}
-	}
 
 	public int get_current_level() {
 		return current_level + 1;

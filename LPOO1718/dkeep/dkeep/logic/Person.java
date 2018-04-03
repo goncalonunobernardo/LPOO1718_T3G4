@@ -1,4 +1,7 @@
 package dkeep.logic;
+
+import dkeep.gui.ImageTest;
+
 /**
  * @class Person
  * @brief Abstraction of a character of the game (ex: hero, guard). It saves a character's position and its symbol on the map. 
@@ -8,6 +11,7 @@ public class Person {
 	
 	private Coordinates coord;
 	private char symbol;					/** @brief Symbol of the character on the map.*/
+	private ImageTest image;
 	
 	/**
 	 * @brief Class' constructor
@@ -16,13 +20,18 @@ public class Person {
 	 * @param symbol The symbol of the character on the map
 	 */
 	
-	public Person (Coordinates coord, char symbol) {
+	public Person (Coordinates coord, char symbol, String name) {
 		this.coord = coord;
 		this.symbol = symbol;
+		this.image = new ImageTest (name);
 	}
 	
 	public Coordinates get_coordinates() {
 		return this.coord;
+	}
+	
+	public ImageTest get_image() {
+		return image;
 	}
 	
 	public char get_symbol() {

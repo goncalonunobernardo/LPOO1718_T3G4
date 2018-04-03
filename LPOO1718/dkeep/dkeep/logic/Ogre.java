@@ -1,13 +1,14 @@
 package dkeep.logic;
 import java.util.Random;
 
+
 public class Ogre extends Person {
 	private Random r;
 	private Club club;
 	private int stunned;
 	
 	public Ogre (Coordinates coord, Coordinates club_coord, char symbol, char club_symbol) {
-		super (coord, symbol);
+		super (coord, symbol, "ogre_down");
 		r = new Random();
 		this.club = new Club (club_coord, club_symbol);
 	}

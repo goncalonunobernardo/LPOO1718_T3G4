@@ -19,23 +19,21 @@ public class NewGamePanel extends JPanel implements ActionListener {
 	private Settings settingsInfo;
 	private JButton btnNewGame;
 	
-	NewGamePanel (DkeepGUI gui) {
+	NewGamePanel (DkeepGUI gui, JLabel label) {
+
+		this.gui = gui;
+		this.gameState = label;
 		
 		this.btnNewGame = new JButton("New Game");
 		btnNewGame.setBounds(614, 172, 97, 25);
 		btnNewGame.setEnabled(true);
 		btnNewGame.addActionListener(this);
-
-		this.gui = gui;
-		this.gameState = gui.get_label();
 		
 		this.settingsInfo = new Settings (gameState, btnNewGame);
+		add(btnNewGame);
 
 		this.settingsBtn = new SettingsBtn (settingsInfo);
-		
-		
 		add(settingsBtn);
-		add(btnNewGame);
 	}
 	
 	@Override

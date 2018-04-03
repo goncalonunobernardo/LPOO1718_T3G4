@@ -6,7 +6,7 @@ public class Club extends Person {
 	
 	
 	public Club(Coordinates coord, char club_symbol) {
-		super (coord, club_symbol);
+		super (coord, club_symbol, "club");
 		this.r = new Random();
 	}
 

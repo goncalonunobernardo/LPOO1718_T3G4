@@ -11,7 +11,7 @@ public class Guard extends Person {
 
 	
 	public Guard (Coordinates coord, char symbol, String movement) {
-		super (coord, symbol);
+		super (coord, symbol, "guard_down");
 		this.movement = movement;
 		this.count_string = 0;
 	}

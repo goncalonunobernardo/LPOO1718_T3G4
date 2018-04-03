@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import dkeep.logic.Game;
+import dkeep.logic.Map;
 
 public class DkeepGUI {
 	
@@ -21,14 +22,14 @@ public class DkeepGUI {
 	
 	public void start_new_game (Game new_game) {
 		this.game = new_game;
-		window.start_game(new_game.get_map().toString());
+		window.start_game(new_game.get_map().get_matrix());
 	}
 	
 	public void play (char hero_key) {
 		if (game != null) {
 			game.play(hero_key); 
-			window.set_text(game.get_map().toString());
-			
+			window.update_map(game.get_map().get_matrix());
+
 			switch (game.get_game_status()) {
 			
 			case LOST: 	window.set_label("You lost");
@@ -47,5 +48,9 @@ public class DkeepGUI {
 
 	public JLabel get_label() {
 		return window.get_label();
+	}
+	
+	public Map get_map () {
+		return game.get_map();
 	}
 }
