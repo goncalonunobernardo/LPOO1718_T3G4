@@ -59,7 +59,9 @@ public class GameFrame extends JFrame {
 		textArea.setFont(new Font("Courier New", Font.PLAIN, 13));
 		textArea.setEditable(false);
 		textArea.setBounds(23, 140, 508, 368);
+		textArea.setFocusable(true);
 		getContentPane().add(textArea);
+		textArea.addKeyListener(new TextAreaList (gui));
 		
 		this.gameLabel = new JLabel("Invalid number of ogres");
 		gameLabel.setBounds(23, 530, 508, 16);
@@ -89,6 +91,7 @@ public class GameFrame extends JFrame {
 
 	public void start_game(String map) {
 		moveBtns.enable_buttons(true);
+		textArea.requestFocusInWindow();
 		set_text (map);
 	}
 
