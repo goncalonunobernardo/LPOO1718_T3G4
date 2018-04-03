@@ -63,18 +63,6 @@ public class Map {
 	}
 	
 	/**
-	 * @brief Prints the matrix on the console
-	 */
-	public void print () {
-		for (int i = 0; i < matrix.length; i++) {
-			for (int j = 0; j < matrix[i].length; j++) {
-				System.out.print(matrix[i][j] + " ");
-			}
-			System.out.print("\n");
-		}
-	}
-	
-	/**
 	 * @brief Changes the doors on the left wall of the map from I to S
 	 */
 	public void open_doors () {

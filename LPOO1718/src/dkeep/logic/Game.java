@@ -24,6 +24,10 @@ public class Game {
 		return status;
 	}
 	
+	public void update_game_status () {
+		status = levels[current_level].get_status();
+	}
+	
 	public Hero get_hero() {
 		return levels[current_level].get_hero();
 	}
@@ -33,20 +37,18 @@ public class Game {
 	}
 	
 	public void play (char key) {
-
-		status = levels[current_level].get_status();
 		
 		if (status == GameState.PLAYING) {
 			levels[current_level].move(key);
 		}
-		else {
-			updateLevel();
-		}
+
+		update_game_status();
+		
 	}
 	
 	public void updateLevel () {
 		
-		if (status == GameState.WON_LEVEL) {
+		if (status == GameState.WON) {
 			
 			current_level++;
 			

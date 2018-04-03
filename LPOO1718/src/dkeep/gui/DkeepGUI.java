@@ -1,5 +1,8 @@
 package dkeep.gui;
 
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
 import dkeep.logic.Game;
 
 public class DkeepGUI {
@@ -12,13 +15,13 @@ public class DkeepGUI {
 		this.game = null;
 	}
 	
+	public JFrame get_main_frame () {
+		return window;
+	}
+	
 	public void start_new_game (Game new_game) {
 		this.game = new_game;
 		window.start_game(new_game.get_map().toString());
-	}
-	
-	public void set_label (String text) {
-		window.set_label(text);
 	}
 	
 	public void play (char hero_key) {
@@ -31,10 +34,6 @@ public class DkeepGUI {
 			case LOST: 	window.set_label("You lost");
 						window.enable_buttons(false);
 						break;
-			
-			case WON_LEVEL: window.set_label("Next level! Press a button to continue!");
-							game.updateLevel();
-							break;
 						
 			case WON:	window.set_label("You won!");
 						window.enable_buttons(false);
@@ -44,5 +43,9 @@ public class DkeepGUI {
 			
 			}
 		}
+	}
+
+	public JLabel get_label() {
+		return window.get_label();
 	}
 }

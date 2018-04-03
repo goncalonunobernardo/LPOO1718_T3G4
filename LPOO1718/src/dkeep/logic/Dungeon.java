@@ -114,7 +114,7 @@ public class Dungeon implements GameLogic {
 			return GameState.LOST;
 		
 		if (hero.check_win())
-			return GameState.WON_LEVEL;
+			return GameState.WON;
 		
 		return GameState.PLAYING;
 	}

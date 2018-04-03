@@ -4,12 +4,15 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class GuardField extends JPanel {
+public class GuardPanel extends JPanel {
 
 	private JLabel guardPerson;
 	private JComboBox guardList;
 	
-	GuardField () {
+	GuardPanel () {
+
+		this.setBounds(40, 40, 263, 40);
+		
 		this.guardPerson = new JLabel("Guard personality:");
 		guardPerson.setBounds(57, 91, 108, 16);
 		

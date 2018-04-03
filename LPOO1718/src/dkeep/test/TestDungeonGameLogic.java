@@ -19,6 +19,9 @@ import dkeep.logic.Suspicious;
 
 public class TestDungeonGameLogic {
 	
+	char[][] map_test = {	{ 'A', 'B'}, 
+							{ 'C', 'D'}};
+	
 	char[][] map_test1 = {	{'X', 'X', 'X', 'X', 'X'},
 							{'X', 'H', ' ', 'G', 'X'},
 							{'I', ' ', ' ', ' ', 'X'},
@@ -51,6 +54,14 @@ public class TestDungeonGameLogic {
 							{ 'I', ' ', ' ', ' ', ' ', 'X' },
 							{ 'X', 'X', 'X', 'X', 'X', 'X' }};
 
+	@Test
+	public void testPrintMap() {
+		Map map = new Map (map_test);
+		
+		assertEquals ("A B \nC D \n", map.toString());
+		assertEquals (map_test, map.get_matrix());
+	}
+	
 	@Test
 	public void testMap () {
 		Map map = new Map (map_test1);
@@ -95,9 +106,19 @@ public class TestDungeonGameLogic {
 	}
 	
 	@Test
+	public void testGUIDefault () {
+		Dungeon level1 = new Dungeon ("rookie");
+		Dungeon level2 = new Dungeon ("suspicious");
+		Dungeon level3 = new Dungeon ("drunken");
+		
+		
+	}
+	
+	@Test
 	public void testHeroMoveIntoToFreeCell() {
 		Game game = new Game(new GameLogic [] {new Dungeon (map_test1)});
 		
+		assertEquals (1, game.get_current_level());
 		assertEquals ('H', game.get_hero().get_symbol());
 		assertEquals(game.get_map().get_letter(new Coordinates (1, 1)), game.get_hero().get_symbol());
 		game.play('s');
@@ -246,6 +267,7 @@ public class TestDungeonGameLogic {
 		
 		assertFalse (game.check_game_over());
 		level.move_hero('d');
+		game.update_game_status();
 		assertEquals (GameState.LOST, game.get_game_status());
 		assertTrue (game.check_game_over());
 		
@@ -298,6 +320,7 @@ public class TestDungeonGameLogic {
 		level.move_hero('s');
 		level.move_hero('s');
 		level.move_hero('a');
+		game.update_game_status();
 		assertTrue ("Test game over", game.check_game_over());
 		assertEquals (GameState.WON, game.get_game_status());
 	}
@@ -312,6 +335,7 @@ public class TestDungeonGameLogic {
 		assertFalse ("Test game not over", game.check_game_over());
 		level.move_hero('s');
 		level.move_hero('d');
+		ogre.check_near(level.get_hero());
 		assertFalse("Test game not over", game.check_game_over());
 		assertEquals ("Stunned Ogre", '8', ogre.get_symbol());
 	}

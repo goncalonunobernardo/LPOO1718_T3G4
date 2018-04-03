@@ -4,39 +4,44 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import dkeep.logic.Dungeon;
 import dkeep.logic.Game;
 import dkeep.logic.GameLogic;
 import dkeep.logic.Keep;
 
-public class NewGame extends JPanel implements ActionListener {
+public class NewGamePanel extends JPanel implements ActionListener {
 	
 	private DkeepGUI gui;
-	private GuardField guard;
-	private OgreField ogres;
+	private JLabel gameState;
+	private SettingsBtn settingsBtn;
+	private Settings settingsInfo;
 	private JButton btnNewGame;
 	
-	NewGame (DkeepGUI gui) {
+	NewGamePanel (DkeepGUI gui) {
 		
 		this.btnNewGame = new JButton("New Game");
 		btnNewGame.setBounds(614, 172, 97, 25);
-		btnNewGame.setEnabled(false);
+		btnNewGame.setEnabled(true);
 		btnNewGame.addActionListener(this);
 
-		this.ogres = new OgreField(gui, btnNewGame);
-		this.guard = new GuardField();
 		this.gui = gui;
+		this.gameState = gui.get_label();
 		
-		add(ogres);
-		add(guard);
+		this.settingsInfo = new Settings (gameState, btnNewGame);
+
+		this.settingsBtn = new SettingsBtn (settingsInfo);
+		
+		
+		add(settingsBtn);
 		add(btnNewGame);
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Dungeon level1 = new Dungeon (guard.get_selected_guard());
-		Keep level2 = new Keep (ogres.get_nr_ogres());
+		Dungeon level1 = new Dungeon (settingsInfo.get_selected_guard());
+		Keep level2 = new Keep (settingsInfo.get_nr_ogres());
 		
 		gui.start_new_game (new Game (new GameLogic [] {level1, level2 }));
 	}

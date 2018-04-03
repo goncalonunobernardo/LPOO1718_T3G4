@@ -4,20 +4,14 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-import javax.swing.JComboBox;
-import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.Font;
-import java.awt.FlowLayout;
 
 
 public class GameFrame extends JFrame {
 
 	private DkeepGUI gui = new DkeepGUI (this);
-	private NewGame newGamePanel;
+	private NewGamePanel newGamePanel;
 	private MoveButtons moveBtns;
 	private JTextArea textArea;
 	private ExitButton btnExitGame;
@@ -63,11 +57,11 @@ public class GameFrame extends JFrame {
 		getContentPane().add(textArea);
 		textArea.addKeyListener(new TextAreaList (gui));
 		
-		this.gameLabel = new JLabel("Invalid number of ogres");
+		this.gameLabel = new JLabel("You can play now");
 		gameLabel.setBounds(23, 530, 508, 16);
 		getContentPane().add(gameLabel);
 		
-		this.newGamePanel = new NewGame (gui);
+		this.newGamePanel = new NewGamePanel (gui);
 		newGamePanel.setBounds(23, 43, 754, 147);
 		getContentPane().add(newGamePanel);
 		
@@ -97,6 +91,10 @@ public class GameFrame extends JFrame {
 
 	public void enable_buttons(boolean enable_value) {
 		moveBtns.enable_buttons(enable_value);
+	}
+
+	public JLabel get_label() {
+		return this.gameLabel;
 	}
 }
 

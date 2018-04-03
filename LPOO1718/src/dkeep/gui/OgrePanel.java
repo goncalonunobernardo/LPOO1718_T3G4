@@ -8,24 +8,26 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class OgreField extends JPanel implements ActionListener {
+public class OgrePanel extends JPanel implements ActionListener {
 	
-	private JLabel nrOgres;
-	private DkeepGUI gui;
+	private JLabel nrOgres, gameState;
 	private JTextField ogreField;
 	private JButton newGameBtn;
 	
-	OgreField (DkeepGUI gui, JButton newGameBtn) {
-		this.gui = gui;
+	OgrePanel (JLabel label, JButton newGameBtn) {
+		this.setBounds(50, 0, 263, 40);
+		
 		this.newGameBtn = newGameBtn;
 		
-		this.ogreField = new JTextField("0");
-		ogreField.setBounds(57, 43, 108, 16);
+		this.gameState = label;
+		
+		this.ogreField = new JTextField("1");
+		ogreField.setBounds(140, 5, 130, 26);
 		ogreField.addActionListener(this);
 		ogreField.setColumns(10);
 		
 		this.nrOgres = new JLabel("Number of Ogres:");
-		nrOgres.setBounds(177, 40, 54, 22);
+		nrOgres.setBounds(23, 10, 112, 16);
 		
 		add (nrOgres);
 		add (ogreField);
@@ -48,20 +50,20 @@ public class OgreField extends JPanel implements ActionListener {
 			int nr_ogres = Integer.parseInt(ogreField.getText());
 			
 			if (nr_ogres > 5) {
-				gui.set_label("Number of ogres is way high! Have some mercy...");
+				gameState.setText("Number of ogres is way high! Have some mercy...");
 				newGameBtn.setEnabled(false);
 			}
 			else if (nr_ogres < 1) {
-				gui.set_label("Number of ogres is too low...");
+				gameState.setText("Number of ogres is too low...");
 				newGameBtn.setEnabled(false);
 			}
 			else {
-				gui.set_label("You can play now.");
+				gameState.setText("You can play now.");
 				newGameBtn.setEnabled(true);
 			}
 		}
 		catch(NumberFormatException e){
-			gui.set_label("Invalid number of ogres");
+			gameState.setText("Invalid number of ogres");
 			newGameBtn.setEnabled(false);
 		}
 	}
