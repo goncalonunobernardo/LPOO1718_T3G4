@@ -73,8 +73,8 @@ public class TestDungeonGameLogic {
 		assertEquals (hero_coord, new Coordinates (1, 1));
 		assertEquals (map.search_char('A'), null);
 		
-		Person guard = new Person (guard_coord, 'G', "");
-		Person hero = new Person (hero_coord, 'H', "");
+		Person guard = new Person (guard_coord, 'G', ' ');
+		Person hero = new Person (hero_coord, 'H', 'K');
 		
 		map.reset_person(guard);
 		assertEquals (map.get_letter(guard.get_coordinates()), ' ');
@@ -385,7 +385,7 @@ public class TestDungeonGameLogic {
 		Coordinates club_coord = map.search_char('*');
 		Coordinates key_coord = map.search_char('k');
 		
-		Ogre ogre = new Ogre (ogre_coord, club_coord, 'O', '*');
+		Ogre ogre = new Ogre (ogre_coord, club_coord, 'O', '$','*', '$');
 		
 
 		Coordinates initial_ogre = new Coordinates (ogre_coord);

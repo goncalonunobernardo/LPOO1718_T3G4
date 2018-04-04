@@ -7,6 +7,8 @@ package dkeep.logic;
  * It allows to change some character's positions, to move characters and to print the map.
  */
 public class Map {
+	private Coordinates key;
+	private boolean key_catched;
     private char matrix[][];		/** @brief Where the letters of each position of the map are stored*/
 
     /**
@@ -15,6 +17,8 @@ public class Map {
 	 */
 	public Map (char map[] []) {
 		this.matrix = map;
+		this.key_catched = false;
+		key = this.search_char('k');
 	}
 
 	@Override
@@ -47,6 +51,10 @@ public class Map {
 		}
 		
 	}
+	
+	public Coordinates get_key_coord (Coordinates coord) {
+		return key;
+	}
 
 	public char[][] get_matrix() {
 		return this.matrix;
@@ -76,8 +84,31 @@ public class Map {
 		this.set_letter(reset.get_coordinates(), ' ');
 	}
 	
-	public void draw_person (Person draw) {
+	public void draw_hero (Hero draw) {
+		if (!key_catched && draw.get_coordinates().equals(key)) {
+			draw.set_symbol(draw.get_key_symbol());
+			open_doors();
+			key_catched = true;
+		}
 		this.set_letter(draw.get_coordinates(), draw.get_symbol());
+	}
+	
+	public void draw_person (Person draw) {
+		
+		if (!key_catched && draw.get_coordinates().equals(key) ) 
+			this.set_letter(draw.get_coordinates(), draw.get_key_symbol());
+		else 
+			this.set_letter(draw.get_coordinates(), draw.get_symbol());
+	}
+	
+	public void draw_key () {
+		if (!key_catched && get_letter(key) == ' ') {
+			this.set_letter(key, 'k');
+		}
+	}
+	
+	public boolean not_empty (Coordinates coord) {
+		return ! (get_letter(coord) == ' ' || get_letter(coord) == 'k');
 	}
 	
 	public Coordinates search_char (char symbol) {

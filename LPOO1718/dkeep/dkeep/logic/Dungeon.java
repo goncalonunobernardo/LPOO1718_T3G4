@@ -14,7 +14,7 @@ public class Dungeon implements GameLogic {
 		Coordinates hero_coord = map.search_char('H');
 		Coordinates guard_coord = map.search_char ('G');
 		
-		this.hero = new Hero (hero_coord, 'H');
+		this.hero = new Hero (hero_coord, 'H', 'K');
 				
 		Random r = new Random();
 		
@@ -66,7 +66,7 @@ public class Dungeon implements GameLogic {
 		Coordinates hero_coord = map.search_char('H');
 		Coordinates guard_coord = map.search_char ('G');
 		
-		this.hero = new Hero (hero_coord, 'H');
+		this.hero = new Hero (hero_coord, 'H', 'K');
 		
 		switch (guard_type) {
 		
@@ -107,6 +107,8 @@ public class Dungeon implements GameLogic {
 		move_hero(key);
 
 		move_guard();
+		
+		map.draw_key();
 	}
 	
 	public GameState get_status () {
@@ -124,7 +126,7 @@ public class Dungeon implements GameLogic {
 		
 		hero.move_person(key, map);
 		
-		map.draw_person(get_hero());
+		map.draw_hero(get_hero());
 	}
 
 	public void move_guard () {

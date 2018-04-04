@@ -8,8 +8,8 @@ public class Hero extends Person {
 	
 	private boolean win;
 	
-	Hero (Coordinates coord, char symbol) {
-		super (coord, symbol, "hero_down");
+	Hero (Coordinates coord, char symbol, char key_symbol) {
+		super (coord, symbol, key_symbol);
 		this.win = false;
 	}
 
@@ -22,14 +22,10 @@ public class Hero extends Person {
 		
 		char current = map.get_letter(this.get_coordinates());
 		
-		if (current == 'k') {
-			map.open_doors();
-			this.set_symbol('K');
-		}
-		else if (current == 'S') {
+		if (current == 'S') {
 			this.win = true;
 		}
-		else if (current != ' ') {
+		else if (map.not_empty(get_coordinates())) {
 			this.set_pos(initial_coord);
 		}
 	}

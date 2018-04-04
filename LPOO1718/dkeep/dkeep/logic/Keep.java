@@ -12,7 +12,7 @@ public class Keep implements GameLogic {
 	
 	public Keep (char[][] matrix) {
 		this.map = new Map (matrix);
-		this.hero = new Hero (map.search_char('A'), 'A');
+		this.hero = new Hero (map.search_char('A'), 'A', 'K');
 		
 		Coordinates ogre_coord = map.search_char ('O');
 		Coordinates club_coord = map.search_char('*');
@@ -23,7 +23,7 @@ public class Keep implements GameLogic {
 		int bound = r.nextInt(3) + 1;
 		
 		for (int i = 0; i < bound; i++) {
-			ogres.add(new Ogre (ogre_coord, club_coord, 'O', '*'));
+			ogres.add(new Ogre (ogre_coord, club_coord, 'O', '$', '*', '$'));
 		}
 	}
 	
@@ -56,14 +56,14 @@ public class Keep implements GameLogic {
 			{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'}
 		});
 		
-		this.hero = new Hero (map.search_char('A'), 'A');
+		this.hero = new Hero (map.search_char('A'), 'A', 'K');
 		
 		
 		this.ogres = new Vector<Ogre> ();
 		
 		
 		for (int i = 0; i < nr_ogres; i++) {
-			ogres.add(new Ogre (map.search_char('O'), map.search_char('*'), 'O', '*'));
+			ogres.add(new Ogre (map.search_char('O'), map.search_char('*'), 'O', '$', '*', '$'));
 		}
 	}
 
@@ -89,6 +89,8 @@ public class Keep implements GameLogic {
 		move_hero(key);
 
 		move_ogres();
+		
+		map.draw_key();
 	}
 	
 	public GameState get_status () {
@@ -113,7 +115,7 @@ public class Keep implements GameLogic {
 		
 		hero.move_person(key, map);
 		
-		map.draw_person(get_hero());
+		map.draw_hero(get_hero());
 	}
 
 	public void move_ogres () {

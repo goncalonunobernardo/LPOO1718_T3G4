@@ -9,6 +9,7 @@ public class Person {
 	
 	private Coordinates coord;
 	private char symbol;					/** @brief Symbol of the character on the map.*/
+	private char key_symbol;
 	
 	/**
 	 * @brief Class' constructor
@@ -17,9 +18,10 @@ public class Person {
 	 * @param symbol The symbol of the character on the map
 	 */
 	
-	public Person (Coordinates coord, char symbol, String name) {
+	public Person (Coordinates coord, char symbol, char key_symbol) {
 		this.coord = coord;
 		this.symbol = symbol;
+		this.key_symbol = key_symbol;
 	}
 	
 	public Coordinates get_coordinates() {
@@ -28,6 +30,10 @@ public class Person {
 	
 	public char get_symbol() {
 		return symbol;
+	}
+	
+	public char get_key_symbol() {
+		return key_symbol;
 	}
 	
 	public void set_symbol (char symbol) {

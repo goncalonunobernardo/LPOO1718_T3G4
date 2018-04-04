@@ -5,8 +5,8 @@ public class Club extends Person {
 	Random r;					/** @brief To allow for the movement of the club to be random*/
 	
 	
-	public Club(Coordinates coord, char club_symbol) {
-		super (coord, club_symbol, "club");
+	public Club(Coordinates coord, char club_symbol, char key_symbol) {
+		super (coord, club_symbol, key_symbol);
 		this.r = new Random();
 	}
 
@@ -17,19 +17,9 @@ public class Club extends Person {
 		
 		this.get_coordinates().set_pos(0, 0);
 		
-		while (map.get_letter(get_coordinates()) != ' ' || (initial_coord.equals(get_coordinates()))) {
+		while (map.not_empty(get_coordinates()) || (initial_coord.equals(get_coordinates()))) {
 			this.set_pos(initial_coord);
 			super.move_person(movements.charAt(r.nextInt(4)), map);
-			
-			if (map.get_letter(get_coordinates()) == 'k') {
-				this.set_symbol('$');
-				break;
-			}
-		}
-		
-		if (this.get_symbol() == '$') {
-			map.set_letter(initial_coord, 'k');
-			this.set_symbol('*');
 		}
 	}
 }
