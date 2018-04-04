@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 
 public class GameFrame extends JFrame {
@@ -51,14 +53,14 @@ public class GameFrame extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 
-//		this.textArea = new JTextArea();
-//		textArea.setFont(new Font("Courier New", Font.PLAIN, 13));
-//		textArea.setEditable(false);
-//		textArea.setBounds(23, 140, 508, 368);
-//		textArea.setFocusable(true);
-//		//getContentPane().add(textArea);
-//		textArea.addKeyListener(new TextAreaList (gui));
-//		
+		this.textArea = new JTextArea();
+		textArea.setFont(new Font("Courier New", Font.PLAIN, 13));
+		textArea.setEditable(false);
+		textArea.setBounds(23, 140, 508, 368);
+		textArea.setFocusable(true);
+		//getContentPane().add(textArea);
+		textArea.addKeyListener(new TextAreaList (gui));
+		
 		this.gameLabel = new JLabel("You can play now");
 		gameLabel.setBounds(23, 530, 508, 16);
 		getContentPane().add(gameLabel);
@@ -76,9 +78,9 @@ public class GameFrame extends JFrame {
 		btnExitGame.setBounds(614, 460, 97, 39);
 		getContentPane().add(btnExitGame);
 		
-		this.images = new GraphicsPanel();
+		this.images = new GraphicsPanel(gui);
 		images.setBounds(23, 140, 508, 368);
-		images.requestFocusInWindow();
+		images.setFocusable(true);
 		getContentPane().add(images);
 		images.repaint();
 	}
@@ -93,6 +95,7 @@ public class GameFrame extends JFrame {
 
 	public void start_game(char[][] map) {
 		moveBtns.enable_buttons(true);
+		images.requestFocusInWindow();
 		images.set_map(map);
 		images.repaint();
 	}

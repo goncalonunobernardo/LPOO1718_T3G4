@@ -11,11 +11,31 @@ public class TextAreaList  implements KeyListener {
 		this.gui = gui;
 	}
 
+	public char key_to_letter (int key) {
+		
+		switch (key) {
+		
+		case KeyEvent.VK_UP: return 'w';
+		
+		case KeyEvent.VK_DOWN: return 's';
+		
+		case KeyEvent.VK_LEFT: return 'a';
+		
+		case KeyEvent.VK_RIGHT: return 'd';
+		
+		}
+		
+		return ' ';
+	}
+	
 	@Override
 	public void keyTyped(KeyEvent e) {
-		char hero_key = e.getKeyChar();
-	
-		gui.play(hero_key);
+//		int hero_key = e.getKeyCode();
+		char hero_mov = e.getKeyChar();
+		
+		if (hero_mov != ' ') {
+			gui.play(hero_mov);		
+		}
 	}
 
 	@Override

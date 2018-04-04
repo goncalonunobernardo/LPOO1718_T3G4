@@ -22,8 +22,6 @@ public class Hero extends Person {
 		
 		char current = map.get_letter(this.get_coordinates());
 		
-		System.out.println(current);
-		
 		if (current == 'k') {
 			map.open_doors();
 			this.set_symbol('K');
