@@ -56,7 +56,7 @@ public class Keep implements GameLogic {
 			{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'}
 		});
 		
-		this.hero = new Hero (map.search_char('A'), 'A', 'K');
+		this.hero = new Hero (map.search_char('A'), 'A', 'L');
 		
 		
 		this.ogres = new Vector<Ogre> ();

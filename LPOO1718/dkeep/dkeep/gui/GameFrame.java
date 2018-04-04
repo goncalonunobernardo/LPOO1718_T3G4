@@ -2,6 +2,7 @@ package dkeep.gui;
 
 import java.awt.EventQueue;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
@@ -20,6 +21,7 @@ public class GameFrame extends JFrame {
 	private JLabel gameLabel;
 	
 	private GraphicsPanel images;
+	private JButton editMap;
 
 	/**
 	 * Launch the application.
@@ -75,6 +77,8 @@ public class GameFrame extends JFrame {
 		images.setFocusable(true);
 		getContentPane().add(images);
 		images.repaint();
+		
+		
 	}
 	
 	public void set_label (String label) {
