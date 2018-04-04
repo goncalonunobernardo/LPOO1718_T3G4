@@ -53,14 +53,6 @@ public class GameFrame extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 
-		this.textArea = new JTextArea();
-		textArea.setFont(new Font("Courier New", Font.PLAIN, 13));
-		textArea.setEditable(false);
-		textArea.setBounds(23, 140, 508, 368);
-		textArea.setFocusable(true);
-		//getContentPane().add(textArea);
-		textArea.addKeyListener(new TextAreaList (gui));
-		
 		this.gameLabel = new JLabel("You can play now");
 		gameLabel.setBounds(23, 530, 508, 16);
 		getContentPane().add(gameLabel);

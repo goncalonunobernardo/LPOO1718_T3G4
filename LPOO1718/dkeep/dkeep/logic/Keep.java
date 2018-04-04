@@ -58,14 +58,12 @@ public class Keep implements GameLogic {
 		
 		this.hero = new Hero (map.search_char('A'), 'A');
 		
-		Coordinates ogre_coord = map.search_char ('O');
-		Coordinates club_coord = map.search_char('*');
 		
 		this.ogres = new Vector<Ogre> ();
 		
 		
 		for (int i = 0; i < nr_ogres; i++) {
-			ogres.add(new Ogre (ogre_coord, club_coord, 'O', '*'));
+			ogres.add(new Ogre (map.search_char('O'), map.search_char('*'), 'O', '*'));
 		}
 	}
 

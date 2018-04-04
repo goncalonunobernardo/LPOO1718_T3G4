@@ -21,7 +21,7 @@ public class Club extends Person {
 			this.set_pos(initial_coord);
 			super.move_person(movements.charAt(r.nextInt(4)), map);
 			
-			if (map.get_letter(initial_coord) == 'k') {
+			if (map.get_letter(get_coordinates()) == 'k') {
 				this.set_symbol('$');
 				break;
 			}
@@ -29,9 +29,7 @@ public class Club extends Person {
 		
 		if (this.get_symbol() == '$') {
 			map.set_letter(initial_coord, 'k');
+			this.set_symbol('*');
 		}
-		
-		
 	}
-
 }

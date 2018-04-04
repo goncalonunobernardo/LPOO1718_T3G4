@@ -38,9 +38,9 @@ public class NewGamePanel extends JPanel implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Dungeon level1 = new Dungeon (settingsInfo.get_selected_guard());
+		//Dungeon level1 = new Dungeon (settingsInfo.get_selected_guard());
 		Keep level2 = new Keep (settingsInfo.get_nr_ogres());
 		
-		gui.start_new_game (new Game (new GameLogic [] {level1, level2 }));
+		gui.start_new_game (new Game (new GameLogic [] { level2 }));
 	}
 }
