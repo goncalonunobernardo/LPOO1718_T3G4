@@ -1,5 +1,10 @@
 package dkeep.gui;
 
+import java.awt.Image;
+import java.io.IOException;
+import java.util.HashMap;
+
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -10,10 +15,36 @@ public class DkeepGUI {
 	
 	Game game;
 	GameFrame window;
+	HashMap <Character, Image> images;
 	
 	DkeepGUI (GameFrame window) {
 		this.window = window;
 		this.game = null;
+		this.images = new HashMap <Character, Image> ();
+		
+		try {
+			images.put('H', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/hero_down.png")));
+			images.put('A', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/hero_armed.png")));
+			images.put('G', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/guard_down.png")));
+			images.put('g', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/guard_asleep.png")));
+			images.put('$', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/ogre_with_key.png")));
+			images.put('8', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/ogre_stunned.png")));
+			images.put('O', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/ogre_down.png")));
+			images.put('*', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/club.png")));
+			images.put('k', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/key.png")));
+			images.put('K', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/hero_with_key.png")));
+			images.put('X', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/wall.png")));
+			images.put(' ', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/free_space.png")));
+			images.put('S', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/free_space.png")));
+			images.put('I', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/closed_door.png")));
+		
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public HashMap<Character, Image> get_images() {
+		return images;
 	}
 	
 	public JFrame get_main_frame () {

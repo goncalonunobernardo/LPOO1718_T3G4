@@ -34,26 +34,7 @@ public class GraphicsPanel extends JPanel implements KeyListener {
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
 		};
 		
-		this.images = new HashMap <Character, Image> ();
-		
-		try {
-			images.put('H', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/hero_down.png")));
-			images.put('A', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/hero_armed.png")));
-			images.put('G', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/guard_down.png")));
-			images.put('g', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/guard_asleep.png")));
-			images.put('$', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/ogre_with_key.png")));
-			images.put('8', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/ogre_stunned.png")));
-			images.put('O', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/ogre_down.png")));
-			images.put('*', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/club.png")));
-			images.put('k', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/key.png")));
-			images.put('K', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/hero_with_key.png")));
-			images.put('X', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/wall.png")));
-			images.put(' ', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/free_space.png")));
-			images.put('S', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/free_space.png")));
-			images.put('I', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/closed_door.png")));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		this.images = gui.get_images();
 	}
 	
 	public void set_map (char[][] map) {

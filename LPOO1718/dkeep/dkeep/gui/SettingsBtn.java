@@ -6,18 +6,18 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class SettingsBtn extends JPanel implements ActionListener {
+public class SettingsBtn extends JButton implements ActionListener {
 
 	private JButton sett_btn;
-	private Settings settingsFrame;
+	private SettingsFrame settingsFrame;
 	
-	SettingsBtn (Settings settingsFrame) {
+	SettingsBtn (SettingsFrame settingsFrame) {
+		super();
+		
 		this.settingsFrame = settingsFrame;
 		
-		sett_btn = new JButton ("Settings");
-		sett_btn.addActionListener(this);
-		
-		add(sett_btn);
+		this.setText("Settings");
+		this.addActionListener(this);
 	}
 	
 	@Override
