@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import dkeep.logic.Game;
+import dkeep.logic.GameState;
 import dkeep.logic.Map;
 import dkeep.serialization.SaveLoad;
 
@@ -47,10 +48,6 @@ public class DkeepGUI {
 	
 	public HashMap<Character, Image> get_images() {
 		return images;
-	}
-	
-	public JFrame get_main_frame () {
-		return window;
 	}
 	
 	public void start_new_game (Game new_game) {
@@ -92,6 +89,10 @@ public class DkeepGUI {
 			
 			}
 		}
+	}
+	
+	public Game get_game() {
+		return game;
 	}
 
 	public JLabel get_label() {

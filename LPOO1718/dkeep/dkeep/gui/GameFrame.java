@@ -1,11 +1,15 @@
 package dkeep.gui;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
+
+import dkeep.serialization.SaveLoad;
 
 
 public class GameFrame extends JFrame {
@@ -16,10 +20,10 @@ public class GameFrame extends JFrame {
 	private JTextArea textArea;
 	private ExitButton btnExitGame;
 	private JLabel gameLabel;
-	private SaveLoadButton saveloadBtns;
+//	private SaveLoadButton saveloadBtns;
 	
 	private GraphicsPanel images;
-	private JButton editMap;
+	private JButton editMap, saveG, loadG;
 	private EditFrame editFrame;
 	private EditBtn editMapBtn;
 
@@ -82,12 +86,34 @@ public class GameFrame extends JFrame {
 		images.setBounds(23, 140, 508, 368);
 		images.setFocusable(true);
 		getContentPane().add(images);
+		
+		SaveLoad slg = new SaveLoad();
+		
+		saveG = new JButton("SAVE");
+        saveG.setBounds(558, 359, 97, 25);
+        saveG.setEnabled(false);
+        saveG.addActionListener(new ActionListener() {
+        		@Override
+            public void actionPerformed(ActionEvent evt) {
+                slg.Save_Game(gui.get_game());
+            }
+        });
 
-		this.saveloadBtns = new SaveLoadButton(gui);
-		saveloadBtns.setSize(182, 123);
-		saveloadBtns.setLocation(577, 400);
-		getContentPane().add(saveloadBtns);
+        loadG = new JButton("LOAD");
+        loadG.setEnabled(false);
+        loadG.setBounds(688, 359, 97, 25);
+        loadG.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				slg.Load_Game(gui);
+				images.set_map(gui.get_map().get_matrix());
+				images.repaint();
+			}
+        });
+
+        getContentPane().add(saveG);
+        getContentPane().add(loadG);
 
 		images.repaint();
 	}
@@ -101,8 +127,7 @@ public class GameFrame extends JFrame {
 	}
 
 	public void start_game(char[][] map) {
-		moveBtns.enable_buttons(true);
-		saveloadBtns.enable_buttons(true);
+		enable_buttons(true);
 		images.requestFocusInWindow();
 		images.set_map(map);
 		images.repaint();
@@ -115,7 +140,8 @@ public class GameFrame extends JFrame {
 
 	public void enable_buttons(boolean enable_value) {
 		moveBtns.enable_buttons(enable_value);
-		saveloadBtns.enable_buttons(enable_value);
+		loadG.setEnabled(true);
+		saveG.setEnabled(true);
 	}
 
 	public JLabel get_label() {
