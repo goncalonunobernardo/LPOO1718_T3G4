@@ -20,12 +20,10 @@ public class GameFrame extends JFrame {
 	private JTextArea textArea;
 	private ExitButton btnExitGame;
 	private JLabel gameLabel;
-//	private SaveLoadButton saveloadBtns;
 	
 	private GraphicsPanel images;
-	private JButton editMap, saveG, loadG;
+	private JButton saveG, loadG;
 	private EditFrame editFrame;
-	private EditBtn editMapBtn;
 
 	/**
 	 * Launch the application.
@@ -60,37 +58,37 @@ public class GameFrame extends JFrame {
 		getContentPane().setLayout(null);
 
 		this.gameLabel = new JLabel("You can play now");
-		gameLabel.setBounds(23, 530, 508, 16);
+		gameLabel.setBounds(23, 562, 508, 16);
 		getContentPane().add(gameLabel);
 		
 		this.newGamePanel = new NewGamePanel (gui, gameLabel);
-		newGamePanel.setBounds(129, 40, 228, 85);
+		newGamePanel.setBounds(88, 45, 269, 31);
 		getContentPane().add(newGamePanel);
 		
 		this.editFrame = new EditFrame (gui);
 
-		this.editMapBtn = new EditBtn (editFrame);
-		editMapBtn.setBounds(369, 47, 114, 25);
+		EditBtn editMapBtn = new EditBtn (editFrame);
+		editMapBtn.setBounds(369, 51, 114, 25);
 		getContentPane().add(editMapBtn);
 		
 		this.moveBtns = new MoveButtons(gui);
 		moveBtns.setSize(182, 123);
-		moveBtns.setLocation(577, 225);
+		moveBtns.setLocation(578, 223);
 		getContentPane().add(moveBtns);
 		
 		this.btnExitGame = new ExitButton();
-		btnExitGame.setBounds(614, 460, 97, 39);
+		btnExitGame.setBounds(615, 458, 97, 39);
 		getContentPane().add(btnExitGame);
 		
 		this.images = new GraphicsPanel(gui);
-		images.setBounds(23, 140, 508, 368);
+		images.setBounds(23, 102, 524, 433);
 		images.setFocusable(true);
 		getContentPane().add(images);
 		
 		SaveLoad slg = new SaveLoad();
 		
 		saveG = new JButton("SAVE");
-        saveG.setBounds(558, 359, 97, 25);
+        saveG.setBounds(559, 357, 97, 25);
         saveG.setEnabled(false);
         saveG.addActionListener(new ActionListener() {
         		@Override
@@ -101,7 +99,7 @@ public class GameFrame extends JFrame {
 
         loadG = new JButton("LOAD");
         loadG.setEnabled(false);
-        loadG.setBounds(688, 359, 97, 25);
+        loadG.setBounds(689, 357, 97, 25);
         loadG.addActionListener(new ActionListener() {
 
 			@Override

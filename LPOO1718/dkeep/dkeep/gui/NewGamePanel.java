@@ -26,14 +26,16 @@ public class NewGamePanel extends JPanel implements ActionListener {
 		this.gameState = label;
 		
 		this.btnNewGame = new JButton("New Game");
-		btnNewGame.setBounds(614, 172, 97, 25);
+		btnNewGame.setBounds(36, 5, 110, 29);
 		btnNewGame.setEnabled(true);
 		btnNewGame.addActionListener(this);
+		setLayout(null);
 		add(btnNewGame);
 		
 		this.settingsInfo = new SettingsFrame (gameState, btnNewGame);
 
 		this.settingsBtn = new SettingsBtn (settingsInfo);
+		settingsBtn.setBounds(164, 5, 95, 29);
 		add(settingsBtn);
 		
 	}

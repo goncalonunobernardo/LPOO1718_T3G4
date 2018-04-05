@@ -48,7 +48,7 @@ public class SizePanel extends JPanel implements ActionListener {
 			int width = Integer.parseInt(widthText.getText());
 			int height = Integer.parseInt(heigthText.getText());
 			
-			if (width < 3 || width > 15 || height < 3 || height > 10) {
+			if (width < 3 || width > 13 || height < 3 || height > 13) {
 				editState.setText("Invalid size");
 				editPanel.setEnabled(false);
 			}

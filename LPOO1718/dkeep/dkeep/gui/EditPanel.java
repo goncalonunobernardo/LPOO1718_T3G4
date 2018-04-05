@@ -32,6 +32,8 @@ public class EditPanel extends JPanel implements ActionListener, MouseListener {
 	EditPanel (HashMap <Character, Image> images, JLabel mapState, JButton exitBtn) {
 		setLayout(null);
 		
+		this.setBounds(23, 102, 747, 433);
+		
 		matrix = new char [][] {
 			{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
 			{'I', ' ', ' ', ' ', 'O', '*', ' ', ' ', 'k', 'X'},
@@ -57,49 +59,49 @@ public class EditPanel extends JPanel implements ActionListener, MouseListener {
 		
 		
 		wallBtn = new JRadioButton ("Wall");
-		wallBtn.setBounds(503, 200, 73, 23);
+		wallBtn.setBounds(645, 203, 73, 23);
 		wallBtn.addActionListener(this);
 		wallBtn.setActionCommand("X");
 		buttons.add(wallBtn);
 		add(wallBtn);
 		
 		ogreBtn = new JRadioButton("Ogre");
-		ogreBtn.setBounds(503, 60, 73, 23);
+		ogreBtn.setBounds(645, 63, 73, 23);
 		ogreBtn.addActionListener(this);
 		ogreBtn.setActionCommand("O");
 		buttons.add(ogreBtn);
 		add(ogreBtn);
 		
 		clubBtn = new JRadioButton("Club");
-		clubBtn.setBounds(503, 95, 73, 23);
+		clubBtn.setBounds(645, 98, 73, 23);
 		clubBtn.addActionListener(this);
 		clubBtn.setActionCommand("*");
 		buttons.add(clubBtn);
 		add(clubBtn);
 		
 		heroBtn = new JRadioButton("Hero");
-		heroBtn.setBounds(503, 25, 73, 23);
+		heroBtn.setBounds(645, 28, 73, 23);
 		heroBtn.addActionListener(this);
 		heroBtn.setActionCommand("A");
 		buttons.add(heroBtn);
 		add(heroBtn);
 		
 		keyBtn = new JRadioButton("Key");
-		keyBtn.setBounds(503, 130, 73, 23);
+		keyBtn.setBounds(645, 133, 73, 23);
 		keyBtn.addActionListener(this);
 		keyBtn.setActionCommand("k");
 		buttons.add(keyBtn);
 		add(keyBtn);
 		
 		doorBtn = new JRadioButton("Door");
-		doorBtn.setBounds(503, 165, 73, 23);
+		doorBtn.setBounds(645, 168, 73, 23);
 		doorBtn.addActionListener(this);
 		doorBtn.setActionCommand("I");
 		buttons.add(doorBtn);
 		add(doorBtn);
 		
 		emptyBtn  = new JRadioButton("Empty");
-		emptyBtn.setBounds(503, 234, 73, 23);
+		emptyBtn.setBounds(645, 237, 73, 23);
 		emptyBtn.addActionListener(this);
 		emptyBtn.setActionCommand(" ");
 		emptyBtn.setSelected(true);
@@ -122,7 +124,7 @@ public class EditPanel extends JPanel implements ActionListener, MouseListener {
 	}
 	
 	public void change_matrix_size (int x, int y) {
-		matrix = new char [x][y];
+		matrix = new char [y][x];
 				
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[i].length; j++) {
@@ -253,7 +255,6 @@ public class EditPanel extends JPanel implements ActionListener, MouseListener {
 				this.repaint();
 				
 				exitBtn.setEnabled(valid_map());
-
 			}
 		}
 		catch (IndexOutOfBoundsException ex) {

@@ -4,7 +4,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
@@ -12,7 +13,7 @@ import javax.swing.JPanel;
 
 import java.util.HashMap;
 
-public class GraphicsPanel extends JPanel implements KeyListener {
+public class GraphicsPanel extends JPanel implements KeyListener, MouseListener {
 	
 	private DkeepGUI gui;
 	private char[][] map;
@@ -21,6 +22,7 @@ public class GraphicsPanel extends JPanel implements KeyListener {
 	GraphicsPanel (DkeepGUI gui) {
 		this.gui = gui;
 		this.addKeyListener(this);
+		this.addMouseListener(this);
 		this.map = new char [][] {
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
@@ -114,5 +116,24 @@ public class GraphicsPanel extends JPanel implements KeyListener {
 	public void keyReleased(KeyEvent e) {
 	}
 	
+	@Override
+	public void mousePressed(MouseEvent e) {
+		this.requestFocusInWindow();
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+	}
 	
+	@Override
+	public void mouseReleased(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+	}
 }

@@ -33,27 +33,28 @@ public class MoveButtons extends JPanel implements ActionListener {
 		this.setBounds (559, 277, 184, 104);
 		
 		this.btnRight = new JButton("right");
-		btnRight.setBounds(668, 315, 97, 25);
+		btnRight.setBounds(103, 39, 75, 29);
 		btnRight.setLayout(null);
 		btnRight.addActionListener(this);
 		btnRight.setActionCommand("d");
 
 		this.btnUp = new JButton("up");
-		btnUp.setBounds(587, 2, 97, 25);
+		btnUp.setBounds(55, 5, 75, 29);
 		btnUp.addActionListener(this);
 		btnUp.setActionCommand("w");
 
 		this.btnLeft = new JButton("left");
-		btnLeft.setBounds(559, 315, 97, 25);
+		btnLeft.setBounds(14, 39, 75, 29);
 		btnLeft.addActionListener(this);
 		btnLeft.setActionCommand("a");
 
 		this.btnDown = new JButton("down");
-		btnDown.setBounds(587, 353, 97, 25);
+		btnDown.setBounds(55, 69, 78, 29);
 		btnDown.addActionListener(this);
 		btnDown.setActionCommand("s");
 		
 		enable_buttons (false);
+		setLayout(null);
 
 		add (btnRight);
 		add (btnDown);
@@ -73,6 +74,4 @@ public class MoveButtons extends JPanel implements ActionListener {
 		gui.play(evt.getActionCommand().charAt(0));
 		
 	}
-
-	
 }

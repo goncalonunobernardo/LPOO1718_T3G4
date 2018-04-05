@@ -22,16 +22,16 @@ public class EditFrame extends JFrame implements ActionListener {
 		this.setResizable(false);
 		
 		editLbl = new JLabel("It's ready to start editing");
-		editLbl.setBounds(6, 562, 440, 16);
+		editLbl.setBounds(23, 562, 440, 16);
 		getContentPane().add(editLbl);
 		
 		exitBtn = new JButton("Apply");
-		exitBtn.setBounds(702, 536, 68, 29);
+		exitBtn.setBounds(685, 547, 68, 29);
 		exitBtn.addActionListener(this);
 		getContentPane().add(exitBtn);
 		
 		editPanel = new EditPanel (gui.get_images(), editLbl, exitBtn);
-		editPanel.setBounds(27, 75, 592, 475);
+		editPanel.setBounds(23, 84, 747, 466);
 		editPanel.setEnabled(true);
 		getContentPane().add (editPanel);
 		
