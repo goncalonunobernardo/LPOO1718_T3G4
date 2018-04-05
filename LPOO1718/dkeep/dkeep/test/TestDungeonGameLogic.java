@@ -107,11 +107,22 @@ public class TestDungeonGameLogic {
 	
 	@Test
 	public void testGUIDefault () {
-		Dungeon level1 = new Dungeon ("rookie");
+		Map map = new Map (map_test1);
+		
 		Dungeon level2 = new Dungeon ("suspicious");
 		Dungeon level3 = new Dungeon ("drunken");
 		
+		Guard suspicious = new Suspicious (map.search_char('G'), 'G', "", 2);
+		Guard drunken = new Drunken (map.search_char('G'), 'G', "", 2);
 		
+		assertEquals(level2.get_guard().getClass(), suspicious.getClass());
+		assertEquals(level3.get_guard().getClass(), drunken.getClass());
+		
+		Keep level = new Keep (2);
+		
+		assertEquals(level.get_ogres().size(), 2);
+		
+		assertEquals(map.get_key_coord(), new Coordinates(1, 3));
 	}
 	
 	@Test
@@ -278,6 +289,7 @@ public class TestDungeonGameLogic {
 		Keep level = new Keep (map_test2);
 		Game game = new Game (new GameLogic [] {level});
 
+		
 		assertEquals("Test hero with symbol A",'A', game.get_hero().get_symbol());
 		assertFalse ("Test game not over", game.check_game_over());
 		level.move_hero('s');

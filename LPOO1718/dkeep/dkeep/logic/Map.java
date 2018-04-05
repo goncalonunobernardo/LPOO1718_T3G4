@@ -54,7 +54,7 @@ public class Map implements Serializable {
 		
 	}
 	
-	public Coordinates get_key_coord (Coordinates coord) {
+	public Coordinates get_key_coord () {
 		return key;
 	}
 
