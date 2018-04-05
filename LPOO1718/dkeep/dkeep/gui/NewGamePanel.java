@@ -16,8 +16,10 @@ public class NewGamePanel extends JPanel implements ActionListener {
 	private DkeepGUI gui;
 	private JLabel gameState;
 	private SettingsBtn settingsBtn;
-	private Settings settingsInfo;
+	private SettingsFrame settingsInfo;
 	private JButton btnNewGame;
+	private EditFrame editFrame;
+	private EditBtn editMapBtn;
 	
 	NewGamePanel (DkeepGUI gui, JLabel label) {
 
@@ -28,13 +30,16 @@ public class NewGamePanel extends JPanel implements ActionListener {
 		btnNewGame.setBounds(614, 172, 97, 25);
 		btnNewGame.setEnabled(true);
 		btnNewGame.addActionListener(this);
-		
-		this.settingsInfo = new Settings (gameState, btnNewGame);
 		add(btnNewGame);
+		
+		this.settingsInfo = new SettingsFrame (gameState, btnNewGame);
+		this.editFrame = new EditFrame (gui.get_images());
 
 		this.settingsBtn = new SettingsBtn (settingsInfo);
 		add(settingsBtn);
-
+		
+		this.editMapBtn = new EditBtn (editFrame);
+		add(editMapBtn);
 	}
 	
 	@Override

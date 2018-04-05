@@ -4,13 +4,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class Settings extends JFrame {
+public class SettingsFrame extends JFrame {
 	
 	private OgrePanel ogre_sett;
 	private GuardPanel guard_sett;
 	
 	
-	Settings (JLabel label, JButton newGameBtn) {
+	SettingsFrame (JLabel label, JButton newGameBtn) {
 		
 		this.setTitle("Settings");
 		this.setBounds(150, 150, 350, 100);
