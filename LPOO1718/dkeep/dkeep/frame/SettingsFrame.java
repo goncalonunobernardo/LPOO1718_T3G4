@@ -7,12 +7,14 @@ import javax.swing.JLabel;
 @SuppressWarnings("serial")
 public class SettingsFrame extends JFrame {
 	
+	
 	private OgrePanel ogre_sett;
 	private GuardPanel guard_sett;
 	
 	
 	SettingsFrame (JLabel label, JButton newGameBtn) {
-		
+
+		super();
 		this.setTitle("Settings");
 		this.setBounds(150, 150, 350, 100);
 		this.setResizable(false);

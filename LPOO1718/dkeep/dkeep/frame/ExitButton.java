@@ -4,19 +4,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class ExitButton extends JPanel implements ActionListener {
+public class ExitButton extends JButton implements ActionListener {
 	
-	JButton button;
 	
 	ExitButton() {
-		button = new JButton("Exit");
-		button.setBounds(614, 460, 97, 25);
-		button.addActionListener(this);
+
+		super();
 		
-		add(button);
+		this.setText("Exit");
+		setBounds(614, 460, 97, 25);
+		this.addActionListener(this);
+		
 	}
 
 	@Override

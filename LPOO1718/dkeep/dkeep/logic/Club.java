@@ -31,8 +31,6 @@ public class Club extends Person implements Serializable {
 		String movements = "asdw";
 		Coordinates initial_coord = new Coordinates (this.get_coordinates());
 		
-		this.get_coordinates().set_pos(0, 0);
-		
 		while (map.not_empty(get_coordinates()) || (initial_coord.equals(get_coordinates()))) {
 			this.set_pos(initial_coord);
 			super.move_person(movements.charAt(r.nextInt(4)), map);

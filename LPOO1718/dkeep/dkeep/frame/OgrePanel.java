@@ -16,6 +16,9 @@ public class OgrePanel extends JPanel implements ActionListener {
 	private JButton newGameBtn;
 	
 	OgrePanel (JLabel label, JButton newGameBtn) {
+
+		super();
+		
 		this.setBounds(50, 0, 263, 40);
 		
 		this.newGameBtn = newGameBtn;

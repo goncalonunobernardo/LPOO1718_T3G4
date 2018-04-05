@@ -17,6 +17,8 @@ public class EditFrame extends JFrame implements ActionListener {
 	private DkeepGUI gui;
 	
 	EditFrame (DkeepGUI gui) {
+		super();
+		
 		getContentPane().setLayout(null);
 
 		this.setBounds(100, 100, 806, 606);

@@ -13,6 +13,9 @@ public class MoveButtons extends JPanel implements ActionListener {
 	
 	
 	MoveButtons (DkeepGUI gui) {
+
+		super();
+		
 		this.gui = gui;
 
 		this.setBounds (559, 277, 184, 104);
