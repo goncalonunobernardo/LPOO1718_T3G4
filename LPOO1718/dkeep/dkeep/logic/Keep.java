@@ -27,18 +27,7 @@ public class Keep implements GameLogic, Serializable{
 	}
 	
 	Keep () {
-		this (new char [][] {
-			{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
-			{'I', ' ', ' ', ' ', 'O', '*', ' ', ' ', 'k', 'X'},
-			{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-			{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-			{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-			{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-			{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-			{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-			{'X', 'A', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-			{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'}
-		});
+		this (default_matrix());
 	}
 	
 	public Keep (char [][] matrix, int nr_ogres) {
@@ -61,7 +50,11 @@ public class Keep implements GameLogic, Serializable{
 	}
 	
 	public Keep (int nr_ogres) {
-		this (new char [][] {
+		this (default_matrix(), nr_ogres);
+	}
+	
+	public static char [][] default_matrix() {
+		return new char [][] {
 			{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
 			{'I', ' ', ' ', ' ', 'O', '*', ' ', ' ', 'k', 'X'},
 			{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
@@ -72,7 +65,7 @@ public class Keep implements GameLogic, Serializable{
 			{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
 			{'X', 'A', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
 			{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'}
-		}, nr_ogres);
+		};
 	}
 
 	/**
