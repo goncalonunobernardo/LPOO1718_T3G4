@@ -1,10 +1,13 @@
 package dkeep.logic;
+
+import java.io.Serializable;
+
 /**
  * @class Hero 
  * @extends Person
  * @brief Abstraction of the hero of the game. It allows to move the hero on the map and to know if the player won or lost. 
  */
-public class Hero extends Person {
+public class Hero extends Person implements Serializable{
 	
 	private boolean win;
 	

@@ -1,12 +1,14 @@
 package dkeep.logic;
 
+import java.io.Serializable;
+
 /**
  * 
  * @class Map
  * @brief Abstraction of a map. It saves the letters of each position of the map, the hero and the guard of the game
  * It allows to change some character's positions, to move characters and to print the map.
  */
-public class Map {
+public class Map implements Serializable {
 	private Coordinates key;
 	private boolean key_catched;
     private char matrix[][];		/** @brief Where the letters of each position of the map are stored*/

@@ -1,7 +1,8 @@
 package dkeep.logic;
+import java.io.Serializable;
 import java.util.Random;
 
-public class Club extends Person {
+public class Club extends Person implements Serializable {
 	Random r;					/** @brief To allow for the movement of the club to be random*/
 	
 	

@@ -1,6 +1,8 @@
 package dkeep.logic;
 
-public class Game {
+import java.io.Serializable;
+
+public class Game implements Serializable{
 	
 	GameLogic [] levels;
 	int current_level;

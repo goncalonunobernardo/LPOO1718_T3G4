@@ -26,16 +26,17 @@ public class MoveButtons extends JPanel implements ActionListener {
 	
 	MoveButtons (DkeepGUI gui) {
 		this.gui = gui;
-		
+
 		this.setBounds (559, 277, 184, 104);
 		
 		this.btnRight = new JButton("right");
 		btnRight.setBounds(668, 315, 97, 25);
+		btnRight.setLayout(null);
 		btnRight.addActionListener(this);
 		btnRight.setActionCommand("d");
 
 		this.btnUp = new JButton("up");
-		btnUp.setBounds(614, 277, 97, 25);
+		btnUp.setBounds(587, 2, 97, 25);
 		btnUp.addActionListener(this);
 		btnUp.setActionCommand("w");
 
@@ -45,7 +46,7 @@ public class MoveButtons extends JPanel implements ActionListener {
 		btnLeft.setActionCommand("a");
 
 		this.btnDown = new JButton("down");
-		btnDown.setBounds(614, 353, 97, 25);
+		btnDown.setBounds(587, 353, 97, 25);
 		btnDown.addActionListener(this);
 		btnDown.setActionCommand("s");
 		

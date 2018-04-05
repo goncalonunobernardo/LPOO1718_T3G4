@@ -34,13 +34,7 @@ public class NewGamePanel extends JPanel implements ActionListener {
 
 		this.settingsBtn = new SettingsBtn (settingsInfo);
 		add(settingsBtn);
-		
-		
-		this.editFrame = new EditMap ();
-		add(editFrame);
-		
-		this.editMapBtn = new EditBtn (editFrame);
-		add(editMapBtn);
+
 	}
 	
 	@Override

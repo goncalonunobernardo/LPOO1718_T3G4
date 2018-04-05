@@ -1,10 +1,13 @@
 package dkeep.logic;
+
+import java.io.Serializable;
+
 /**
  * @class Hero 
  * @extends Person
  * @brief Abstraction of the hero of the game. It allows to move the guard on the map in a planed route. 
  */
-public class Guard extends Person {
+public class Guard extends Person implements Serializable{
 
 	protected String movement;					/**@brief The route of the guard on the map*/
 	protected int count_string;				/**@brief To know in which key of the movement the guard currently is*/

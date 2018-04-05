@@ -1,8 +1,9 @@
 package dkeep.logic;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class Dungeon implements GameLogic {
+public class Dungeon implements GameLogic, Serializable {
 	
 	private Map map;
 	private Hero hero;

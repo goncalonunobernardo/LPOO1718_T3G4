@@ -1,8 +1,9 @@
 package dkeep.logic;
+import java.io.Serializable;
 import java.util.Random;
 
 
-public class Ogre extends Person {
+public class Ogre extends Person implements Serializable{
 	private Random r;
 	private Club club;
 	private int stunned;

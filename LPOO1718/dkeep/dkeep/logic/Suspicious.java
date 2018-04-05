@@ -1,8 +1,9 @@
 package dkeep.logic;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class Suspicious extends Guard {
+public class Suspicious extends Guard implements Serializable{
 	private Random r;
 	private String reverse_mov;
 	private int plays_to_reverse, bound;

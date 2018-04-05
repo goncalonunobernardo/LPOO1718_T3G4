@@ -5,6 +5,7 @@ import javax.swing.JLabel;
 
 import dkeep.logic.Game;
 import dkeep.logic.Map;
+import dkeep.serialization.SaveLoad;
 
 public class DkeepGUI {
 	

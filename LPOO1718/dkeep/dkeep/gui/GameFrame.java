@@ -19,6 +19,7 @@ public class GameFrame extends JFrame {
 	private JTextArea textArea;
 	private ExitButton btnExitGame;
 	private JLabel gameLabel;
+	private SaveLoadButton saveloadBtns;
 	
 	private GraphicsPanel images;
 	private JButton editMap;
@@ -76,9 +77,14 @@ public class GameFrame extends JFrame {
 		images.setBounds(23, 140, 508, 368);
 		images.setFocusable(true);
 		getContentPane().add(images);
+
+		this.saveloadBtns = new SaveLoadButton(gui);
+		saveloadBtns.setSize(182, 123);
+		saveloadBtns.setLocation(577, 400);
+		getContentPane().add(saveloadBtns);
+
+
 		images.repaint();
-		
-		
 	}
 	
 	public void set_label (String label) {
@@ -91,6 +97,7 @@ public class GameFrame extends JFrame {
 
 	public void start_game(char[][] map) {
 		moveBtns.enable_buttons(true);
+		saveloadBtns.enable_buttons(true);
 		images.requestFocusInWindow();
 		images.set_map(map);
 		images.repaint();
@@ -103,6 +110,7 @@ public class GameFrame extends JFrame {
 
 	public void enable_buttons(boolean enable_value) {
 		moveBtns.enable_buttons(enable_value);
+		saveloadBtns.enable_buttons(enable_value);
 	}
 
 	public JLabel get_label() {

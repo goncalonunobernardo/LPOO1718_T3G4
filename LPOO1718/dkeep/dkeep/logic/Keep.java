@@ -1,10 +1,11 @@
 package dkeep.logic;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.Vector;
 
-public class Keep implements GameLogic {
+public class Keep implements GameLogic, Serializable{
 	
 	private Map map;
 	private Hero hero;
@@ -23,7 +24,7 @@ public class Keep implements GameLogic {
 		int bound = r.nextInt(3) + 1;
 		
 		for (int i = 0; i < bound; i++) {
-			ogres.add(new Ogre (ogre_coord, club_coord, 'O', '$', '*', '$'));
+			ogres.add(new Ogre (ogre_coord, club_coord, 'O', '$', '*', '#'));
 		}
 	}
 	
@@ -63,7 +64,7 @@ public class Keep implements GameLogic {
 		
 		
 		for (int i = 0; i < nr_ogres; i++) {
-			ogres.add(new Ogre (map.search_char('O'), map.search_char('*'), 'O', '$', '*', '$'));
+			ogres.add(new Ogre (map.search_char('O'), map.search_char('*'), 'O', '$', '*', '#'));
 		}
 	}
 

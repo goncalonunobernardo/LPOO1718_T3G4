@@ -1,6 +1,8 @@
 package dkeep.logic;
 
-public enum GameState {
+import java.io.Serializable;
+
+public enum GameState implements Serializable {
 
 	WON, LOST, PLAYING
 }

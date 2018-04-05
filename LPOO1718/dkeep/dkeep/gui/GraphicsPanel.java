@@ -44,6 +44,8 @@ public class GraphicsPanel extends JPanel implements KeyListener {
 			images.put('$', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/ogre_with_key.png")));
 			images.put('8', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/ogre_stunned.png")));
 			images.put('O', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/ogre_down.png")));
+			images.put('L', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/hero_armed_with_key.png")));
+			images.put('#', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/club.png")));
 			images.put('*', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/club.png")));
 			images.put('k', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/key.png")));
 			images.put('K', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/hero_with_key.png")));

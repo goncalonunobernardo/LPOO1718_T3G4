@@ -1,8 +1,9 @@
 package dkeep.logic;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class Drunken extends Guard {
+public class Drunken extends Guard implements Serializable {
 	private Random r;
 	private int stop_plays, walk_plays, bound;
 	private boolean asleep;

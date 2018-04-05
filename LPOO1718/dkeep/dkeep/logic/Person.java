@@ -1,11 +1,13 @@
 package dkeep.logic;
 
+import java.io.Serializable;
+
 /**
  * @class Person
  * @brief Abstraction of a character of the game (ex: hero, guard). It saves a character's position and its symbol on the map. 
  * It allows to change its position according to a key a, 1 to left; d, 1 to the right; w, 1 upwards; s, 1 downwards
  */
-public class Person {
+public class Person implements Serializable{
 	
 	private Coordinates coord;
 	private char symbol;					/** @brief Symbol of the character on the map.*/
