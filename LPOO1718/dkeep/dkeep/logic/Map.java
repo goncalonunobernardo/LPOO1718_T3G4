@@ -16,7 +16,7 @@ public class Map implements Serializable {
 
 	/**
 	 * @brief Constructor of the Map object
-	 * @param map
+	 * @param map Matrix of the map
 	 */
 	public Map (char map[] []) {
 		this.matrix = map;
@@ -25,7 +25,7 @@ public class Map implements Serializable {
 	}
 
 	/**
-	 * @brief Fills matrix, therefore creating the map
+	 * @brief Convert the map into a string, concatenating the chars separating every line with a new line
 	 * @return the map in string format
 	 */
 	@Override
@@ -44,7 +44,7 @@ public class Map implements Serializable {
 	}
 
 	/**
-	 * @brief Obtains the current letter in the coordinate given
+	 * @brief Obtains the current letter in the given coordinate
 	 * @param coord coordinate given in matrix
 	 * @return The letter on the given positions of the matrix
 	 */
@@ -68,8 +68,7 @@ public class Map implements Serializable {
 	}
 
 	/**
-	 * @brief Obtains the matrix in char
-	 * @return matrix
+	 * @return The matrix of the map
 	 */
 	public char[][] get_matrix() {
 		return this.matrix;
@@ -86,7 +85,7 @@ public class Map implements Serializable {
 	}
 	
 	/**
-	 * @brief Changes the doors on the left wall of the map from I to S
+	 * @brief Opens the doors by changing the doors on the left wall of the map from I to S
 	 */
 	public void open_doors () {
 		for (int i = 0; i < matrix[0].length; i++) {
@@ -96,16 +95,16 @@ public class Map implements Serializable {
 	}
 
 	/**
-	 * @brief Resets the position of the person and substitutes to a clear space
-	 * @param reset
+	 * @brief Resets the position of the person by replacing its symbol by a clear space
+	 * @param reset The person whose symbol will be cleared
 	 */
 	public void reset_person (Person reset) {
 		this.set_letter(reset.get_coordinates(), ' ');
 	}
 
 	/**
-	 * @brief Opens doors if hero has catched key and changes him to a new character
-	 * @param draw the new Hero character
+	 * @brief Opens doors if the hero has caught key and changes him to a new character: its key symbol
+	 * @param draw The Hero to be drawn
 	 */
 	public void draw_hero (Hero draw) {
 		if (!key_catched && draw.get_coordinates().equals(key)) {
@@ -117,8 +116,8 @@ public class Map implements Serializable {
 	}
 
 	/**
-	 * @brief Draws the person in accordance to it having the key or not
-	 * @param draw
+	 * @brief Draws the person according to its coordinates and if it is above the key or not
+	 * @param draw The person to be drawn on the map
 	 */
 	public void draw_person (Person draw) {
 		
@@ -129,7 +128,7 @@ public class Map implements Serializable {
 	}
 
 	/**
-	 *@brief Draws the key
+	 * @brief Draws the key of the map
 	 */
 	public void draw_key () {
 		if (!key_catched && get_letter(key) == ' ') {
@@ -138,18 +137,18 @@ public class Map implements Serializable {
 	}
 
 	/**
-	 * @brief Checks if next position is clear to advance
-	 * @param coord
-	 * @return true if not empty
+	 * @brief Checks if a given coordinates is empty so that a person can know if it's a valid position or not
+	 * @param coord The coordinates to test if are empty or not
+	 * @return true if not empty, false otherwise
 	 */
 	public boolean not_empty (Coordinates coord) {
 		return ! (get_letter(coord) == ' ' || get_letter(coord) == 'k');
 	}
 
 	/**
-	 * @brief Obtains the character in the coordinates and returns them
-	 * @param symbol
-	 * @return coordinate of pretended character
+	 * @brief Obtains the coordinates of a character 
+	 * @param symbol The char to search for in the map
+	 * @return coordinates of pretended character
 	 */
 	public Coordinates search_char (char symbol) {
 		for (int i = 0; i < matrix.length; i++) {

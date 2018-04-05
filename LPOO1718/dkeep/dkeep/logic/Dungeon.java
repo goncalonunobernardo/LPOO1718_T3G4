@@ -1,24 +1,23 @@
 package dkeep.logic;
 
-import com.sun.corba.se.impl.util.PackagePrefixChecker;
-
 import java.io.Serializable;
 import java.util.Random;
 
 /**
  * @class Dungeon
- * @brief Abstraction of the Dungeon level in game.
+ * @brief Abstraction of the Dungeon level in game: 
+ * It allows to move the hero, the guard, to pick a type of guard or for it to be randomly picked and to check the game's status
  */
 @SuppressWarnings("serial")
 public class Dungeon implements GameLogic, Serializable {
 	
-	private Map map;
-	private Hero hero;
-	private Guard guard;
+	private Map map;				/** @brief Map of this level */
+	private Hero hero;			/** @brief Hero of this level */
+	private Guard guard;			/** @brief Guard of this level */
 
 	/**
-	 * @brief Constructor for the Dungeon level and dependent of the type of Guard
-	 * @param matrix of char representing the level
+	 * @brief Constructor for the Dungeon level: randomly picks the type of guard (rookie, suspicious, drunken)
+	 * @param matrix The char matrix representing the level's map
 	 */
 	public Dungeon (char[][] matrix) {
 		this.map = new Map (matrix);
@@ -53,7 +52,7 @@ public class Dungeon implements GameLogic, Serializable {
 
 	/**
 	 * @brief generic map dependent on the Guard
-	 * @param guard_type
+	 * @param guard_type The type of guard that will be in this level: rookie, suspicious or drunken
 	 */
 	public Dungeon (String guard_type) {
 		this.map = new Map (default_matrix());
@@ -79,6 +78,10 @@ public class Dungeon implements GameLogic, Serializable {
 		}
 	}
 	
+	/**
+	 * @brief To store the default matrix of the level's map
+	 * @return The default matrix
+	 */
 	public static char [][] default_matrix() {
 		return new char [][] {
 			{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
@@ -145,7 +148,7 @@ public class Dungeon implements GameLogic, Serializable {
 
 	/**
 	 * @brief Moves the Hero character
-	 * @param key to move
+	 * @param key Key that expresses the hero movement: a, 1 to left; d, 1 to the right; w, 1 upwards; s, 1 downwards
 	 */
 	public void move_hero(char key) {
 		map.reset_person(get_hero());
@@ -156,7 +159,8 @@ public class Dungeon implements GameLogic, Serializable {
 	}
 
 	/**
-	 * @brief Moves the Guard character
+	 * @brief Moves the Guard character. 
+	 * There's no need for a key because the guard has a restricted movement set in its constructor
 	 */
 	public void move_guard () {
 		map.reset_person(get_guard());

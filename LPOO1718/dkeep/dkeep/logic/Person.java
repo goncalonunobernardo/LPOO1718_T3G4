@@ -10,15 +10,15 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class Person implements Serializable{
 	
-	private Coordinates coord;
+	private Coordinates coord;			/** @brief Person's coordinates */
 	private char symbol;					/** @brief Symbol of the character on the map.*/
-	private char key_symbol;
+	private char key_symbol;				/** @brief Symbol drawn on the map when the character has the same coordinates of the key*/
 	
 	/**
 	 * @brief Class' constructor
 	 * @param coord Coordinate of Person
 	 * @param symbol The symbol of the character on the map
-	 * @param key_symbol Character when stepping in a key
+	 * @param key_symbol Character when above the key
 	 */
 	public Person (Coordinates coord, char symbol, char key_symbol) {
 		this.coord = coord;
@@ -43,23 +43,23 @@ public class Person implements Serializable{
 	}
 
 	/**
-	 * @brief Obtains symbol when stepping on a key
-	 * @return Character of Person with key
+	 * @brief Obtains symbol when above the key
+	 * @return Character of Person when above the key
 	 */
 	public char get_key_symbol() {
 		return key_symbol;
 	}
 
 	/**
-	 * @brief Sets the next symbol for the Person if it changed her attributes
-	 * @param symbol new symbol applied
+	 * @brief Changes the symbol of the character
+	 * @param symbol New symbol applied
 	 */
 	public void set_symbol (char symbol) {
 		this.symbol = symbol;
 	}
 	
 	/**
-	 * @brief Changes the position of the character by changing the character's attributes
+	 * @brief Changes the position of the character by changing the its coordinates
 	 * @param new_coord New coordinates of the character
 	 */
 	public void set_pos (Coordinates new_coord) {
@@ -67,10 +67,9 @@ public class Person implements Serializable{
 	}
 	
 	/**
-	 * @brief Moves the character by changing the character's attributes
+	 * @brief Moves the character by changing the character's coordinates
 	 * @param key a, 1 to left; d, 1 to the right; w, 1 upwards; s, 1 downwards
 	 * @param map Map where the character is stored
-	 * @return true, if the new position is valid (not a wall or a close door); false, otherwise
 	 */
 	public void move_person(char key, Map map) {
 		

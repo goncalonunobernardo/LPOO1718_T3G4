@@ -10,17 +10,21 @@ import java.util.Random;
  */
 @SuppressWarnings("serial")
 public class Drunken extends Guard implements Serializable {
-	private Random r;
-	private int stop_plays, walk_plays, bound;
-	private boolean asleep;
-	private String reverse_mov;
+	private Random r;							/** @brief Allows to randmly stay awake or asleep, to walk in a direction or another */
+	private int stop_plays;						/** @brief Number of plays the guard will remain asleep (stopped). 
+													It's randomly computed and it changes every time he falls asleep  */
+	private int walk_plays;						/** @brief Number of plays the guard will remain awake (playing). 
+													It's randomly computed and it changes every time he awakes  */
+	private int bound;							/** @brief Reverse movement that the guard will have to make if its direction is changed*/
+	private boolean asleep;						/** @brief Saves the state of the guard = awake or asleep */
+	private String reverse_mov;					/** @brief Reverse movement that the guard will have to make if its direction is changed*/
 
 	/**
-	 * @brief Constructor for Drunken type of Guard
-	 * @param coord
-	 * @param symbol
-	 * @param movement
-	 * @param bound
+	 * @brief Constructor for Drunken type of Guard: computes the reverse movement so he can change direction
+	 * @param coord Initial coordinates of the guard
+	 * @param symbol Symbol that will represent it
+	 * @param movement Movement that the guard will repeat
+	 * @param bound Maximum value of plays that will go with no change in the state of the guard (asleep or awake) and its movement direction
 	 */
 	public Drunken (Coordinates coord, char symbol, String movement, int bound) {
 		super (coord, symbol, movement);
@@ -45,8 +49,9 @@ public class Drunken extends Guard implements Serializable {
 	}
 
 	/**
-	 * @brief Movement of Drunken Guard - g means sleep, G means he walks normally
-	 * @param key
+	 * @brief Allows the guard to move within a map: stays in the same place when asleep (symbol: g), 
+	 * moves according to current movement when awake (symbol: G), may change direction after waking up
+	 * @param key Irrevelant in this case because it follows the guard movement but allows to override the super class function
 	 * @param map where it's stored
 	 */
 	@Override
@@ -77,7 +82,9 @@ public class Drunken extends Guard implements Serializable {
 	}
 
 	/**
-	 * @brief Applies random-direction so that the guard can change the way
+	 * @brief Applies random-direction so that the guard can change the way: 
+	 * after randomly deciding exchanges the movement and its reverse, or not.
+	 * Computes where the string should be counted from now one
 	 */
 	public void random_direction () {
 		if (r.nextBoolean()) {

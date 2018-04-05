@@ -4,17 +4,17 @@ import java.io.Serializable;
 
 /**
  * @class Coordinates
- * @brief Abstraction of the Coordinates of all levels
+ * @brief Abstraction of 2 dimensional Coordinates of all levels
  */
 @SuppressWarnings("serial")
 public class Coordinates implements Serializable {
-	private int x;
-	private int y;
+	private int x;			/** @brief x coordinate */
+	private int y;			/** @brief y coordinate */
 
 	/**
 	 * @brief Constructor for all coordinates of the map
-	 * @param x
-	 * @param y
+	 * @param x X coordinate
+	 * @param y Y coordinate
 	 */
 	public Coordinates (int x, int y) {
 		this.x = x;
@@ -22,8 +22,8 @@ public class Coordinates implements Serializable {
 	}
 
 	/**
-	 * @brief Constructor for updated coordinates of objects
-	 * @param coord
+	 * @brief Copy constructor
+	 * @param coord Coordinates to which this will be equal to
 	 */
 	public Coordinates(Coordinates coord) {
 		this.x = coord.get_x();
@@ -48,8 +48,8 @@ public class Coordinates implements Serializable {
 
 	/**
 	 * @brief Sets x and y position of map
-	 * @param x
-	 * @param y
+	 * @param x X coordinate to which it will be changed
+	 * @param y Y coordinate to which it will be changed
 	 */
 	public void set_pos (int x, int y) {
 		this.x = x;
@@ -58,7 +58,7 @@ public class Coordinates implements Serializable {
 
 	/**
 	 * @brief Sets x and y position of objects in map
-	 * @param new_coord
+	 * @param new_coord Coordinates to which this will be equal to
 	 */
 	public void set_pos (Coordinates new_coord) {
 		this.x = new_coord.get_x();
@@ -67,7 +67,7 @@ public class Coordinates implements Serializable {
 
 	/**
 	 * @brief Increments y coordinate
-	 * @param adding
+	 * @param adding The value to be incremented
 	 */
 	public void add_y (int adding) {
 		this.y += adding;
@@ -75,7 +75,7 @@ public class Coordinates implements Serializable {
 
 	/**
 	 * @brief Increments x coordinate
-	 * @param adding
+	 * @param adding The value to be incremented
 	 */
 	public void add_x (int adding) {
 		this.x += adding;
@@ -83,8 +83,8 @@ public class Coordinates implements Serializable {
 
 	/**
 	 * @brief Tests if objects are in same column
-	 * @param coord
-	 * @return true if objects are in same column
+	 * @param coord Coordinates that will be tested with this object
+	 * @return true if objects are in same column, false otherwise
 	 */
 	public boolean same_column (Coordinates coord) {
 		return coord.get_y() == this.y;
@@ -92,8 +92,8 @@ public class Coordinates implements Serializable {
 
 	/**
 	 * @brief Tests if x coordinates are in same line (are the same)
-	 * @param coord
-	 * @return true if x coordinates are the same
+	 * @param coord Coordinates that will be tested with this object
+	 * @return true if x coordinates are the same, false otherwise
 	 */
 	public boolean same_line (Coordinates coord) {
 		return coord.get_x() == this.x;
@@ -101,7 +101,7 @@ public class Coordinates implements Serializable {
 
 	/**
 	 * @brief Tests if Objects are equal
-	 * @param obj
+	 * @param obj The Object to which this will be compared to 
 	 * @return true is objects are equal
 	 */
 	@Override

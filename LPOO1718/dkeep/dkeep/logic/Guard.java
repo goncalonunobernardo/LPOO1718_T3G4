@@ -11,13 +11,14 @@ import java.io.Serializable;
 public class Guard extends Person implements Serializable{
 
 	protected String movement;					/**@brief The route of the guard on the map*/
-	protected int count_string;				/**@brief To know in which key of the movement the guard currently is*/
+	protected int count_string;					/**@brief To know in which key of the movement the guard currently is*/
 
 	/**
 	 * @brief Constructor of the Guard object
 	 * @param coord coordinates of Guard
-	 * @param symbol of Guard
-	 * @param movement of Guard
+	 * @param symbol Char that represents the guard on the map
+	 * @param movement String where the guard's movement is stored: 
+	 * only contains the chars 'a' (1 to the left), 'd' (1 to the right), 's' (1 down), 'w' ( 1 up)
 	 */
 	public Guard (Coordinates coord, char symbol, String movement) {
 		super (coord, symbol, ' ');
@@ -27,8 +28,9 @@ public class Guard extends Person implements Serializable{
 
 
 	/**
-	 * @Briefs moves the Guard as it extends himself as a Person
-	 * @param key a, 1 to left; d, 1 to the right; w, 1 upwards; s, 1 downwards
+	 * @brief moves the Guard as it extends himself as a Person
+	 * @param key The key is irrelevant because the guard will be moved according to the string specified on the constructor
+	 * Allows to override the move method
 	 * @param map Map where the character is stored
 	 */
 	@Override

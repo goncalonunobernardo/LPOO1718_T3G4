@@ -7,19 +7,21 @@ import java.util.Random;
  * @class Suspicious
  * @extends Guard
  * @brief Abstraction of the Suspicious Guard of the game.
+ * It allows for the guard to randomly change its direction
  */
 @SuppressWarnings("serial")
 public class Suspicious extends Guard implements Serializable{
 	private Random r;
-	private String reverse_mov;
-	private int plays_to_reverse, bound;
+	private String reverse_mov;					/** @brief Reverse movement that the guard will have to make if its direction is changed*/
+	private int plays_to_reverse, bound;			/** @brief Maximum value of plays that will go with no change in the state of the guard (asleep or awake) and its movement direction */
 
 	/**
-	 * @brief Constructor of the Suspicious object
+	 * @brief Constructor of the Suspicious object.
+	 * It computes the reverse movement that the guard will have to make if its direction is changed
 	 * @param coord coordinates of Suspicious
-	 * @param symbol of Suspicious
-	 * @param movement of Suspicious
-	 * @param bound to reverse
+	 * @param symbol of Suspicious on the map
+	 * @param movement String where movement that the guard will repeat its stored
+	 * @param bound Maximum value of plays that will go with no change in the state of the guard (asleep or awake) and its movement direction
 	 */
 	public Suspicious (Coordinates coord, char symbol, String movement, int bound) {
 		super (coord, symbol, movement);
@@ -42,9 +44,9 @@ public class Suspicious extends Guard implements Serializable{
 	}
 
 	/**
-	 * @brief Moves Suspicious according to his reverse options
-	 * @param key a, 1 to left; d, 1 to the right; w, 1 upwards; s, 1 downwards
-	 * @param map Map where the character is stored
+	 * @brief Allows the guard to move within a map: it may or not change direction -> it's random
+	 * @param key Irrevelant in this case because it follows the guard movement but allows to override the super class function
+	 * @param map where it's stored
 	 */
 	@Override
 	public void move_person (char key, Map map) {

@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * @class Club
  * @extends Person
- * @brief Abstraction of the Club of the game
+ * @brief Abstraction of the Club of the game: allows to create a club and to move it at a random direction within a map
  */
 @SuppressWarnings("serial")
 public class Club extends Person implements Serializable {
@@ -13,18 +13,20 @@ public class Club extends Person implements Serializable {
 
 	/**
 	 * @brief Constructor for the Ogre's Club
-	 * @param coord
-	 * @param club_symbol
-	 * @param key_symbol
+	 * @param coord Initial coordinates of the club
+	 * @param club_symbol Symbol that represents the club when the game is being printed on the console
+	 * @param key_symbol Symbol that is drawn instead of the club's symbol when it's above the key
 	 */
 	public Club(Coordinates coord, char club_symbol, char key_symbol) {
 		super (coord, club_symbol, key_symbol);
 		this.r = new Random();
 	}
 
-	/**@brief Movement of Club
-	 * @param key a, 1 to left; d, 1 to the right; w, 1 upwards; s, 1 downwards
-	 * @param map Map where the character is stored
+	/**
+	 * @brief Allows the club to move within a map in a random direction: 
+	 * it makes sure it does not stay in the same place and does not move to a space already occupied
+	 * @param key Irrevelant in this case because it is random but allows to override the super class function
+	 * @param map Map where the character is drawn
 	 */
 	@Override 
 	public void move_person (char key, Map map) {

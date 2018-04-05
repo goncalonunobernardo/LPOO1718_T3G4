@@ -7,7 +7,8 @@ import java.util.Vector;
 
 /**
  * @class Keep
- * @brief Abstraction of the Keep level in game.
+ * @brief Abstraction of the Keep level in game. 
+ * It allows to move the hero, the ogres, to randomly pick the number of ogres or to choose it
  */
 @SuppressWarnings("serial")
 public class Keep implements GameLogic, Serializable{
@@ -18,7 +19,7 @@ public class Keep implements GameLogic, Serializable{
 
 	/**
 	 * @brief Constructor for Keep level
-	 * @param matrix
+	 * @param matrix Matrix of the map of this level
 	 */
 	public Keep (char[][] matrix) {
 		this.map = new Map (matrix);
@@ -34,14 +35,17 @@ public class Keep implements GameLogic, Serializable{
 		}
 	}
 
+	/**
+	 * @brief Default constructor of the level: default matrix and random number of ogres
+	 */
 	Keep () {
 		this (default_matrix());
 	}
 
 	/**
 	 * @brief Constructor for all the settings in the Keep level
-	 * @param matrix
-	 * @param nr_ogres
+	 * @param matrix Matrix of the map of this level
+	 * @param nr_ogres Number of ogres that the level will have
 	 */
 	public Keep (char [][] matrix, int nr_ogres) {
 		char[][] temp  = new char[matrix.length] [matrix[0].length];
@@ -64,7 +68,7 @@ public class Keep implements GameLogic, Serializable{
 
 	/**
 	 * @brief Constructor for keep level in accordance to the number of ogres
-	 * @param nr_ogres
+	 * @param nr_ogres Number of ogres that the level will have
 	 */
 	public Keep (int nr_ogres) {
 		this (default_matrix(), nr_ogres);
@@ -108,8 +112,8 @@ public class Keep implements GameLogic, Serializable{
 	}
 
 	/**
-	 * @brief Movement of Hero and Ogres
-	 * @param key
+	 * @brief Moves the Hero and the Ogres
+	 * @param key To move the hero in a certain direction: a, 1 to left; d, 1 to the right; w, 1 upwards; s, 1 downwards
 	 */
 	@Override
 	public void move (char key) {
@@ -122,8 +126,8 @@ public class Keep implements GameLogic, Serializable{
 	}
 
 	/**
-	 * @brief Checks status of game depending on the distance of Hero and Ogres
-	 * @return
+	 * @brief Checks status of game depending on the coordinates of Hero and Ogres and if they are in adjacent cells
+	 * @return The current state of the game: LOST, WON, PLAYING
 	 */
 	public GameState get_status () {
 		boolean lost = false;

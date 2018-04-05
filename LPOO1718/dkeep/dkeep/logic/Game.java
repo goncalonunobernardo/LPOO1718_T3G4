@@ -4,7 +4,8 @@ import java.io.Serializable;
 
 /**
  * @class Game
- * @brief Abstraction of the whole game and the settings around it
+ * @brief Abstraction of the whole game and the settings around it.
+ * It allows to construct a game with unlimited number of levels, to play, to check the status of the game and to update the level
  */
 @SuppressWarnings("serial")
 public class Game implements Serializable{
@@ -14,7 +15,7 @@ public class Game implements Serializable{
 	GameState status;
 
 	/**
-	 * @brief Constructor for the game
+	 * @brief Constructor of the game
 	 * @param levels of game
 	 */
 	public Game (GameLogic [] levels) {
@@ -24,7 +25,7 @@ public class Game implements Serializable{
 	}
 
 	/**
-	 * @brief Constructor for the major elements such as the Dungeon and Keep levels
+	 * @brief Constructor of the default levels of the game
 	 */
 	public Game () {
 		this(new GameLogic [] {new Dungeon(), new Keep()});
@@ -39,7 +40,7 @@ public class Game implements Serializable{
 	}
 
 	/**
-	 * @brief Checks game status
+	 * @brief Checks game status: WON, LOST or PLAYING
 	 * @return game status
 	 */
 	public GameState get_game_status () {
@@ -47,7 +48,7 @@ public class Game implements Serializable{
 	}
 
 	/**
-	 * @brief Updates the status of the current game in action
+	 * @brief Updates the status of the current game in action by checking the status of the level that's being played
 	 */
 	public void update_game_status () {
 		status = levels[current_level].get_status();
@@ -70,8 +71,9 @@ public class Game implements Serializable{
 	}
 
 	/**
-	 * @brief Handler for all of the game logic use
-	 * @param key
+	 * @brief Handler for all of the game logic use: checks if the game is not over, if a level it's not over and updates it if necessary,
+	 * makes a play by calling the GameLogic method move
+	 * @param key Key that expresses the hero movement: a, 1 to left; d, 1 to the right; w, 1 upwards; s, 1 downwards
 	 */
 	public void play (char key) {
 		

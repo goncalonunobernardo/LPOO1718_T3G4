@@ -5,17 +5,18 @@ import java.util.Random;
 /**
  * @class Ogre
  * @extends Person
- * @brief Abstraction of the Ogre of the game.
+ * @brief Abstraction of the Ogre of the game. 
+ * It allows to randomly move the ogre, to save and move its club and to harm the ogre if the hero is near him
  */
 @SuppressWarnings("serial")
 public class Ogre extends Person implements Serializable{
-	private Random r;
-	private Club club;
-	private int stunned;
+	private Random r;			/** @brief Random object to randomly choose the ogre's movement*/
+	private Club club;			/** @brief Club of the ogre, that will always be next to it*/
+	private int stunned;			/** @brief Number of plays that the ogre will be stunned for*/
 
 	/**
 	 * @brief Constructor of the Ogre object
-	 * @param coord coordinates of Ogre
+	 * @param coord Initial coordinates of Ogre
 	 * @param club_coord coordinates of Ogre's Club
 	 * @param symbol of Ogre
 	 * @param key_symbol of key in map
@@ -38,7 +39,8 @@ public class Ogre extends Person implements Serializable{
 
 	/**
 	 * @brief Ogre's movement with the stun setting changing his appearance
-	 * @param key a, 1 to left; d, 1 to the right; w, 1 upwards; s, 1 downwards
+	 * It equals the club's coordinates to the ogre's so that the club is always next to the ogre
+	 * @param key Irrevelant in this case because it is random but allows to override the super class function
 	 * @param map Map where the character is stored
 	 */
 	@Override
@@ -65,9 +67,10 @@ public class Ogre extends Person implements Serializable{
 	}
 
 	/**
-	 * @brief Checks if Hero is close to Ogre so that he can stun him, or maybe attack the Hero
-	 * @param person Character that makes the player lose - club, ogre or guard depending on the level
-	 * @return true if near
+	 * @brief Checks if Hero is in one of the adjacent cells to Ogre so that he can stun him, or maybe attack the Hero.
+	 * If the hero is next to the ogre, the stunned attribute is set to 2 to make sure the Ogre stays still for 2 plays
+	 * @param person Person to check if it's in one of the adjacent cells to the Ogre
+	 * @return true if it is, false otherwise
 	 */
 	@Override
 	public boolean check_near (Hero person) {

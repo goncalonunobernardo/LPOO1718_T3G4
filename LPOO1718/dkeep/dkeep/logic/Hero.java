@@ -10,13 +10,13 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class Hero extends Person implements Serializable{
 	
-	private boolean win; /**@brief Bool if wins game*/
+	private boolean win; 			/**@brief Bool if wins game*/
 
 	/**
 	 * @brief Constructor for Hero object
 	 * @param coord coordinates of Hero
-	 * @param symbol of Hero
-	 * @param key_symbol of Hero
+	 * @param symbol Char symbol of Hero on the map
+	 * @param key_symbol Symbol that will be drawn on the map when the hero is above the key's map
 	 */
 	Hero (Coordinates coord, char symbol, char key_symbol) {
 		super (coord, symbol, key_symbol);
