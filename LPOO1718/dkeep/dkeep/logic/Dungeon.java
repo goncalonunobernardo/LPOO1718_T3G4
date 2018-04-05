@@ -9,6 +9,7 @@ import java.util.Random;
  * @class Dungeon
  * @brief Abstraction of the Dungeon level in game.
  */
+@SuppressWarnings("serial")
 public class Dungeon implements GameLogic, Serializable {
 	
 	private Map map;
@@ -47,18 +48,7 @@ public class Dungeon implements GameLogic, Serializable {
 	 * @brief generic Dungeon Level
 	 */
 	Dungeon () {
-		this (new char [][] {
-			{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
-			{'X', 'H', ' ', ' ', 'I', ' ', 'X', ' ', 'G', 'X'},
-			{'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X'},
-			{'X', ' ', 'I', ' ', 'I', ' ', 'X', ' ', ' ', 'X'},
-			{'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X'},
-			{'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-			{'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-			{'X', 'X', 'X', ' ', 'X', 'X', 'X', 'X', ' ', 'X'},
-			{'X', ' ', 'I', ' ', 'I', ' ', 'X', 'k', ' ', 'X'},
-			{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'}
-		});
+		this (default_matrix());
 	}
 
 	/**
@@ -66,19 +56,8 @@ public class Dungeon implements GameLogic, Serializable {
 	 * @param guard_type
 	 */
 	public Dungeon (String guard_type) {
-		this.map = new Map (new char [][] {
-			{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
-			{'X', 'H', ' ', ' ', 'I', ' ', 'X', ' ', 'G', 'X'},
-			{'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X'},
-			{'X', ' ', 'I', ' ', 'I', ' ', 'X', ' ', ' ', 'X'},
-			{'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X'},
-			{'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-			{'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-			{'X', 'X', 'X', ' ', 'X', 'X', 'X', 'X', ' ', 'X'},
-			{'X', ' ', 'I', ' ', 'I', ' ', 'X', 'k', ' ', 'X'},
-			{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'}
-		});
-
+		this.map = new Map (default_matrix());
+		
 		guard_type = guard_type.toLowerCase();
 
 		Coordinates hero_coord = map.search_char('H');
@@ -98,6 +77,21 @@ public class Dungeon implements GameLogic, Serializable {
 		break;
 
 		}
+	}
+	
+	public static char [][] default_matrix() {
+		return new char [][] {
+			{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
+			{'X', 'H', ' ', ' ', 'I', ' ', 'X', ' ', 'G', 'X'},
+			{'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X'},
+			{'X', ' ', 'I', ' ', 'I', ' ', 'X', ' ', ' ', 'X'},
+			{'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X'},
+			{'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
+			{'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
+			{'X', 'X', 'X', ' ', 'X', 'X', 'X', 'X', ' ', 'X'},
+			{'X', ' ', 'I', ' ', 'I', ' ', 'X', 'k', ' ', 'X'},
+			{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'}
+		};
 	}
 
 	/**

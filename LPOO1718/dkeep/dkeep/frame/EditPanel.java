@@ -1,4 +1,4 @@
-package dkeep.gui;
+package dkeep.frame;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Arrays;
 import java.util.HashMap;
 
 import javax.swing.ButtonGroup;
@@ -15,9 +14,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import dkeep.logic.Coordinates;
-import dkeep.logic.Map;
+import dkeep.logic.Keep;
 
+@SuppressWarnings("serial")
 public class EditPanel extends JPanel implements ActionListener, MouseListener {
 
 	private char [][] matrix;
@@ -34,18 +33,7 @@ public class EditPanel extends JPanel implements ActionListener, MouseListener {
 		
 		this.setBounds(23, 102, 747, 433);
 		
-		matrix = new char [][] {
-			{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
-			{'I', ' ', ' ', ' ', 'O', '*', ' ', ' ', 'k', 'X'},
-			{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-			{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-			{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-			{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-			{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-			{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-			{'X', 'A', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-			{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'}
-		};
+		matrix = Keep.default_matrix();
 		
 		buttons = new ButtonGroup ();
 		

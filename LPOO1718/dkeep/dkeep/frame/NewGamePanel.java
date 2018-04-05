@@ -1,4 +1,4 @@
-package dkeep.gui;
+package dkeep.frame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,8 +10,8 @@ import dkeep.logic.Dungeon;
 import dkeep.logic.Game;
 import dkeep.logic.GameLogic;
 import dkeep.logic.Keep;
-import dkeep.logic.Map;
 
+@SuppressWarnings("serial")
 public class NewGamePanel extends JPanel implements ActionListener {
 	
 	private DkeepGUI gui;

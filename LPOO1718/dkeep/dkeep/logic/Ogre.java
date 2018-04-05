@@ -7,6 +7,7 @@ import java.util.Random;
  * @extends Person
  * @brief Abstraction of the Ogre of the game.
  */
+@SuppressWarnings("serial")
 public class Ogre extends Person implements Serializable{
 	private Random r;
 	private Club club;

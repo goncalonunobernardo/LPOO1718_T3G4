@@ -1,9 +1,10 @@
-package dkeep.gui;
+package dkeep.frame;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+@SuppressWarnings("serial")
 public class SettingsFrame extends JFrame {
 	
 	private OgrePanel ogre_sett;

@@ -1,14 +1,13 @@
-package dkeep.gui;
+package dkeep.frame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class SettingsBtn extends JButton implements ActionListener {
 
-	private JButton sett_btn;
 	private SettingsFrame settingsFrame;
 	
 	SettingsBtn (SettingsFrame settingsFrame) {

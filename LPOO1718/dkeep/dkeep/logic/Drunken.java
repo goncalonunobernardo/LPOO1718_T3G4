@@ -8,6 +8,7 @@ import java.util.Random;
  * @extends Guard
  * @brief Abstraction of the Drunken Guard of the game.
  */
+@SuppressWarnings("serial")
 public class Drunken extends Guard implements Serializable {
 	private Random r;
 	private int stop_plays, walk_plays, bound;

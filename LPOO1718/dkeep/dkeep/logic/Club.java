@@ -7,6 +7,7 @@ import java.util.Random;
  * @extends Person
  * @brief Abstraction of the Club of the game
  */
+@SuppressWarnings("serial")
 public class Club extends Person implements Serializable {
 	Random r;					/** @brief To allow for the movement of the club to be random*/
 

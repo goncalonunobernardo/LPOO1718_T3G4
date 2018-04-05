@@ -1,8 +1,8 @@
 package dkeep.serialization;
 
-import dkeep.gui.DkeepGUI;
+
+import dkeep.frame.DkeepGUI;
 import dkeep.logic.Game;
-import dkeep.logic.GameState;
 
 import java.io.*;
 

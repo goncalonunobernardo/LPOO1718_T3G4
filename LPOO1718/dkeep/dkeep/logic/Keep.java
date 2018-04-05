@@ -9,6 +9,7 @@ import java.util.Vector;
  * @class Keep
  * @brief Abstraction of the Keep level in game.
  */
+@SuppressWarnings("serial")
 public class Keep implements GameLogic, Serializable{
 	
 	private Map map;
@@ -34,18 +35,7 @@ public class Keep implements GameLogic, Serializable{
 	}
 
 	Keep () {
-		this (new char [][] {
-			{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
-			{'I', ' ', ' ', ' ', 'O', '*', ' ', ' ', 'k', 'X'},
-			{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-			{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-			{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-			{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-			{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-			{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-			{'X', 'A', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
-			{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'}
-		});
+		this (default_matrix());
 	}
 
 	/**
@@ -77,7 +67,11 @@ public class Keep implements GameLogic, Serializable{
 	 * @param nr_ogres
 	 */
 	public Keep (int nr_ogres) {
-		this.map = new Map (new char [][] {
+		this (default_matrix(), nr_ogres);
+	}
+	
+	public static char [][] default_matrix() {
+		return new char [][] {
 			{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
 			{'I', ' ', ' ', ' ', 'O', '*', ' ', ' ', 'k', 'X'},
 			{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
@@ -88,17 +82,7 @@ public class Keep implements GameLogic, Serializable{
 			{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
 			{'X', 'A', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
 			{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'}
-		});
-		
-		this.hero = new Hero (map.search_char('A'), 'A', 'L');
-		
-		
-		this.ogres = new Vector<Ogre> ();
-		
-		
-		for (int i = 0; i < nr_ogres; i++) {
-			ogres.add(new Ogre (map.search_char('O'), map.search_char('*'), 'O', '$', '*', '#'));
-		}
+		};
 	}
 
 	/**

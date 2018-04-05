@@ -8,6 +8,7 @@ import java.util.Random;
  * @extends Guard
  * @brief Abstraction of the Suspicious Guard of the game.
  */
+@SuppressWarnings("serial")
 public class Suspicious extends Guard implements Serializable{
 	private Random r;
 	private String reverse_mov;

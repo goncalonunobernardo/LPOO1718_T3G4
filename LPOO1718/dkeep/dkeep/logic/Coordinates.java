@@ -6,6 +6,7 @@ import java.io.Serializable;
  * @class Coordinates
  * @brief Abstraction of the Coordinates of all levels
  */
+@SuppressWarnings("serial")
 public class Coordinates implements Serializable {
 	private int x;
 	private int y;

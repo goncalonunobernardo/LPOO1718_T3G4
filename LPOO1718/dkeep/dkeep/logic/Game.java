@@ -6,6 +6,7 @@ import java.io.Serializable;
  * @class Game
  * @brief Abstraction of the whole game and the settings around it
  */
+@SuppressWarnings("serial")
 public class Game implements Serializable{
 	
 	GameLogic [] levels;

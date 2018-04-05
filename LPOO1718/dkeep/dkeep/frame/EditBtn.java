@@ -1,10 +1,11 @@
-package dkeep.gui;
+package dkeep.frame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+@SuppressWarnings("serial")
 public class EditBtn extends JButton implements ActionListener {
 	
 	private EditFrame editFrame;
