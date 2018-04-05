@@ -1,4 +1,4 @@
-package dkeep.gui;
+package dkeep.frame;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings("serial")
 public class EditFrame extends JFrame implements ActionListener {
 	
 	private JButton exitBtn;

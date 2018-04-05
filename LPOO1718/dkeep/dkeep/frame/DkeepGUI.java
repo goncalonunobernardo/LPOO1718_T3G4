@@ -1,17 +1,14 @@
-package dkeep.gui;
+package dkeep.frame;
 
 import java.awt.Image;
 import java.io.IOException;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import dkeep.logic.Game;
-import dkeep.logic.GameState;
 import dkeep.logic.Map;
-import dkeep.serialization.SaveLoad;
 
 public class DkeepGUI {
 	
@@ -38,7 +35,7 @@ public class DkeepGUI {
 			images.put('K', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/hero_with_key.png")));
 			images.put('X', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/wall.png")));
 			images.put(' ', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/free_space.png")));
-			images.put('S', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/free_space.png")));
+			images.put('S', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/open_door.png")));
 			images.put('I', ImageIO.read(GraphicsPanel.class.getResource("/dkeep/res/closed_door.png")));
 		
 		} catch (IOException e) {

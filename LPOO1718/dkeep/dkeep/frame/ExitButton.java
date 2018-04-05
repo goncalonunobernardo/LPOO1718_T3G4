@@ -1,4 +1,4 @@
-package dkeep.gui;
+package dkeep.frame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class ExitButton extends JPanel implements ActionListener {
 	
 	JButton button;

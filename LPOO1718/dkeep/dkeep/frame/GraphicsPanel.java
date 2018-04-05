@@ -1,4 +1,4 @@
-package dkeep.gui;
+package dkeep.frame;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -6,13 +6,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-
 import javax.swing.JPanel;
 
 import java.util.HashMap;
 
+@SuppressWarnings("serial")
 public class GraphicsPanel extends JPanel implements KeyListener, MouseListener {
 	
 	private DkeepGUI gui;

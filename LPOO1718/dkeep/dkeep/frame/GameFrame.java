@@ -1,4 +1,4 @@
-package dkeep.gui;
+package dkeep.frame;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -11,7 +11,7 @@ import javax.swing.JTextArea;
 
 import dkeep.serialization.SaveLoad;
 
-
+@SuppressWarnings("serial")
 public class GameFrame extends JFrame {
 
 	private DkeepGUI gui = new DkeepGUI (this);

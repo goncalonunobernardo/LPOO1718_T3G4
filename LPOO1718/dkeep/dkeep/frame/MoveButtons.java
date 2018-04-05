@@ -1,26 +1,11 @@
-package dkeep.gui;
+package dkeep.frame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
-import dkeep.logic.Map;
-
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import javax.swing.JLabel;
-import javax.swing.BoxLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.Component;
-import java.awt.Rectangle;
-
+@SuppressWarnings("serial")
 public class MoveButtons extends JPanel implements ActionListener {
 	
 	private  JButton btnUp, btnDown, btnLeft, btnRight;

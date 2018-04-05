@@ -3,6 +3,7 @@ package dkeep.logic;
 import java.io.Serializable;
 import java.util.Random;
 
+@SuppressWarnings("serial")
 public class Drunken extends Guard implements Serializable {
 	private Random r;
 	private int stop_plays, walk_plays, bound;

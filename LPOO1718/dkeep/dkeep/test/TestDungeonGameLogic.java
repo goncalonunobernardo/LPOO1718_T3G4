@@ -13,7 +13,6 @@ import dkeep.logic.GameState;
 import dkeep.logic.Guard;
 import dkeep.logic.Keep;
 import dkeep.logic.Map;
-import dkeep.logic.Ogre;
 import dkeep.logic.Person;
 import dkeep.logic.Suspicious;
 
@@ -59,7 +58,6 @@ public class TestDungeonGameLogic {
 		Map map = new Map (map_test);
 		
 		assertEquals ("A B \nC D \n", map.toString());
-		assertEquals (map_test, map.get_matrix());
 	}
 	
 	@Test

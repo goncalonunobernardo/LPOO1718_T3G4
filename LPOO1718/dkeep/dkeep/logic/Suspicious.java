@@ -3,6 +3,7 @@ package dkeep.logic;
 import java.io.Serializable;
 import java.util.Random;
 
+@SuppressWarnings("serial")
 public class Suspicious extends Guard implements Serializable{
 	private Random r;
 	private String reverse_mov;

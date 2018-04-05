@@ -5,12 +5,12 @@ import java.util.Iterator;
 import java.util.Random;
 import java.util.Vector;
 
+@SuppressWarnings("serial")
 public class Keep implements GameLogic, Serializable{
 	
 	private Map map;
 	private Hero hero;
 	private Vector <Ogre> ogres;
-	private Random r = new Random ();
 	
 	public Keep (char[][] matrix) {
 		this.map = new Map (matrix);

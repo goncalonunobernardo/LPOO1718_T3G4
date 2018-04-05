@@ -2,6 +2,7 @@ package dkeep.logic;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class Game implements Serializable{
 	
 	GameLogic [] levels;

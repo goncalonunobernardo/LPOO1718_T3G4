@@ -3,6 +3,7 @@ package dkeep.logic;
 import java.io.Serializable;
 import java.util.Random;
 
+@SuppressWarnings("serial")
 public class Dungeon implements GameLogic, Serializable {
 	
 	private Map map;

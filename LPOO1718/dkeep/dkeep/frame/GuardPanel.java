@@ -1,12 +1,14 @@
-package dkeep.gui;
+package dkeep.frame;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class GuardPanel extends JPanel {
 
 	private JLabel guardPerson;
+	@SuppressWarnings("rawtypes")
 	private JComboBox guardList;
 	
 	GuardPanel () {
