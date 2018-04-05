@@ -35,7 +35,7 @@ public class TestDungeonGameLogic {
 							{ 'X', 'X', 'X', 'X', 'X' }};
 	
 	char [][] map_test3 = {	{ 'X', 'X', 'X', 'X', 'X', 'X' },
-							{ 'X', 'A', ' ', ' ', ' ', 'X'},
+							{ 'X', ' ', ' ', ' ', ' ', 'X'},
 							{ 'X', ' ', ' ', 'O', '*', 'X' },
 							{ 'I', ' ', ' ', ' ', ' ', 'X' }, 
 							{ 'I', 'k', ' ', ' ', ' ', 'X' },
@@ -356,7 +356,7 @@ public class TestDungeonGameLogic {
 			
 			Coordinates initial = new Coordinates (ogre.get_coordinates());
 			
-			game.play('a');
+			level.move_ogres();
 			
 			if (ogre.get_coordinates().equals(new Coordinates (initial.get_x() + 1, initial.get_y())))
 				move_right = true;
@@ -370,40 +370,13 @@ public class TestDungeonGameLogic {
 			else if (ogre.get_coordinates().equals(new Coordinates (initial.get_x(), initial.get_y() - 1)))
 				move_up = true;
 			
-			else
+			else {
+				System.out.println(initial.get_x() + ", " + initial.get_y());
+				System.out.println(ogre.get_coordinates().get_x() + ", " + ogre.get_coordinates().get_y());
 				fail ("Behaviour not expected");
-			
-		}
-	}
-	
-	@Test (timeout = 1000)
-	public void testOgreAboveKey () {
-		boolean ogAboveKey = false;
-		Map map = new Map (map_test5);
-		
-		Coordinates ogre_coord = map.search_char('O');
-		Coordinates club_coord = map.search_char('*');
-		Coordinates key_coord = map.search_char('k');
-		
-		Ogre ogre = new Ogre (ogre_coord, club_coord, 'O', '$','*', '$');
-		
-
-		Coordinates initial_ogre = new Coordinates (ogre_coord);
-		
-		while (!ogAboveKey) {
-			ogre.set_pos(initial_ogre);
-			ogre.move_person(' ', map);
-			
-			if (key_coord.equals(ogre.get_coordinates())) {
-				assertEquals(ogre.get_symbol(), '$');
-				ogAboveKey = true;
-				ogre.move_person(' ', map);
-				assertEquals (ogre.get_symbol(), 'O');
 			}
+			
 		}
-		
-		assertEquals(map.get_letter(key_coord), 'k');
-		
 	}
 	
 	
@@ -423,7 +396,7 @@ public class TestDungeonGameLogic {
 		
 		while (!move_down || !move_up || !move_right || !move_left) {
 			
-			game.play('a');
+			level.move_ogres();
 			
 			if (club_coord.equals(new Coordinates (ogre_coord.get_x() - 1, ogre_coord.get_y())))
 				move_right = true;
