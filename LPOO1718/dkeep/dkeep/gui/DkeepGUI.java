@@ -16,6 +16,7 @@ public class DkeepGUI {
 	
 	Game game;
 	GameFrame window;
+	char[][] level2;
 	HashMap <Character, Image> images;
 	
 	DkeepGUI (GameFrame window) {
@@ -55,6 +56,21 @@ public class DkeepGUI {
 	public void start_new_game (Game new_game) {
 		this.game = new_game;
 		window.start_game(new_game.get_map().get_matrix());
+	}
+
+	public void set_map (char[][] map) {
+		level2 = new char[map.length] [map[0].length];
+		
+		for (int i = 0; i < map.length; i++) {
+			for (int j = 0; j < map[i].length; j++) {
+				level2[i][j] = map[i][j];
+			}
+		}
+		
+	}
+	
+	public char[][] get_level2_map () {
+		return level2;
 	}
 	
 	public void play (char hero_key) {

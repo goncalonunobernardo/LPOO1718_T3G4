@@ -8,6 +8,9 @@ import java.awt.event.KeyListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import dkeep.logic.Map;
+
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
@@ -68,6 +71,7 @@ public class MoveButtons extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent evt) {
 		gui.play(evt.getActionCommand().charAt(0));
+		
 	}
 
 	

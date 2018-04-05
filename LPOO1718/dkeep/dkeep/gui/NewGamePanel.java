@@ -10,6 +10,7 @@ import dkeep.logic.Dungeon;
 import dkeep.logic.Game;
 import dkeep.logic.GameLogic;
 import dkeep.logic.Keep;
+import dkeep.logic.Map;
 
 public class NewGamePanel extends JPanel implements ActionListener {
 	
@@ -18,8 +19,6 @@ public class NewGamePanel extends JPanel implements ActionListener {
 	private SettingsBtn settingsBtn;
 	private SettingsFrame settingsInfo;
 	private JButton btnNewGame;
-	private EditFrame editFrame;
-	private EditBtn editMapBtn;
 	
 	NewGamePanel (DkeepGUI gui, JLabel label) {
 
@@ -33,19 +32,24 @@ public class NewGamePanel extends JPanel implements ActionListener {
 		add(btnNewGame);
 		
 		this.settingsInfo = new SettingsFrame (gameState, btnNewGame);
-		this.editFrame = new EditFrame (gui.get_images());
 
 		this.settingsBtn = new SettingsBtn (settingsInfo);
 		add(settingsBtn);
 		
-		this.editMapBtn = new EditBtn (editFrame);
-		add(editMapBtn);
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Dungeon level1 = new Dungeon (settingsInfo.get_selected_guard());
-		Keep level2 = new Keep (settingsInfo.get_nr_ogres());
+		
+		Keep level2;
+		
+		if (gui.get_level2_map() == null) {
+			level2 = new Keep (settingsInfo.get_nr_ogres());
+		}
+		else {
+			level2 = new Keep (gui.get_level2_map(), settingsInfo.get_nr_ogres());
+		}
 		
 		gui.start_new_game (new Game (new GameLogic [] { level1, level2 }));
 	}

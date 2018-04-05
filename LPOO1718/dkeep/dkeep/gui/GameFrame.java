@@ -20,6 +20,8 @@ public class GameFrame extends JFrame {
 	
 	private GraphicsPanel images;
 	private JButton editMap;
+	private EditFrame editFrame;
+	private EditBtn editMapBtn;
 
 	/**
 	 * Launch the application.
@@ -58,8 +60,14 @@ public class GameFrame extends JFrame {
 		getContentPane().add(gameLabel);
 		
 		this.newGamePanel = new NewGamePanel (gui, gameLabel);
-		newGamePanel.setBounds(23, 43, 754, 85);
+		newGamePanel.setBounds(129, 40, 228, 85);
 		getContentPane().add(newGamePanel);
+		
+		this.editFrame = new EditFrame (gui);
+
+		this.editMapBtn = new EditBtn (editFrame);
+		editMapBtn.setBounds(369, 47, 114, 25);
+		getContentPane().add(editMapBtn);
 		
 		this.moveBtns = new MoveButtons(gui);
 		moveBtns.setSize(182, 123);

@@ -1,31 +1,21 @@
 package dkeep.gui;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.HashMap;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.Image;
 
-import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JSlider;
-import javax.swing.JTextField;
 
-public class EditFrame extends JFrame {
+public class EditFrame extends JFrame implements ActionListener {
 	
-	private char [][] matrix;
 	private JButton exitBtn;
 	private JLabel editLbl;
 	private SizePanel sizePanel;
 	private EditPanel editPanel;
+	private DkeepGUI gui;
 	
-	EditFrame (HashMap <Character, Image> images) {
+	EditFrame (DkeepGUI gui) {
 		getContentPane().setLayout(null);
 
 		this.setBounds(100, 100, 806, 606);
@@ -37,9 +27,10 @@ public class EditFrame extends JFrame {
 		
 		exitBtn = new JButton("Apply");
 		exitBtn.setBounds(702, 536, 68, 29);
+		exitBtn.addActionListener(this);
 		getContentPane().add(exitBtn);
 		
-		editPanel = new EditPanel (images);
+		editPanel = new EditPanel (gui.get_images(), editLbl, exitBtn);
 		editPanel.setBounds(27, 75, 592, 475);
 		editPanel.setEnabled(true);
 		getContentPane().add (editPanel);
@@ -47,5 +38,16 @@ public class EditFrame extends JFrame {
 		sizePanel = new SizePanel(editLbl, editPanel);
 		sizePanel.setBounds(42, 18, 404, 45);
 		getContentPane().add(sizePanel);
+		
+		this.gui = gui;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		char [][] matrix = editPanel.get_matrix();
+		
+		gui.set_map(matrix);
+		this.setVisible(false);
 	}
 }

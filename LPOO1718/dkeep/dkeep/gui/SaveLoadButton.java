@@ -8,7 +8,7 @@ import dkeep.logic.Game;
 import dkeep.logic.GameState;
 import dkeep.serialization.SaveLoad;
 
-public class SaveLoadButton extends JPanel implements ActionListener {
+public class SaveLoadButton extends JPanel {
 
     private  JButton saveG, loadG;
     private DkeepGUI gui;
@@ -21,7 +21,8 @@ public class SaveLoadButton extends JPanel implements ActionListener {
         saveG = new JButton("SAVE");
         saveG.setBounds(550, 300, 97, 25);
         saveG.addActionListener(new ActionListener() {
-            public void action_performed(ActionEvent evt) {
+        		@Override
+            public void actionPerformed(ActionEvent evt) {
                 slg.Save_Game(gameState);
             }
         });
@@ -29,9 +30,11 @@ public class SaveLoadButton extends JPanel implements ActionListener {
         loadG = new JButton("LOAD");
         loadG.setBounds(680, 300, 97, 25);
         loadG.addActionListener(new ActionListener() {
-            public void action_performed(ActionEvent evt) {
-                slg.Load_Game();
-            }
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				slg.Load_Game();
+			}
         });
 
         enable_buttons (false);

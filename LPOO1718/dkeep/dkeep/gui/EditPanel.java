@@ -6,22 +6,30 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+
+import dkeep.logic.Coordinates;
+import dkeep.logic.Map;
 
 public class EditPanel extends JPanel implements ActionListener, MouseListener {
 
 	private char [][] matrix;
 	private char to_replace;
 	private HashMap <Character, Image> images;
+	private HashMap <Character, String> messages;
 	private ButtonGroup buttons;
 	private JRadioButton wallBtn, ogreBtn, heroBtn, keyBtn, doorBtn, emptyBtn, clubBtn;
+	private JLabel mapState;
+	private JButton exitBtn;
 
-	EditPanel (HashMap <Character, Image> images) {
+	EditPanel (HashMap <Character, Image> images, JLabel mapState, JButton exitBtn) {
 		setLayout(null);
 		
 		matrix = new char [][] {
@@ -38,6 +46,15 @@ public class EditPanel extends JPanel implements ActionListener, MouseListener {
 		};
 		
 		buttons = new ButtonGroup ();
+		
+		messages = new HashMap <Character, String> ();
+		
+		messages.put('A', "Invalid map: hero missing or repeated");
+		messages.put('O', "Invalid map: ogre or club misplaced");
+		messages.put('I', "Invalid map: no door on the left door");
+		messages.put('k', "Invalid map: key missing or repeated");
+		messages.put(' ', "Ready to play");
+		
 		
 		wallBtn = new JRadioButton ("Wall");
 		wallBtn.setBounds(503, 200, 73, 23);
@@ -63,7 +80,7 @@ public class EditPanel extends JPanel implements ActionListener, MouseListener {
 		heroBtn = new JRadioButton("Hero");
 		heroBtn.setBounds(503, 25, 73, 23);
 		heroBtn.addActionListener(this);
-		heroBtn.setActionCommand("H");
+		heroBtn.setActionCommand("A");
 		buttons.add(heroBtn);
 		add(heroBtn);
 		
@@ -93,20 +110,29 @@ public class EditPanel extends JPanel implements ActionListener, MouseListener {
 		
 		this.to_replace = ' ';
 		
+		this.mapState = mapState;
+		
 		this.addMouseListener(this);
+		
+		this.exitBtn = exitBtn;
 	}
 	
-	public void change_matrix (int x, int y) {
-		char[][] temp = new char [x][y];
-		
-		for (int i = 0; i < y; i++) {
-			for (int j = 0; j < x; j++) {
-				temp[i][j] = matrix[i][j];
+	public char [][] get_matrix() {
+		return matrix;
+	}
+	
+	public void change_matrix_size (int x, int y) {
+		matrix = new char [x][y];
+				
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = 0; j < matrix[i].length; j++) {
+				if (i == 0 || j == 0 || i == matrix.length - 1 || j == matrix[i].length - 1)
+					matrix[i][j] = 'X';
+				else
+					matrix[i][j] = ' ';
 			}
 		}
-		
-		matrix = temp;
-		
+		exitBtn.setEnabled(valid_map());
 	}
 
 	@Override
@@ -130,18 +156,108 @@ public class EditPanel extends JPanel implements ActionListener, MouseListener {
 			}
 		}
 	}
-
+	
+	public boolean check_char (char key) {
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = 0; j < matrix[i].length; j++) {
+				if (matrix[i][j] == key)
+					return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public boolean check_repeated_char (char key) {
+		boolean one_time = false;
+		
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = 0; j < matrix[i].length; j++) {
+				if (matrix[i][j] == key) {
+					
+					if (!one_time)
+						one_time = true;
+					else
+						return true;
+					
+				}
+			}
+		}
+		
+		return false;
+	}
+	
+	public boolean check_club () {
+		boolean in_place = false;
+		boolean out_place = false;
+		
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = 0; j < matrix[i].length; j++) {
+				if (matrix[i][j] == 'O') {
+					in_place = matrix[i][j-1] == '*' || matrix[i][j+1] == '*' || matrix[i+1][j] == '*' || matrix[i-1][j] == '*'; 
+				}
+				else if (matrix[i][j] == '*' ) {
+					out_place = matrix[i][j-1] != 'O' && matrix[i][j+1] != 'O' && matrix[i+1][j] != 'O' && matrix[i-1][j] != 'O'; 
+				}
+			}
+		}
+		return !out_place && in_place;
+	}
+	
+	public boolean check_door() {
+		for (int i = 0; i < matrix.length; i++) {
+			if (matrix[i][0] == 'I') {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean valid_map () {
+		
+		boolean valid_map = true;
+		char key_missing = ' ';
+		
+		if (!check_char('A') || check_repeated_char('A')) {
+			valid_map = false;
+			key_missing = 'A';
+		}
+		else if (!check_char('O') || !check_club() || check_repeated_char('O') || check_repeated_char('*')) {
+			valid_map = false;
+			key_missing = 'O';
+		}
+		else if (!check_char('k')) {
+			valid_map = false;
+			key_missing = 'k';
+		}
+		else if (!check_door()) {
+			valid_map = false;
+			key_missing = 'I';
+		}
+			
+		mapState.setText(messages.get(key_missing));
+		
+		return valid_map;
+	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		
-		if (isEnabled()) {
-			int x = e.getX() / 35;
-			int y = e.getY() / 35;
+		try {
+			if (isEnabled()) {
+				int x = e.getX() / 35;
+				int y = e.getY() / 35;
 
-			matrix[y][x] = to_replace;
+				matrix[y][x] = to_replace;
 
-			this.repaint();
+				this.repaint();
+				
+				exitBtn.setEnabled(valid_map());
+
+			}
+		}
+		catch (IndexOutOfBoundsException ex) {
+			exitBtn.setEnabled(false);
 		}
 	}
 

@@ -55,7 +55,8 @@ public class SizePanel extends JPanel implements ActionListener {
 			else {
 				editState.setText("It's ready to start editing");
 				editPanel.setEnabled(true);
-				editPanel.change_matrix(width, height);
+				editPanel.change_matrix_size(width, height);
+				editPanel.repaint();
 			}
 		}
 		catch(NumberFormatException e){

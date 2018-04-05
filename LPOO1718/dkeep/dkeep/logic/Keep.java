@@ -15,16 +15,13 @@ public class Keep implements GameLogic, Serializable{
 		this.map = new Map (matrix);
 		this.hero = new Hero (map.search_char('A'), 'A', 'K');
 		
-		Coordinates ogre_coord = map.search_char ('O');
-		Coordinates club_coord = map.search_char('*');
-		
 		this.ogres = new Vector<Ogre> ();
 		Random r = new Random ();
 		
 		int bound = r.nextInt(3) + 1;
 		
 		for (int i = 0; i < bound; i++) {
-			ogres.add(new Ogre (ogre_coord, club_coord, 'O', '$', '*', '#'));
+			ogres.add(new Ogre (map.search_char('O'), map.search_char('*'), 'O', '$', '*', '$'));
 		}
 	}
 	
@@ -41,6 +38,25 @@ public class Keep implements GameLogic, Serializable{
 			{'X', 'A', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
 			{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'}
 		});
+	}
+	
+	public Keep (char [][] matrix, int nr_ogres) {
+		char[][] temp  = new char[matrix.length] [matrix[0].length];
+
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = 0; j < matrix[i].length; j++) {
+				temp[i][j] = matrix[i][j];
+			}
+		}
+		
+		this.map = new Map (temp);
+		this.hero = new Hero (map.search_char('A'), 'A', 'K');
+		
+		this.ogres = new Vector<Ogre> ();
+		
+		for (int i = 0; i < nr_ogres; i++) {
+			ogres.add(new Ogre (map.search_char('O'), map.search_char('*'), 'O', '$', '*', '$'));
+		}
 	}
 	
 	public Keep (int nr_ogres) {
