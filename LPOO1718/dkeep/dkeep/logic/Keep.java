@@ -10,6 +10,7 @@ public class Keep implements GameLogic, Serializable{
 	private Map map;
 	private Hero hero;
 	private Vector <Ogre> ogres;
+	private Random r = new Random ();
 	
 	public Keep (char[][] matrix) {
 		this.map = new Map (matrix);
@@ -60,7 +61,7 @@ public class Keep implements GameLogic, Serializable{
 	}
 	
 	public Keep (int nr_ogres) {
-		this.map = new Map (new char [][] {
+		this (new char [][] {
 			{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
 			{'I', ' ', ' ', ' ', 'O', '*', ' ', ' ', 'k', 'X'},
 			{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
@@ -71,17 +72,7 @@ public class Keep implements GameLogic, Serializable{
 			{'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
 			{'X', 'A', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X'},
 			{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'}
-		});
-		
-		this.hero = new Hero (map.search_char('A'), 'A', 'L');
-		
-		
-		this.ogres = new Vector<Ogre> ();
-		
-		
-		for (int i = 0; i < nr_ogres; i++) {
-			ogres.add(new Ogre (map.search_char('O'), map.search_char('*'), 'O', '$', '*', '#'));
-		}
+		}, nr_ogres);
 	}
 
 	/**

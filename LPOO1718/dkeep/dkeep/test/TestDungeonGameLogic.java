@@ -383,8 +383,6 @@ public class TestDungeonGameLogic {
 				move_up = true;
 			
 			else {
-				System.out.println(initial.get_x() + ", " + initial.get_y());
-				System.out.println(ogre.get_coordinates().get_x() + ", " + ogre.get_coordinates().get_y());
 				fail ("Behaviour not expected");
 			}
 			
