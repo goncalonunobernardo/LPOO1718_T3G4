@@ -10,11 +10,14 @@ import javax.swing.JTextField;
 @SuppressWarnings("serial")
 public class SizePanel extends JPanel implements ActionListener {
 	
+	
 	private JTextField widthText, heigthText;
 	private JLabel widthLabel, heightLabel, editState;
 	private  EditPanel editPanel;
 
 	SizePanel (JLabel editState, EditPanel editPanel) {
+		super();
+		
 		setLayout(null);
 		widthLabel = new JLabel("Width:");
 		widthLabel.setBounds(6, 10, 40, 16);

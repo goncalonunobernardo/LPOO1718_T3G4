@@ -13,6 +13,8 @@ public class GuardPanel extends JPanel {
 	
 	GuardPanel () {
 
+		super();
+
 		this.setBounds(40, 40, 263, 40);
 		
 		this.guardPerson = new JLabel("Guard personality:");

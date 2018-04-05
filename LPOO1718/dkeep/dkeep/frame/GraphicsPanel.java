@@ -18,6 +18,9 @@ public class GraphicsPanel extends JPanel implements KeyListener, MouseListener 
 	private HashMap <Character, Image> images;
 	
 	GraphicsPanel (DkeepGUI gui) {
+
+		super();
+		
 		this.gui = gui;
 		this.addKeyListener(this);
 		this.addMouseListener(this);

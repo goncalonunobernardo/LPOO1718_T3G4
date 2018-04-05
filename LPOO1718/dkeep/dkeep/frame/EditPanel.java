@@ -29,6 +29,8 @@ public class EditPanel extends JPanel implements ActionListener, MouseListener {
 	private JButton exitBtn;
 
 	EditPanel (HashMap <Character, Image> images, JLabel mapState, JButton exitBtn) {
+		super();
+		
 		setLayout(null);
 		
 		this.setBounds(23, 102, 747, 433);
@@ -176,22 +178,24 @@ public class EditPanel extends JPanel implements ActionListener, MouseListener {
 		
 		return false;
 	}
-	
-	public boolean check_club () {
-		boolean in_place = false;
-		boolean out_place = false;
+
+	public boolean check_surrounders (char found, char around) {
 		
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[i].length; j++) {
-				if (matrix[i][j] == 'O') {
-					in_place = matrix[i][j-1] == '*' || matrix[i][j+1] == '*' || matrix[i+1][j] == '*' || matrix[i-1][j] == '*'; 
-				}
-				else if (matrix[i][j] == '*' ) {
-					out_place = matrix[i][j-1] != 'O' && matrix[i][j+1] != 'O' && matrix[i+1][j] != 'O' && matrix[i-1][j] != 'O'; 
+				if (matrix[i][j] == found) {
+					
+					if ((j > 0 && matrix[i][j - 1] == around) || (j < matrix[i].length - 1 && matrix[i][j + 1] == around))
+						return true;
+					else if ((i > 0 && matrix[i - 1][j] == around) || (i < matrix.length - 1 && matrix[i + 1][j] == around))
+						return true;
+					
 				}
 			}
 		}
-		return !out_place && in_place;
+		
+		return false;
+		
 	}
 	
 	public boolean check_door() {
@@ -212,7 +216,7 @@ public class EditPanel extends JPanel implements ActionListener, MouseListener {
 			valid_map = false;
 			key_missing = 'A';
 		}
-		else if (!check_char('O') || !check_club() || check_repeated_char('O') || check_repeated_char('*')) {
+		else if (!check_char('O') || !check_surrounders ('O', '*') || !check_surrounders('*', 'O')|| check_repeated_char('O') || check_repeated_char('*')) {
 			valid_map = false;
 			key_missing = 'O';
 		}
@@ -237,6 +241,8 @@ public class EditPanel extends JPanel implements ActionListener, MouseListener {
 			if (isEnabled()) {
 				int x = e.getX() / 35;
 				int y = e.getY() / 35;
+				
+				System.out.println("" + x + " " + y);
 
 				matrix[y][x] = to_replace;
 

@@ -77,7 +77,7 @@ public class GameFrame extends JFrame {
 		getContentPane().add(moveBtns);
 		
 		this.btnExitGame = new ExitButton();
-		btnExitGame.setBounds(615, 458, 97, 39);
+		btnExitGame.setBounds(615, 458, 97, 25);
 		getContentPane().add(btnExitGame);
 		
 		this.images = new GraphicsPanel(gui);
