@@ -1,5 +1,9 @@
 package dkeep.logic;
 
+/**
+ * @interface GameLogic
+ * @brief Allows communication in order to obtain Hero, Map, movements and gamestates
+ */
 public interface GameLogic {
 	
 	public Hero get_hero();

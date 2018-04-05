@@ -3,12 +3,24 @@ package dkeep.logic;
 import java.io.Serializable;
 import java.util.Random;
 
+/**
+ * @class Drunken
+ * @extends Guard
+ * @brief Abstraction of the Drunken Guard of the game.
+ */
 public class Drunken extends Guard implements Serializable {
 	private Random r;
 	private int stop_plays, walk_plays, bound;
 	private boolean asleep;
 	private String reverse_mov;
-	
+
+	/**
+	 * @brief Constructor for Drunken type of Guard
+	 * @param coord
+	 * @param symbol
+	 * @param movement
+	 * @param bound
+	 */
 	public Drunken (Coordinates coord, char symbol, String movement, int bound) {
 		super (coord, symbol, movement);
 		this.r = new Random ();
@@ -30,7 +42,12 @@ public class Drunken extends Guard implements Serializable {
 			}
 		}
 	}
-	
+
+	/**
+	 * @brief Movement of Drunken Guard - g means sleep, G means he walks normally
+	 * @param key
+	 * @param map where it's stored
+	 */
 	@Override
 	public void move_person (char key, Map map) {
 		
@@ -57,7 +74,10 @@ public class Drunken extends Guard implements Serializable {
 			super.move_person(movement.charAt(count_string), map);
 		}
 	}
-	
+
+	/**
+	 * @brief Applies random-direction so that the guard can change the way
+	 */
 	public void random_direction () {
 		if (r.nextBoolean()) {
 
@@ -71,7 +91,12 @@ public class Drunken extends Guard implements Serializable {
 				count_string = movement.length() - 1;
 		}
 	}
-	
+
+	/**
+	 *
+	 * @param person Hero that makes the player lose - club, ogre or guard depending on the level
+	 * @return true if is in fact near
+	 */
 	@Override
 	public boolean check_near (Hero person) {
 		if (this.asleep) 

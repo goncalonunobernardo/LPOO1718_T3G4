@@ -5,12 +5,20 @@ import java.util.Iterator;
 import java.util.Random;
 import java.util.Vector;
 
+/**
+ * @class Keep
+ * @brief Abstraction of the Keep level in game.
+ */
 public class Keep implements GameLogic, Serializable{
 	
 	private Map map;
 	private Hero hero;
 	private Vector <Ogre> ogres;
-	
+
+	/**
+	 * @brief Constructor for Keep level
+	 * @param matrix
+	 */
 	public Keep (char[][] matrix) {
 		this.map = new Map (matrix);
 		this.hero = new Hero (map.search_char('A'), 'A', 'K');
@@ -24,7 +32,7 @@ public class Keep implements GameLogic, Serializable{
 			ogres.add(new Ogre (map.search_char('O'), map.search_char('*'), 'O', '$', '*', '$'));
 		}
 	}
-	
+
 	Keep () {
 		this (new char [][] {
 			{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
@@ -39,7 +47,12 @@ public class Keep implements GameLogic, Serializable{
 			{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'}
 		});
 	}
-	
+
+	/**
+	 * @brief Constructor for all the settings in the Keep level
+	 * @param matrix
+	 * @param nr_ogres
+	 */
 	public Keep (char [][] matrix, int nr_ogres) {
 		char[][] temp  = new char[matrix.length] [matrix[0].length];
 
@@ -58,7 +71,11 @@ public class Keep implements GameLogic, Serializable{
 			ogres.add(new Ogre (map.search_char('O'), map.search_char('*'), 'O', '$', '*', '$'));
 		}
 	}
-	
+
+	/**
+	 * @brief Constructor for keep level in accordance to the number of ogres
+	 * @param nr_ogres
+	 */
 	public Keep (int nr_ogres) {
 		this.map = new Map (new char [][] {
 			{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
@@ -90,16 +107,26 @@ public class Keep implements GameLogic, Serializable{
 	public Hero get_hero() {
 		return hero;
 	}
-	
+
+	/**
+	 * @return vector of all ogres
+	 */
 	public Vector <Ogre> get_ogres() {
 		return this.ogres;
 	}
 
+	/**
+	 * @return Map obtained
+	 */
 	@Override
 	public Map get_map() {
 		return this.map;
 	}
-	
+
+	/**
+	 * @brief Movement of Hero and Ogres
+	 * @param key
+	 */
 	@Override
 	public void move (char key) {
 		
@@ -109,7 +136,11 @@ public class Keep implements GameLogic, Serializable{
 		
 		map.draw_key();
 	}
-	
+
+	/**
+	 * @brief Checks status of game depending on the distance of Hero and Ogres
+	 * @return
+	 */
 	public GameState get_status () {
 		boolean lost = false;
 		
@@ -127,6 +158,10 @@ public class Keep implements GameLogic, Serializable{
 		
 	}
 
+	/**
+	 * @brief Moves hero
+	 * @param key
+	 */
 	public void move_hero(char key) {
 		map.reset_person(get_hero());
 		
@@ -135,6 +170,9 @@ public class Keep implements GameLogic, Serializable{
 		map.draw_hero(get_hero());
 	}
 
+	/**
+	 * @brief Moves all ogres in Keep level
+	 */
 	public void move_ogres () {
 		
 		for (Iterator <Ogre> it = ogres.iterator(); it.hasNext(); ) {

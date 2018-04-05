@@ -3,11 +3,23 @@ package dkeep.logic;
 import java.io.Serializable;
 import java.util.Random;
 
+/**
+ * @class Suspicious
+ * @extends Guard
+ * @brief Abstraction of the Suspicious Guard of the game.
+ */
 public class Suspicious extends Guard implements Serializable{
 	private Random r;
 	private String reverse_mov;
 	private int plays_to_reverse, bound;
-	
+
+	/**
+	 * @brief Constructor of the Suspicious object
+	 * @param coord coordinates of Suspicious
+	 * @param symbol of Suspicious
+	 * @param movement of Suspicious
+	 * @param bound to reverse
+	 */
 	public Suspicious (Coordinates coord, char symbol, String movement, int bound) {
 		super (coord, symbol, movement);
 		this.r = new Random ();
@@ -27,8 +39,12 @@ public class Suspicious extends Guard implements Serializable{
 			}
 		}
 	}
-	
-	
+
+	/**
+	 * @brief Moves Suspicious according to his reverse options
+	 * @param key a, 1 to left; d, 1 to the right; w, 1 upwards; s, 1 downwards
+	 * @param map Map where the character is stored
+	 */
 	@Override
 	public void move_person (char key, Map map) {
 		

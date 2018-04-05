@@ -15,37 +15,51 @@ public class Person implements Serializable{
 	
 	/**
 	 * @brief Class' constructor
-	 * @param x_pos The x coordinate of the character on the map. It varies from 0 to 9
-	 * @param y_pos The y coordinate of the character on the map. It varies from 0 to 9
+	 * @param coord Coordinate of Person
 	 * @param symbol The symbol of the character on the map
+	 * @param key_symbol Character when stepping in a key
 	 */
-	
 	public Person (Coordinates coord, char symbol, char key_symbol) {
 		this.coord = coord;
 		this.symbol = symbol;
 		this.key_symbol = key_symbol;
 	}
-	
+
+	/**
+	 * @brief Obtains current coordinates of a Person
+	 * @return Coordinates
+	 */
 	public Coordinates get_coordinates() {
 		return this.coord;
 	}
-	
+
+	/**
+	 * @brief Obtains corresponding symbol of the desired Person
+	 * @return symbol of the Person
+	 */
 	public char get_symbol() {
 		return symbol;
 	}
-	
+
+	/**
+	 * @brief Obtains symbol when stepping on a key
+	 * @return Character of Person with key
+	 */
 	public char get_key_symbol() {
 		return key_symbol;
 	}
-	
+
+	/**
+	 * @brief Sets the next symbol for the Person if it changed her attributes
+	 * @param symbol new symbol applied
+	 */
 	public void set_symbol (char symbol) {
 		this.symbol = symbol;
 	}
 	
 	/**
 	 * @brief Changes the position of the character by changing the character's attributes
-	 * @param x The new x coordinate of the character on the map. It varies from 0 to 9
-	 * @param y The new y coordinate of the character on the map. It varies from 0 to 9
+	 * @param new_coord New coordinates of the character
 	 */
 	public void set_pos (Coordinates new_coord) {
 		this.coord.set_pos(new_coord);
@@ -83,10 +97,8 @@ public class Person implements Serializable{
 	/**
      * @brief Checks if the player has lost, meaning if the hero is on one of the adjacent squares (except diagonals) to the person (guard, ogre or club)
      * @param person Character that makes the player lose - club, ogre or guard depending on the level
-     * @param map The map of the game
      * @return true, if the player is near the person; false, otherwise
      */
-    
     public boolean check_near (Hero person) {
     	
     		Coordinates this_coord = this.get_coordinates();

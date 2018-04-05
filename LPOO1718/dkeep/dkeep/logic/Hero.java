@@ -9,13 +9,24 @@ import java.io.Serializable;
  */
 public class Hero extends Person implements Serializable{
 	
-	private boolean win;
-	
+	private boolean win; /**@brief Bool if wins game*/
+
+	/**
+	 * @brief Constructor for Hero object
+	 * @param coord coordinates of Hero
+	 * @param symbol of Hero
+	 * @param key_symbol of Hero
+	 */
 	Hero (Coordinates coord, char symbol, char key_symbol) {
 		super (coord, symbol, key_symbol);
 		this.win = false;
 	}
 
+	/**
+	 * @brief Moves Hero in the current level and enables passage to next level
+	 * @param key a, 1 to left; d, 1 to the right; w, 1 upwards; s, 1 downwards
+	 * @param map Map where the character is stored
+	 */
 	@Override
 	public void move_person (char key, Map map) {
 		
@@ -32,7 +43,11 @@ public class Hero extends Person implements Serializable{
 			this.set_pos(initial_coord);
 		}
 	}
-	
+
+	/**
+	 * @brief Checks if game is won
+	 * @return win- bool in which confirms if game is won or not
+	 */
 	public boolean check_win () {
 		return this.win;
 	}
