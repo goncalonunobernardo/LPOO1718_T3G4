@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * @enum GameState
- * @brief Possible game states of the game
+ * @brief Possible states of the game
  */
 public enum GameState implements Serializable {
 

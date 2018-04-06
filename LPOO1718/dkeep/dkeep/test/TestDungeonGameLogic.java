@@ -201,17 +201,17 @@ public class TestDungeonGameLogic {
 		
 		map.reset_person(guard);
 		assertEquals (guard_coord, new Coordinates (3, 1));
-		guard.move_person(' ', map);
+		guard.move_guard(map);
 		assertEquals (guard_coord, new Coordinates (2, 1));
-		guard.move_person(' ', map);
+		guard.move_guard(map);
 		assertEquals (guard_coord, new Coordinates (1, 1));
-		guard.move_person(' ', map);
+		guard.move_guard(map);
 		assertEquals (guard_coord, new Coordinates (1, 2));
-		guard.move_person(' ', map);
+		guard.move_guard(map);
 		assertEquals (guard_coord, new Coordinates (2, 2));
-		guard.move_person(' ', map);
+		guard.move_guard(map);
 		assertEquals (guard_coord, new Coordinates (3, 2));
-		guard.move_person(' ', map);
+		guard.move_guard(map);
 		assertEquals (guard_coord, new Coordinates (3, 1));
 	}
 	
@@ -232,13 +232,13 @@ public class TestDungeonGameLogic {
 			
 			while (guard.get_symbol() == 'G') {
 				aux.set_pos(guard.get_coordinates());
-				guard.move_person(' ', map);
+				guard.move_guard(map);
 			}
 			
 			while (guard.get_symbol() == 'g') {
 				assertEquals (aux, guard.get_coordinates());
 				asleep = true;
-				guard.move_person(' ', map);
+				guard.move_guard(map);
 			}
 		}
 	}
@@ -258,7 +258,7 @@ public class TestDungeonGameLogic {
 			
 			aux.set_pos(guard.get_coordinates());
 			aux.add_x(-1);
-			guard.move_person(' ', map);
+			guard.move_guard(map);
 			
 			if (guard.get_coordinates().equals(aux)) {
 				change_direction = true;

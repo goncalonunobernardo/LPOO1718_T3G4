@@ -29,12 +29,9 @@ public class Guard extends Person implements Serializable{
 
 	/**
 	 * @brief moves the Guard as it extends himself as a Person
-	 * @param key The key is irrelevant because the guard will be moved according to the string specified on the constructor
-	 * Allows to override the move method
 	 * @param map Map where the character is stored
 	 */
-	@Override
-	public void move_person (char key, Map map) {
+	public void move_guard (Map map) {
 		Coordinates initial_coord = new Coordinates (this.get_coordinates());
 		
 		if (this.movement != "") {

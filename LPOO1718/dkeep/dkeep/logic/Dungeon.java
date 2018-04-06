@@ -10,6 +10,12 @@ import java.util.Random;
  */
 @SuppressWarnings("serial")
 public class Dungeon implements GameLogic, Serializable {
+	/** @brief Default movement of the guard in this level */
+	public static final String DEFAULT_MOVEMENT = "assssaaaaaasdddddddwwwww";
+	/** @brief Default maximum number the guard can walk in the same direction, stay awake, stay asleep.*/
+	public static final int DEFAULT_MAX_BOUND = 10;
+	/** @brief Default symbols for the characters of the level */
+	public static final char HERO_SYMBOL = 'H', GUARD_SYMBOL = 'G', HERO_WKEY_SYMBOL = 'K';
 	
 	private Map map;				/** @brief Map of this level */
 	private Hero hero;			/** @brief Hero of this level */
@@ -22,22 +28,22 @@ public class Dungeon implements GameLogic, Serializable {
 	public Dungeon (char[][] matrix) {
 		this.map = new Map (matrix);
 
-		Coordinates hero_coord = map.search_char('H');
-		Coordinates guard_coord = map.search_char ('G');
+		Coordinates hero_coord = map.search_char(HERO_SYMBOL);
+		Coordinates guard_coord = map.search_char (GUARD_SYMBOL);
 
-		this.hero = new Hero (hero_coord, 'H', 'K');
+		this.hero = new Hero (hero_coord, HERO_SYMBOL, HERO_WKEY_SYMBOL);
 
 		Random r = new Random();
 
 		switch (r.nextInt(3)) {
 
-		case 0: this.guard = new Guard (guard_coord, 'G', "assssaaaaaasdddddddwwwww");
+		case 0: this.guard = new Guard (guard_coord, GUARD_SYMBOL, DEFAULT_MOVEMENT);
 				break;
 
-		case 1: this.guard = new Suspicious (guard_coord, 'G', "assssaaaaaasdddddddwwwww", 10);
+		case 1: this.guard = new Suspicious (guard_coord, GUARD_SYMBOL, DEFAULT_MOVEMENT, DEFAULT_MAX_BOUND);
 				break;
 
-		case 2: this.guard = new Drunken (guard_coord, 'G', "assssaaaaaasdddddddwwwww", 10);
+		case 2: this.guard = new Drunken (guard_coord, GUARD_SYMBOL, DEFAULT_MOVEMENT, DEFAULT_MAX_BOUND);
 				break;
 
 		}
@@ -59,20 +65,20 @@ public class Dungeon implements GameLogic, Serializable {
 		
 		guard_type = guard_type.toLowerCase();
 
-		Coordinates hero_coord = map.search_char('H');
-		Coordinates guard_coord = map.search_char ('G');
+		Coordinates hero_coord = map.search_char(HERO_SYMBOL);
+		Coordinates guard_coord = map.search_char (GUARD_SYMBOL);
 
-		this.hero = new Hero (hero_coord, 'H', 'K');
+		this.hero = new Hero (hero_coord, HERO_SYMBOL, HERO_WKEY_SYMBOL);
 
 		switch (guard_type) {
 
-		case "rookie": this.guard = new Guard (guard_coord, 'G', "assssaaaaaasdddddddwwwww");
+		case "rookie": this.guard = new Guard (guard_coord, GUARD_SYMBOL, DEFAULT_MOVEMENT);
 		break;
 
-		case "suspicious": this.guard = new Suspicious (guard_coord, 'G', "assssaaaaaasdddddddwwwww", 10);
+		case "suspicious": this.guard = new Suspicious (guard_coord, GUARD_SYMBOL, DEFAULT_MOVEMENT, 10);
 		break;
 
-		case "drunken": this.guard = new Drunken (guard_coord, 'G', "assssaaaaaasdddddddwwwww", 10);
+		case "drunken": this.guard = new Drunken (guard_coord, GUARD_SYMBOL, DEFAULT_MOVEMENT, 10);
 		break;
 
 		}
@@ -165,7 +171,7 @@ public class Dungeon implements GameLogic, Serializable {
 	public void move_guard () {
 		map.reset_person(get_guard());
 
-		guard.move_person(' ', get_map());
+		guard.move_guard( get_map());
 
 		map.draw_person(get_guard());
 	}

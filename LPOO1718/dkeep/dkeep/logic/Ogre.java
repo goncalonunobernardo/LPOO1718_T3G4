@@ -2,6 +2,8 @@ package dkeep.logic;
 import java.io.Serializable;
 import java.util.Random;
 
+
+
 /**
  * @class Ogre
  * @extends Person
@@ -10,6 +12,8 @@ import java.util.Random;
  */
 @SuppressWarnings("serial")
 public class Ogre extends Person implements Serializable{
+	private static final char STUNNED_SYMBOL = '8', DEFAULT_SYMBOL = 'O';
+	
 	private Random r;			/** @brief Random object to randomly choose the ogre's movement*/
 	private Club club;			/** @brief Club of the ogre, that will always be next to it*/
 	private int stunned;			/** @brief Number of plays that the ogre will be stunned for*/
@@ -51,8 +55,8 @@ public class Ogre extends Person implements Serializable{
 		
 		if (stunned == 0) {
 			
-			if (this.get_symbol() == '8')
-				this.set_symbol('O');
+			if (this.get_symbol() == STUNNED_SYMBOL)
+				this.set_symbol(DEFAULT_SYMBOL);
 			
 			while (map.not_empty(get_coordinates()) || (initial_coord.equals(get_coordinates()))) {
 				this.set_pos(initial_coord);
@@ -75,8 +79,8 @@ public class Ogre extends Person implements Serializable{
 	@Override
 	public boolean check_near (Hero person) {
 		
-		if (super.check_near(person) && (person.get_symbol() == 'A' || person.get_symbol() == 'K')) {
-			this.set_symbol('8');
+		if (super.check_near(person)) {
+			this.set_symbol(STUNNED_SYMBOL);
 			this.stunned = 2;
 			return club.check_near(person);
 		}
