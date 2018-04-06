@@ -42,8 +42,8 @@ public class EditPanel extends JPanel implements ActionListener, MouseListener {
 		messages = new HashMap <Character, String> ();
 		
 		messages.put('A', "Invalid map: hero missing or repeated");
-		messages.put('O', "Invalid map: ogre or club misplaced");
-		messages.put('I', "Invalid map: no door on the left door");
+		messages.put('O', "Invalid map: ogre, club misplaced, missing or repeated");
+		messages.put('I', "Invalid map: no door on the left wall");
 		messages.put('k', "Invalid map: key missing or repeated");
 		messages.put(' ', "Ready to play");
 		

@@ -62,7 +62,7 @@ public class OgrePanel extends JPanel implements ActionListener {
 				newGameBtn.setEnabled(false);
 			}
 			else {
-				gameState.setText("You can play now.");
+				gameState.setText("Start a new game to apply the new settings.");
 				newGameBtn.setEnabled(true);
 			}
 		}

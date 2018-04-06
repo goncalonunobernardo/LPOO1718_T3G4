@@ -19,7 +19,7 @@ public class SettingsFrame extends JFrame {
 		this.setBounds(150, 150, 350, 100);
 		this.setResizable(false);
 		
-		guard_sett = new GuardPanel ();
+		guard_sett = new GuardPanel (label);
 		getContentPane().add(guard_sett);
 		
 		ogre_sett = new OgrePanel (label, newGameBtn);

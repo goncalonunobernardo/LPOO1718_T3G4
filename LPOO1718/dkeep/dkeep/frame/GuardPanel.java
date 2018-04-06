@@ -1,17 +1,20 @@
 package dkeep.frame;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class GuardPanel extends JPanel {
+public class GuardPanel extends JPanel implements ActionListener{
 
-	private JLabel guardPerson;
+	private JLabel guardPerson, gameLabel;
 	@SuppressWarnings("rawtypes")
 	private JComboBox guardList;
 	
-	GuardPanel () {
+	GuardPanel (JLabel label) {
 
 		super();
 
@@ -24,12 +27,20 @@ public class GuardPanel extends JPanel {
 
 		this.guardList = new JComboBox<Object> (guards);
 		guardList.setBounds(177, 88, 145, 22);
+		guardList.addActionListener(this);
 		
 		add(guardPerson);
 		add(guardList);
+		
+		this.gameLabel = label;
 	}
 	
 	public String get_selected_guard () {
 		return (String) guardList.getSelectedItem();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		gameLabel.setText("Start a new game to apply the new settings.");
 	}
 }
