@@ -3,7 +3,7 @@
 
 Autores: 
 - Ana Sá e Sousa Carneiro da Silva - 201604105 - up201604105@fe.up.pt
-- Gonçalo
+- Gonçalo Nuno Botelho Amaral Rolão Bernardo - 201606058 - up201606058@fe.up.pt
 
 EclEmma results: Coverage of the logic package = 95.0%
 
