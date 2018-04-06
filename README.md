@@ -5,7 +5,9 @@ Made by:
 - Ana Sá e Sousa Carneiro da Silva - 201604105 - up201604105@fe.up.pt
 - Gonçalo Nuno Botelho Amaral Rolão Bernardo - 201606058 - up201606058@fe.up.pt
 
-Java Version: 1.8, JUnit 4
+Compatible with:
+- JRE System Library: JavaSE-1.8
+- JUnit 4
 
 Java Documentation: https://web.fe.up.pt/~up201604105/
 
