@@ -1,7 +1,9 @@
 # LPOO1718_T3G4
 
 
-Autores: Ana Sá e Sousa Carneiro da Silva - 201604105 - up201604105@fe.up.pt
+Autores: 
+- Ana Sá e Sousa Carneiro da Silva - 201604105 - up201604105@fe.up.pt
+- Gonçalo
 
 EclEmma results: Coverage of the logic package = 95.0%
 
