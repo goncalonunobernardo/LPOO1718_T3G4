@@ -3,26 +3,27 @@ package dkeep.logic;
 import java.io.Serializable;
 import java.util.Random;
 
+
+@SuppressWarnings("serial")
 /**
  * @class Dungeon
- * @brief Abstraction of the Dungeon level in game: 
+ * Abstraction of the Dungeon level in game: 
  * It allows to move the hero, the guard, to pick a type of guard or for it to be randomly picked and to check the game's status
  */
-@SuppressWarnings("serial")
 public class Dungeon implements GameLogic, Serializable {
-	/** @brief Default movement of the guard in this level */
+	/** Default movement of the guard in this level */
 	public static final String DEFAULT_MOVEMENT = "assssaaaaaasdddddddwwwww";
-	/** @brief Default maximum number the guard can walk in the same direction, stay awake, stay asleep.*/
+	/** Default maximum number the guard can walk in the same direction, stay awake, stay asleep.*/
 	public static final int DEFAULT_MAX_BOUND = 10;
-	/** @brief Default symbols for the characters of the level */
+	/** Default symbols for the characters of the level */
 	public static final char HERO_SYMBOL = 'H', GUARD_SYMBOL = 'G', HERO_WKEY_SYMBOL = 'K';
 	
-	private Map map;				/** @brief Map of this level */
-	private Hero hero;			/** @brief Hero of this level */
-	private Guard guard;			/** @brief Guard of this level */
+	private Map map;				/** Map of this level */
+	private Hero hero;			/** Hero of this level */
+	private Guard guard;			/** Guard of this level */
 
 	/**
-	 * @brief Constructor for the Dungeon level: randomly picks the type of guard (rookie, suspicious, drunken)
+	 * Constructor for the Dungeon level: randomly picks the type of guard (rookie, suspicious, drunken)
 	 * @param matrix The char matrix representing the level's map
 	 */
 	public Dungeon (char[][] matrix) {
@@ -50,14 +51,14 @@ public class Dungeon implements GameLogic, Serializable {
 	}
 
 	/**
-	 * @brief generic Dungeon Level
+	 * generic Dungeon Level
 	 */
 	Dungeon () {
 		this (default_matrix());
 	}
 
 	/**
-	 * @brief generic map dependent on the Guard
+	 * generic map dependent on the Guard
 	 * @param guard_type The type of guard that will be in this level: rookie, suspicious or drunken
 	 */
 	public Dungeon (String guard_type) {
@@ -85,7 +86,7 @@ public class Dungeon implements GameLogic, Serializable {
 	}
 	
 	/**
-	 * @brief To store the default matrix of the level's map
+	 * To store the default matrix of the level's map
 	 * @return The default matrix
 	 */
 	public static char [][] default_matrix() {
@@ -125,9 +126,8 @@ public class Dungeon implements GameLogic, Serializable {
 	}
 
 	/**
-	 * @brief Moves the hero, the guard or the ogre and the club of the game, by calling move_person and checks if the game is over
+	 * Moves the hero and the guard of the level, by calling move_person
 	 * @param key Key that expresses the hero movement: a, 1 to left; d, 1 to the right; w, 1 upwards; s, 1 downwards
-	 * @return true, if the game ended; false, otherwise
 	 */
 	public void move (char key) {
 
@@ -139,7 +139,7 @@ public class Dungeon implements GameLogic, Serializable {
 	}
 
 	/**
-	 * @brief Takes care of the game state while under the application
+	 * Takes care of the game state while under the application
 	 * @return game state whether it's playing, lost or won
 	 */
 	public GameState get_status () {
@@ -153,7 +153,7 @@ public class Dungeon implements GameLogic, Serializable {
 	}
 
 	/**
-	 * @brief Moves the Hero character
+	 * Moves the Hero character
 	 * @param key Key that expresses the hero movement: a, 1 to left; d, 1 to the right; w, 1 upwards; s, 1 downwards
 	 */
 	public void move_hero(char key) {
@@ -165,7 +165,7 @@ public class Dungeon implements GameLogic, Serializable {
 	}
 
 	/**
-	 * @brief Moves the Guard character. 
+	 * Moves the Guard character. 
 	 * There's no need for a key because the guard has a restricted movement set in its constructor
 	 */
 	public void move_guard () {

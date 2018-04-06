@@ -2,17 +2,18 @@ package dkeep.logic;
 
 import java.io.Serializable;
 
+
+@SuppressWarnings("serial")
 /**
  * @class Coordinates
- * @brief Abstraction of 2 dimensional Coordinates of all levels
+ * Abstraction of 2 dimensional Coordinates of all levels
  */
-@SuppressWarnings("serial")
 public class Coordinates implements Serializable {
-	private int x;			/** @brief x coordinate */
-	private int y;			/** @brief y coordinate */
+	private int x;			/** x coordinate */
+	private int y;			/** y coordinate */
 
 	/**
-	 * @brief Constructor for all coordinates of the map
+	 * Constructor for all coordinates of the map
 	 * @param x X coordinate
 	 * @param y Y coordinate
 	 */
@@ -22,7 +23,7 @@ public class Coordinates implements Serializable {
 	}
 
 	/**
-	 * @brief Copy constructor
+	 * Copy constructor
 	 * @param coord Coordinates to which this will be equal to
 	 */
 	public Coordinates(Coordinates coord) {
@@ -31,7 +32,7 @@ public class Coordinates implements Serializable {
 	}
 
 	/**
-	 * @brief Gets x coordinate of the map
+	 * Gets x coordinate of the map
 	 * @return x coordinate
 	 */
 	public int get_x() {
@@ -39,7 +40,7 @@ public class Coordinates implements Serializable {
 	}
 
 	/**
-	 * @brief Gets y coordinate of the map
+	 * Gets y coordinate of the map
 	 * @return y coordinate
 	 */
 	public int get_y() {
@@ -47,7 +48,7 @@ public class Coordinates implements Serializable {
 	}
 
 	/**
-	 * @brief Sets x and y position of map
+	 * Sets x and y position of map
 	 * @param x X coordinate to which it will be changed
 	 * @param y Y coordinate to which it will be changed
 	 */
@@ -57,7 +58,7 @@ public class Coordinates implements Serializable {
 	}
 
 	/**
-	 * @brief Sets x and y position of objects in map
+	 * Sets x and y position of objects in map
 	 * @param new_coord Coordinates to which this will be equal to
 	 */
 	public void set_pos (Coordinates new_coord) {
@@ -66,7 +67,7 @@ public class Coordinates implements Serializable {
 	}
 
 	/**
-	 * @brief Increments y coordinate
+	 * Increments y coordinate
 	 * @param adding The value to be incremented
 	 */
 	public void add_y (int adding) {
@@ -74,7 +75,7 @@ public class Coordinates implements Serializable {
 	}
 
 	/**
-	 * @brief Increments x coordinate
+	 * Increments x coordinate
 	 * @param adding The value to be incremented
 	 */
 	public void add_x (int adding) {
@@ -82,7 +83,7 @@ public class Coordinates implements Serializable {
 	}
 
 	/**
-	 * @brief Tests if objects are in same column
+	 * Tests if objects are in same column
 	 * @param coord Coordinates that will be tested with this object
 	 * @return true if objects are in same column, false otherwise
 	 */
@@ -91,7 +92,7 @@ public class Coordinates implements Serializable {
 	}
 
 	/**
-	 * @brief Tests if x coordinates are in same line (are the same)
+	 * Tests if x coordinates are in same line (are the same)
 	 * @param coord Coordinates that will be tested with this object
 	 * @return true if x coordinates are the same, false otherwise
 	 */
@@ -100,7 +101,7 @@ public class Coordinates implements Serializable {
 	}
 
 	/**
-	 * @brief Tests if Objects are equal
+	 * Tests if Objects are equal
 	 * @param obj The Object to which this will be compared to 
 	 * @return true is objects are equal
 	 */

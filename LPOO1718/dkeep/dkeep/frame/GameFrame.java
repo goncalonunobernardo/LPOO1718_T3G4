@@ -25,9 +25,7 @@ public class GameFrame extends JFrame {
 	private JButton saveG, loadG;
 	private EditFrame editFrame;
 
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

@@ -2,12 +2,13 @@ package dkeep.logic;
 
 import java.io.Serializable;
 
+
+@SuppressWarnings("serial")
 /**
  * @class Game
- * @brief Abstraction of the whole game and the settings around it.
+ * Abstraction of the whole game and the settings around it.
  * It allows to construct a game with unlimited number of levels, to play, to check the status of the game and to update the level
  */
-@SuppressWarnings("serial")
 public class Game implements Serializable{
 	
 	GameLogic [] levels;
@@ -15,7 +16,7 @@ public class Game implements Serializable{
 	GameState status;
 
 	/**
-	 * @brief Constructor of the game
+	 * Constructor of the game
 	 * @param levels of game
 	 */
 	public Game (GameLogic [] levels) {
@@ -25,14 +26,14 @@ public class Game implements Serializable{
 	}
 
 	/**
-	 * @brief Constructor of the default levels of the game
+	 * Constructor of the default levels of the game
 	 */
 	public Game () {
 		this(new GameLogic [] {new Dungeon(), new Keep()});
 	}
 
 	/**
-	 * @brief Checks if game is over
+	 * Checks if game is over
 	 * @return true if game is in fact over
 	 */
 	public boolean check_game_over() {
@@ -40,7 +41,7 @@ public class Game implements Serializable{
 	}
 
 	/**
-	 * @brief Checks game status: WON, LOST or PLAYING
+	 * Checks game status: WON, LOST or PLAYING
 	 * @return game status
 	 */
 	public GameState get_game_status () {
@@ -48,14 +49,14 @@ public class Game implements Serializable{
 	}
 
 	/**
-	 * @brief Updates the status of the current game in action by checking the status of the level that's being played
+	 * Updates the status of the current game in action by checking the status of the level that's being played
 	 */
 	public void update_game_status () {
 		status = levels[current_level].get_status();
 	}
 
 	/**
-	 * @brief Obtains Hero
+	 * Obtains Hero
 	 * @return Hero object from current level
 	 */
 	public Hero get_hero() {
@@ -63,7 +64,7 @@ public class Game implements Serializable{
 	}
 
 	/**
-	 * @brief Obtains map
+	 * Obtains map
 	 * @return Current map object
 	 */
 	public Map get_map() {
@@ -71,7 +72,7 @@ public class Game implements Serializable{
 	}
 
 	/**
-	 * @brief Handler for all of the game logic use: checks if the game is not over, if a level it's not over and updates it if necessary,
+	 * Handler for all of the game logic use: checks if the game is not over, if a level it's not over and updates it if necessary,
 	 * makes a play by calling the GameLogic method move
 	 * @param key Key that expresses the hero movement: a, 1 to left; d, 1 to the right; w, 1 upwards; s, 1 downwards
 	 */
@@ -89,7 +90,7 @@ public class Game implements Serializable{
 	}
 
 	/**
-	 * @brief Updates the level if completed the previous
+	 * Updates the level if completed the previous
 	 */
 	public void updateLevel () {
 		
@@ -104,7 +105,7 @@ public class Game implements Serializable{
 		}
 
 	/**
-	 * @brief Obtains current level
+	 * Obtains current level
 	 * @return Current level
 	 */
 	public int get_current_level() {

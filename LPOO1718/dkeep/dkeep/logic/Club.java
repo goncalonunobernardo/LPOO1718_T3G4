@@ -2,17 +2,18 @@ package dkeep.logic;
 import java.io.Serializable;
 import java.util.Random;
 
+
+@SuppressWarnings("serial")
 /**
  * @class Club
  * @extends Person
- * @brief Abstraction of the Club of the game: allows to create a club and to move it at a random direction within a map
+ * Abstraction of the Club of the game: allows to create a club and to move it at a random direction within a map
  */
-@SuppressWarnings("serial")
 public class Club extends Person implements Serializable {
-	Random r;					/** @brief To allow for the movement of the club to be random*/
+	Random r;					/** To allow for the movement of the club to be random*/
 
 	/**
-	 * @brief Constructor for the Ogre's Club
+	 * Constructor for the Ogre's Club
 	 * @param coord Initial coordinates of the club
 	 * @param club_symbol Symbol that represents the club when the game is being printed on the console
 	 * @param key_symbol Symbol that is drawn instead of the club's symbol when it's above the key
@@ -23,9 +24,9 @@ public class Club extends Person implements Serializable {
 	}
 
 	/**
-	 * @brief Allows the club to move within a map in a random direction: 
+	 * Allows the club to move within a map in a random direction: 
 	 * it makes sure it does not stay in the same place and does not move to a space already occupied
-	 * @param key Irrevelant in this case because it is random but allows to override the super class function
+	 * @param key Irrelevant in this case because it is random but allows to override the super class function
 	 * @param map Map where the character is drawn
 	 */
 	@Override 

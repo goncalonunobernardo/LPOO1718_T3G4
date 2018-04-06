@@ -2,19 +2,19 @@ package dkeep.logic;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 /**
  * @class Guard
  * @extends Person
- * @brief Abstraction of the Guard of the game. It allows to move the guard on the map in a planed route.
+ * Abstraction of the Guard of the game. It allows to move the guard on the map in a planed route.
  */
-@SuppressWarnings("serial")
 public class Guard extends Person implements Serializable{
 
-	protected String movement;					/**@brief The route of the guard on the map*/
-	protected int count_string;					/**@brief To know in which key of the movement the guard currently is*/
+	protected String movement;					/** The route of the guard on the map*/
+	protected int count_string;					/**To know in which key of the movement the guard currently is*/
 
 	/**
-	 * @brief Constructor of the Guard object
+	 * Constructor of the Guard object
 	 * @param coord coordinates of Guard
 	 * @param symbol Char that represents the guard on the map
 	 * @param movement String where the guard's movement is stored: 
@@ -28,7 +28,7 @@ public class Guard extends Person implements Serializable{
 
 
 	/**
-	 * @brief moves the Guard as it extends himself as a Person
+	 * Moves the Guard as it extends himself as a Person
 	 * @param map Map where the character is stored
 	 */
 	public void move_guard (Map map) {

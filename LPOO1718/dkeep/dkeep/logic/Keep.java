@@ -5,12 +5,12 @@ import java.util.Iterator;
 import java.util.Random;
 import java.util.Vector;
 
+@SuppressWarnings("serial")
 /**
  * @class Keep
- * @brief Abstraction of the Keep level in game. 
+ * Abstraction of the Keep level in game. 
  * It allows to move the hero, the ogres, to randomly pick the number of ogres or to choose it
  */
-@SuppressWarnings("serial")
 public class Keep implements GameLogic, Serializable{
 	
 	private Map map;
@@ -18,7 +18,7 @@ public class Keep implements GameLogic, Serializable{
 	private Vector <Ogre> ogres;
 
 	/**
-	 * @brief Constructor for Keep level
+	 * Constructor for Keep level
 	 * @param matrix Matrix of the map of this level
 	 */
 	public Keep (char[][] matrix) {
@@ -36,14 +36,14 @@ public class Keep implements GameLogic, Serializable{
 	}
 
 	/**
-	 * @brief Default constructor of the level: default matrix and random number of ogres
+	 * Default constructor of the level: default matrix and random number of ogres
 	 */
 	Keep () {
 		this (default_matrix());
 	}
 
 	/**
-	 * @brief Constructor for all the settings in the Keep level
+	 * Constructor for all the settings in the Keep level
 	 * @param matrix Matrix of the map of this level
 	 * @param nr_ogres Number of ogres that the level will have
 	 */
@@ -67,7 +67,7 @@ public class Keep implements GameLogic, Serializable{
 	}
 
 	/**
-	 * @brief Constructor for keep level in accordance to the number of ogres
+	 * Constructor for keep level in accordance to the number of ogres
 	 * @param nr_ogres Number of ogres that the level will have
 	 */
 	public Keep (int nr_ogres) {
@@ -112,7 +112,7 @@ public class Keep implements GameLogic, Serializable{
 	}
 
 	/**
-	 * @brief Moves the Hero and the Ogres
+	 * Moves the Hero and the Ogres of the level
 	 * @param key To move the hero in a certain direction: a, 1 to left; d, 1 to the right; w, 1 upwards; s, 1 downwards
 	 */
 	@Override
@@ -126,7 +126,7 @@ public class Keep implements GameLogic, Serializable{
 	}
 
 	/**
-	 * @brief Checks status of game depending on the coordinates of Hero and Ogres and if they are in adjacent cells
+	 * Checks status of game depending on the coordinates of Hero and Ogres and if they are in adjacent cells
 	 * @return The current state of the game: LOST, WON, PLAYING
 	 */
 	public GameState get_status () {
@@ -147,8 +147,8 @@ public class Keep implements GameLogic, Serializable{
 	}
 
 	/**
-	 * @brief Moves hero
-	 * @param key
+	 * Moves the hero
+	 * @param key To move the hero in a certain direction: a, 1 to left; d, 1 to the right; w, 1 upwards; s, 1 downwards
 	 */
 	public void move_hero(char key) {
 		map.reset_person(get_hero());
@@ -159,7 +159,7 @@ public class Keep implements GameLogic, Serializable{
 	}
 
 	/**
-	 * @brief Moves all ogres in Keep level
+	 * Moves all ogres in Keep level
 	 */
 	public void move_ogres () {
 		

@@ -2,23 +2,24 @@ package dkeep.logic;
 
 import java.io.Serializable;
 
+
+@SuppressWarnings("serial")
 /**
  * @class Drunken
  * @extends Guard_2_ways
- * @brief Abstraction of the Drunken Guard of the game.
+ * Abstraction of the Drunken Guard of the game.
  */
-@SuppressWarnings("serial")
 public class Drunken extends Guard_2_ways implements Serializable {
-	private static final int MIN_BOUND = 2;		/** @brief Minimal number of plays that will go with no change*/
-	private int stop_plays;						/** @brief Number of plays the guard will remain asleep (stopped). 
+	private static final int MIN_BOUND = 2;		/** Minimal number of plays that will go with no change*/
+	private int stop_plays;						/** Number of plays the guard will remain asleep (stopped). 
 													It's randomly computed and it changes every time he falls asleep  */
-	private int walk_plays;						/** @brief Number of plays the guard will remain awake (playing). 
+	private int walk_plays;						/** Number of plays the guard will remain awake (playing). 
 													It's randomly computed and it changes every time he awakes  */
-	private int bound;							/** @brief Reverse movement that the guard will have to make if its direction is changed*/
-	private boolean asleep;						/** @brief Saves the state of the guard = awake or asleep */
+	private int bound;							/** Reverse movement that the guard will have to make if its direction is changed*/
+	private boolean asleep;						/** Saves the state of the guard = awake or asleep */
 
 	/**
-	 * @brief Constructor for Drunken type of Guard
+	 * Constructor for Drunken type of Guard
 	 * @param coord Initial coordinates of the guard
 	 * @param symbol Symbol that will represent it
 	 * @param movement Movement that the guard will repeat
@@ -33,7 +34,7 @@ public class Drunken extends Guard_2_ways implements Serializable {
 	}
 
 	/**
-	 * @brief Allows the guard to move within a map: stays in the same place when asleep (symbol: g), 
+	 * Allows the guard to move within a map: stays in the same place when asleep (symbol: g), 
 	 * moves according to current movement when awake (symbol: G), may change direction after waking up
 	 * @param map where it's stored
 	 */
