@@ -5,8 +5,8 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 /**
- * @class Coordinates
  * Abstraction of 2 dimensional Coordinates of all levels
+ * @class Coordinates
  */
 public class Coordinates implements Serializable {
 	private int x;			/** x coordinate */

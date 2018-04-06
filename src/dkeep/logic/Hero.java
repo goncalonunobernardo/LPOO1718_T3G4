@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 /**
+ * Abstraction of the hero of the game. It allows to move the hero on the map and to know if the player won or lost.
  * @class Hero 
- * @extends Person
- * Abstraction of the hero of the game. It allows to move the hero on the map and to know if the player won or lost. 
+ * @extends Person 
  */
 public class Hero extends Person implements Serializable{
 	

@@ -5,10 +5,10 @@ import java.util.Random;
 
 @SuppressWarnings("serial")
 /**
- * @class Suspicious
- * @extends Guard_2_ways
  * Abstraction of the Suspicious Guard of the game.
  * It allows for the guard to randomly change its direction
+ * @class Suspicious
+ * @extends Guard_2_ways
  */
 public class Suspicious extends Guard_2_ways implements Serializable{
 	private int plays_to_reverse; 	/** Number of plays that the guard will keep the same direction.

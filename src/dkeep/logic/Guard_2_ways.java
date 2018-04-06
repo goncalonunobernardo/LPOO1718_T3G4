@@ -5,8 +5,8 @@ import java.util.Random;
 
 @SuppressWarnings("serial")
 /**
- * @Class Guard_2_ways
  * Abstraction of a guard that can randomly change direction 
+ * @Class Guard_2_ways
  */
 public abstract class Guard_2_ways extends Guard implements Serializable{
 	protected Random r;							/** Allows to randomly change direction */

@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 /**
+ * Abstraction of the Guard of the game. It allows to move the guard on the map in a planed route.
  * @class Guard
  * @extends Person
- * Abstraction of the Guard of the game. It allows to move the guard on the map in a planed route.
  */
 public class Guard extends Person implements Serializable{
 

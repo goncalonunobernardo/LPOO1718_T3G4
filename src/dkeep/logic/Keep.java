@@ -7,9 +7,9 @@ import java.util.Vector;
 
 @SuppressWarnings("serial")
 /**
- * @class Keep
  * Abstraction of the Keep level in game. 
  * It allows to move the hero, the ogres, to randomly pick the number of ogres or to choose it
+ * @class Keep
  */
 public class Keep implements GameLogic, Serializable{
 	

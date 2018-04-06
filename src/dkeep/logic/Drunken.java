@@ -5,9 +5,9 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 /**
+ * Abstraction of the Drunken Guard of the game.
  * @class Drunken
  * @extends Guard_2_ways
- * Abstraction of the Drunken Guard of the game.
  */
 public class Drunken extends Guard_2_ways implements Serializable {
 	private static final int MIN_BOUND = 2;		/** Minimal number of plays that will go with no change*/

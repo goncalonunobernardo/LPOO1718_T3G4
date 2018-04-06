@@ -4,10 +4,9 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 /**
- * 
- * @class Map
  * Abstraction of a map. It saves the letters of each position of the map, the hero and the guard of the game
  * It allows to change some character's positions, to move characters and to print the map.
+ * @class Map
  */
 public class Map implements Serializable {
 	private Coordinates key;

@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 /**
- * @class Person
  * Abstraction of a character of the game (ex: hero, guard). It saves a character's position and its symbol on the map. 
  * It allows to change its position according to a key a, 1 to left; d, 1 to the right; w, 1 upwards; s, 1 downwards
+ * @class Person
  */
 public class Person implements Serializable{
 	

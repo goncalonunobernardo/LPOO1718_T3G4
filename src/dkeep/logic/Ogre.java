@@ -5,10 +5,10 @@ import java.util.Random;
 
 @SuppressWarnings("serial")
 /**
- * @class Ogre
- * @extends Person
  * Abstraction of the Ogre of the game. 
  * It allows to randomly move the ogre, to save and move its club and to harm the ogre if the hero is near him
+ * @class Ogre
+ * @extends Person
  */
 public class Ogre extends Person implements Serializable{
 	private static final char STUNNED_SYMBOL = '8', DEFAULT_SYMBOL = 'O';
