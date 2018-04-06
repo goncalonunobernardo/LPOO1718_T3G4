@@ -5,9 +5,9 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 /**
- * @class Game
  * Abstraction of the whole game and the settings around it.
- * It allows to construct a game with unlimited number of levels, to play, to check the status of the game and to update the level
+ * It allows to construct a game with unlimited number of levels, to play, to check the status of the game and to update the level 
+ * @class Game
  */
 public class Game implements Serializable{
 	

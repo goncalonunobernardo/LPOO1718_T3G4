@@ -5,9 +5,9 @@ import java.util.Random;
 
 @SuppressWarnings("serial")
 /**
+ * Abstraction of the Club of the game: allows to create a club and to move it at a random direction within a map
  * @class Club
  * @extends Person
- * Abstraction of the Club of the game: allows to create a club and to move it at a random direction within a map
  */
 public class Club extends Person implements Serializable {
 	Random r;					/** To allow for the movement of the club to be random*/

@@ -6,9 +6,9 @@ import java.util.Random;
 
 @SuppressWarnings("serial")
 /**
- * @class Dungeon
  * Abstraction of the Dungeon level in game: 
  * It allows to move the hero, the guard, to pick a type of guard or for it to be randomly picked and to check the game's status
+ * @class Dungeon
  */
 public class Dungeon implements GameLogic, Serializable {
 	/** Default movement of the guard in this level */
