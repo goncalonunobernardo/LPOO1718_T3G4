@@ -1,7 +1,6 @@
 package dkeep.logic;
 
 import java.io.Serializable;
-import java.util.Random;
 
 /**
  * @class Drunken
