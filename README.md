@@ -14,3 +14,5 @@ PIT results: Mutation coverage of the logic package = 74%
 
 
 Better Code Hub badge: 
+
+<img src='https://bettercodehub.com/edge/badge/mrpinemyapple/LPOO1718_T3G4?branch=master&token=7186c98fe6a500a90757818448e2d7425f31221e'>
