@@ -1,32 +1,32 @@
-# LPOO1718_T3G4
+# LPOO – Final Project
+## Check Point Delivery
 
-LPOO – Final Project
-Check Point Delivery
-
-Authors:
+### Authors:
 Ana Sá e Sousa Carneiro da Silva
 Gonçalo Nuno Bernardo
 
 
-Architecture Design
+## Architecture Design
+
+### Package UML
+
+<img width="1010" alt="screen shot 2018-04-30 at 21 59 39" src="https://user-images.githubusercontent.com/31972761/39451798-e27b1606-4cc7-11e8-99bb-c8136967586f.png">
 
 
-Package UML 
 
-
-Class UML
+### Class UML
 
 ![blank diagram-3](https://user-images.githubusercontent.com/31972761/39451355-50c67602-4cc6-11e8-937e-2c9da3fd19c3.png)
 
 
 
-State UML
+### State UML
 
 ![blank diagram-2](https://user-images.githubusercontent.com/31972761/39451357-50e78630-4cc6-11e8-890d-a0d12088dab7.png)
 
 
 
-Design Patterns
+## Design Patterns
 
 •	Singleton: This design pattern is used to ensure that there’s only one instance of the classes GameController, GameModel and GameView. Given that this classes represent the physics controller, the logic of the game and what is print on the screen, it makes sense to create and have only one instance of each one throughout the life of the application.
 
@@ -42,13 +42,13 @@ Design Patterns
 
 
 
-GUI design
+## GUI design
 
 ![mockups](https://user-images.githubusercontent.com/31972761/39451354-50939a16-4cc6-11e8-85b7-a9485827a1ec.png)
 
 
 
-Test Design
+## Test Design
 
 •	Checks the boat's movement to the right and to the left
 
