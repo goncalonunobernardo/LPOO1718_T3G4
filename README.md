@@ -7,15 +7,14 @@
 1. Download the project from the corresponding GitHub repository.
 2. Import project in Android Studio.
 3. When prompted to update project upon start, **don't!**
-4. Include the jar dependencies:
-    - gdx-freetype.jar
+4. Include the jar dependencies present on the jar_files folder
 
 Gradle version: 2.14.1
 
 
 ### Tests
 
-To run the tests you must include 3 jar dependencys:
+To run the tests you must include 3 jar dependencys and add JUNIT4 to your path:
 - gdx-box2d-gwt.jar
 - gdx-box2d.jar
 - gdx-box2d-natives.jar
