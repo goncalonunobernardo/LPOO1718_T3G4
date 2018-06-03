@@ -1,0 +1,20 @@
+apply plugin: "java"
+
+sourceCompatibility = 1.6
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+sourceSets.main.java.srcDirs = [ "src/" ]
+
+
+eclipse.project {
+    name = appName + "-core"
+}
+
+dependencies {
+    compile files('build/libs/core-1.0.jar')
+    compile 'junit:junit:4.12'
+    compile files('build/libs/gdx-freetype.jar')
+    compile files('build/libs/gdx-box2d.jar')
+    compile files('build/libs/gdx-box2d-gwt.jar')
+    compile files('build/libs/gdx-box2d-natives.jar')
+}
